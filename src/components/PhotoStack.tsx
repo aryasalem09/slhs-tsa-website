@@ -28,7 +28,7 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
             onClick={() => setFront(isFront ? null : i)}
             aria-pressed={isFront}
             aria-label={`${card.label} — bring photo to front`}
-            className={`wood-grain group relative w-[85%] max-w-[19.5rem] border-2 border-ink/85 p-2.5 text-left shadow-paper transition-all duration-200 edge-paper-sm hover:z-20 hover:rotate-0 hover:shadow-lift ${TILTS[i % TILTS.length]} ${i === 0 ? "" : "-mt-8"} ${isFront ? "z-30 rotate-0 scale-[1.04] shadow-lift" : ""}`}
+            className={`wood-grain group relative w-[85%] max-w-[19.5rem] border-2 border-ink/85 p-2.5 text-left shadow-[0_1px_2px_rgb(37_50_68_/_0.08),0_4px_14px_-4px_rgb(37_50_68_/_0.18),inset_0_2px_3px_rgb(230_190_130_/_0.3),inset_0_-3px_5px_rgb(20_12_4_/_0.5)] transition-all duration-200 edge-paper-sm hover:z-20 hover:rotate-0 hover:shadow-lift ${TILTS[i % TILTS.length]} ${i === 0 ? "" : "-mt-8"} ${isFront ? "z-30 rotate-0 scale-[1.04] shadow-lift" : ""}`}
             style={{ zIndex: isFront ? 30 : i + 1 }}
           >
             <span
@@ -56,21 +56,22 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
 
       {/* The hanging wooden gallery sign from the sketch — opens the full gallery. */}
       <div className="relative z-0 -mt-2 w-[85%] max-w-[19.5rem]">
-        {/* ropes tucked under the card above, meeting the sign's screws */}
-        <div
-          aria-hidden="true"
-          className="mx-auto flex w-[70%] max-w-[15rem] justify-between px-3.5"
-        >
-          <span className="h-8 w-1.5 rounded-b-sm bg-gradient-to-b from-[#5a3a1a] to-[#8a6134]" />
-          <span className="h-8 w-1.5 rounded-b-sm bg-gradient-to-b from-[#5a3a1a] to-[#8a6134]" />
-        </div>
         <Link
           href="/gallery"
-          className="wood-grain edge-paper-sm group relative -mt-px mx-auto block w-[70%] max-w-[15rem] origin-top rotate-[-1.5deg] border-2 border-ink/85 px-4 py-3 text-center shadow-paper transition-transform duration-300 hover:rotate-[1.5deg] hover:shadow-lift"
+          className="wood-grain edge-paper-sm group relative mx-auto mt-7 block w-[70%] max-w-[15rem] origin-top rotate-[-1.5deg] border-2 border-ink/85 px-4 py-3 text-center shadow-[0_1px_2px_rgb(37_50_68_/_0.08),0_4px_14px_-4px_rgb(37_50_68_/_0.18),inset_0_2px_3px_rgb(230_190_130_/_0.3),inset_0_-3px_5px_rgb(20_12_4_/_0.5)] transition-transform duration-300 hover:rotate-[1.5deg] hover:shadow-lift"
         >
-          {/* rope holes where the ropes attach */}
-          <span aria-hidden="true" className="absolute left-4 top-1.5 h-1.5 w-1.5 rounded-full bg-[#241608] shadow-[0_1px_0_rgb(214_172_116_/_0.35)]" />
-          <span aria-hidden="true" className="absolute right-4 top-1.5 h-1.5 w-1.5 rounded-full bg-[#241608] shadow-[0_1px_0_rgb(214_172_116_/_0.35)]" />
+          {/* ropes: children of the sign, so they always end in the rope holes */}
+          <span
+            aria-hidden="true"
+            className="absolute -top-7 left-4 h-9 w-1.5 rounded-t-sm bg-[repeating-linear-gradient(-45deg,#8a6134_0_3px,#5a3a1a_3px_6px)]"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute -top-7 right-4 h-9 w-1.5 rounded-t-sm bg-[repeating-linear-gradient(-45deg,#8a6134_0_3px,#5a3a1a_3px_6px)]"
+          />
+          {/* rope holes, painted over the rope ends so they look threaded */}
+          <span aria-hidden="true" className="absolute left-[13px] top-1.5 h-2.5 w-2.5 rounded-full bg-[#241608] shadow-[0_1px_0_rgb(214_172_116_/_0.35)]" />
+          <span aria-hidden="true" className="absolute right-[13px] top-1.5 h-2.5 w-2.5 rounded-full bg-[#241608] shadow-[0_1px_0_rgb(214_172_116_/_0.35)]" />
           {/* stacked "our / GALLERY" like the sketch, routed-lettering style */}
           <p className="leading-none text-[#f2e3c4] [text-shadow:0_1px_2px_rgb(20_12_4_/_0.75)]">
             <span className="block font-hand text-lg font-semibold lowercase leading-none">
