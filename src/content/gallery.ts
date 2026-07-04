@@ -14,7 +14,7 @@ export type GalleryPhoto = {
   /** Intrinsic pixel size — keeps the masonry from shifting as images load. */
   w?: number;
   h?: number;
-  /** Easter egg: little cartoon stickers that pop out in the lightbox. */
+  /** Easter egg: named cartoon stickers (see stickers-art.ts) that pop out in the lightbox. */
   stickers?: string[];
 };
 
@@ -41,7 +41,7 @@ export const scrapbook: GalleryPhoto[] = [
     caption: "State 2026!",
     w: 1600,
     h: 1200,
-    stickers: ["⭐", "🎈", "🏆"],
+    stickers: ["star", "balloon", "trophy"],
   },
   {
     src: "/gallery/chapter-team.webp",
@@ -49,7 +49,7 @@ export const scrapbook: GalleryPhoto[] = [
     caption: "the entire chapter",
     w: 1600,
     h: 1067,
-    stickers: ["🎉", "💙", "🧡"],
+    stickers: ["confetti", "heart-blue", "heart-orange"],
   },
   {
     src: "/gallery/nationals.webp",
@@ -57,7 +57,7 @@ export const scrapbook: GalleryPhoto[] = [
     caption: "blazers on — Nationals",
     w: 1600,
     h: 1205,
-    stickers: ["🏆", "✨", "🕶️"],
+    stickers: ["trophy", "firework", "shades"],
   },
   {
     src: "/gallery/nationals-mascot.webp",
@@ -65,7 +65,7 @@ export const scrapbook: GalleryPhoto[] = [
     caption: "nats with Lex!",
     w: 1179,
     h: 884,
-    stickers: ["🤘", "🦬", "🧡"],
+    stickers: ["longhorn", "heart-orange", "confetti"],
   },
   {
     src: "/gallery/zoo-trip.webp",
@@ -73,7 +73,7 @@ export const scrapbook: GalleryPhoto[] = [
     caption: "zoo trip — bamboo forest",
     w: 1536,
     h: 2048,
-    stickers: ["🎋", "🐼", "🌿"],
+    stickers: ["bamboo", "panda", "bamboo"],
   },
   {
     src: "/gallery/zoo-gift-shop.webp",
@@ -81,7 +81,7 @@ export const scrapbook: GalleryPhoto[] = [
     caption: "panda headbands!",
     w: 1600,
     h: 1200,
-    stickers: ["🐼", "🐼", "🎋", "🐼"],
+    stickers: ["panda", "panda", "bamboo", "panda"],
   },
   {
     src: "/gallery/social-dinner.webp",
@@ -89,16 +89,16 @@ export const scrapbook: GalleryPhoto[] = [
     caption: "nats dinner at outback!",
     w: 1600,
     h: 1205,
-    stickers: ["🥩", "🍟", "😋"],
+    stickers: ["burger", "fries", "smiley"],
   },
 ];
 
 /** Per-album sticker themes for the archive easter eggs. */
 const ALBUM_STICKERS: Record<string, string[]> = {
-  Regionals: ["🏁", "🔧", "🏎️"],
-  State: ["⭐", "🏆", "🎈"],
-  Socials: ["🎃", "🍬", "🏠"],
-  Events: ["🛠️", "📐", "🧠"],
+  Regionals: ["flag", "wrench", "pencil"],
+  State: ["star", "trophy", "balloon"],
+  Socials: ["pumpkin", "candy", "gingerbread"],
+  Events: ["wrench", "ruler", "gear"],
 };
 
 /** Albums migrated from the old Wix gallery (manifest: gallery-24-25.json). */
@@ -129,8 +129,8 @@ archiveAlbums
     stickers: ALBUM_STICKERS.State,
   });
 
-const STATE26_STICKERS = ["⭐", "🎈", "✨"];
-const NATS26_STICKERS = ["🏆", "🎇", "🦅"];
+const STATE26_STICKERS = ["star", "balloon", "confetti"];
+const NATS26_STICKERS = ["trophy", "firework", "paper-plane"];
 
 export const seasons: Season[] = [
   {

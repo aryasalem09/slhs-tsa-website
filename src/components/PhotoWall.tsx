@@ -104,7 +104,7 @@ export default function PhotoWall({ photos }: { photos: GalleryPhoto[] }) {
               />
             </div>
             {/* easter egg: themed stickers pop out around the photo */}
-            <Stickers key={current.src} emojis={current.stickers} />
+            <Stickers key={current.src} names={current.stickers} />
 
             <figcaption className="flex items-center justify-between gap-3 px-1 pt-2">
               <span className="font-hand text-xl leading-tight text-ink/85 sm:text-2xl">

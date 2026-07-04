@@ -18,7 +18,7 @@ export type StackCard = {
   label: string;
   photo: string;
   alt: string;
-  /** Easter egg: little stickers that pop out when the card is clicked. */
+  /** Easter egg: named cartoon stickers (see stickers-art.ts) that pop out on click. */
   stickers?: string[];
 };
 
@@ -213,25 +213,25 @@ export const stackCards: StackCard[] = [
     label: "Nats 2026",
     photo: "/gallery/nationals.webp",
     alt: "SLHS TSA national qualifiers in blue blazers at the national conference",
-    stickers: ["🏆", "✨", "🕶️"],
+    stickers: ["trophy", "firework", "shades"],
   },
   {
     label: "Nats with Lex!",
     photo: "/gallery/nationals-mascot.webp",
     alt: "SLHS TSA members posing with Lex the longhorn plush at the Gaylord National atrium",
-    stickers: ["🤘", "🦬", "🧡"],
+    stickers: ["longhorn", "heart-orange", "confetti"],
   },
   {
     label: "Zoo picture",
     photo: "/gallery/zoo-gift-shop.webp",
     alt: "Members wearing panda headbands at the zoo gift shop on the chapter zoo trip",
-    stickers: ["🐼", "🐼", "🎋", "🐼"],
+    stickers: ["panda", "panda", "bamboo", "panda"],
   },
   {
     label: "Full chapter gym pic",
     photo: "/gallery/chapter-team.webp",
     alt: "The full SLHS TSA chapter posing on the gym bleachers",
-    stickers: ["🎉", "💙", "🧡"],
+    stickers: ["confetti", "heart-blue", "heart-orange"],
   },
 ];
 

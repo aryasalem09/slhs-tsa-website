@@ -49,7 +49,7 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
               </span>
             </span>
             {/* easter egg: stickers pop out when the card is brought to front */}
-            {isFront && <Stickers emojis={card.stickers} size="text-2xl" />}
+            {isFront && <Stickers names={card.stickers} size="sm" />}
           </button>
         );
       })}
