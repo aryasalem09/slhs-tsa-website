@@ -57,7 +57,19 @@ export default function RootLayout({
           Skip to content
         </a>
         <SiteHeader />
-        <main id="main">{children}</main>
+        <div className="relative">
+          {/* notebook doodles in the wide-screen margins — decoration only */}
+          <div
+            aria-hidden="true"
+            className="doodle-margin pointer-events-none absolute inset-y-0 left-3 hidden w-[170px] opacity-[0.18] min-[1500px]:block"
+          />
+          <div
+            aria-hidden="true"
+            className="doodle-margin pointer-events-none absolute inset-y-0 right-3 hidden w-[170px] opacity-[0.18] min-[1500px]:block"
+            style={{ backgroundPosition: "0 520px" }}
+          />
+          <main id="main">{children}</main>
+        </div>
         <SiteFooter />
       </body>
     </html>
