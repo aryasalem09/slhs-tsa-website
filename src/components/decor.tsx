@@ -46,7 +46,10 @@ export function WonkyTitle({
   );
 }
 
-/** The chunky hand-drawn arrow from the sketch, pointing at /join. */
+/**
+ * The chunky hand-drawn arrow from the sketch, pointing at /join.
+ * The label lives inside the SVG so it always sits centered in the shaft.
+ */
 export function JoinArrowLink({
   label = "Join!",
   className = "",
@@ -58,24 +61,33 @@ export function JoinArrowLink({
     <Link
       href="/join"
       aria-label="How to join SLHS TSA"
-      className={`group relative inline-block transition-transform hover:-rotate-1 ${className}`}
+      className={`group inline-block transition-transform hover:-rotate-1 ${className}`}
     >
       <svg
-        viewBox="0 0 150 66"
-        className="h-auto w-40 drop-shadow-[3px_4px_0_rgb(37_50_68_/_0.22)] transition-transform group-hover:translate-x-1.5"
+        viewBox="0 0 150 70"
+        className="h-auto w-44 drop-shadow-[3px_4px_0_rgb(37_50_68_/_0.22)] transition-transform group-hover:translate-x-1.5"
         aria-hidden="true"
       >
         <path
-          d="M7 25.5 88 22.8l-2.6-13.6L143 32.6 87.4 58.4l2-13.9-81.6 2.2Z"
+          d="M6 24.5 L86.5 23.6 L84.8 10.2 L144 35.2 L85.6 60.8 L87.2 47.2 L6.8 48.2 Z"
           fill="var(--color-tsa-blue)"
           stroke="var(--color-ink)"
           strokeWidth="3"
           strokeLinejoin="round"
         />
+        <text
+          x="46"
+          y="42"
+          textAnchor="middle"
+          fontSize="22"
+          fontWeight="700"
+          fill="var(--color-card)"
+          className="font-hand"
+          transform="rotate(-1.2 46 36)"
+        >
+          {label}
+        </text>
       </svg>
-      <span className="absolute left-[30%] top-1/2 -translate-x-1/2 -translate-y-1/2 font-hand text-[1.65rem] font-bold text-card">
-        {label}
-      </span>
     </Link>
   );
 }
