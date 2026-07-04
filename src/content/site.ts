@@ -165,14 +165,7 @@ export const officers: Officer[] = [
     photo: "/officers/rianna-ganta.webp",
     alt: "Rianna Ganta, SLHS TSA Reporter",
   },
-  {
-    name: "Shaarika Ganti",
-    role: "UTE Director",
-    shortRole: "UTE",
-    group: "directors",
-    photo: "/officers/shaarika-ganti.webp",
-    alt: "Shaarika Ganti, SLHS TSA UTE Director",
-  },
+  // Directors are listed alphabetically within each role.
   {
     name: "Alice Jin",
     role: "UTE Director",
@@ -182,12 +175,12 @@ export const officers: Officer[] = [
     alt: "Alice Jin, SLHS TSA UTE Director",
   },
   {
-    name: "Kelly Zheng",
-    role: "NQE Director",
-    shortRole: "NQE",
+    name: "Shaarika Ganti",
+    role: "UTE Director",
+    shortRole: "UTE",
     group: "directors",
-    photo: "/officers/kelly-zheng.webp",
-    alt: "Kelly Zheng, SLHS TSA NQE Director",
+    photo: "/officers/shaarika-ganti.webp",
+    alt: "Shaarika Ganti, SLHS TSA UTE Director",
   },
   {
     name: "Bella Xiang",
@@ -204,6 +197,14 @@ export const officers: Officer[] = [
     group: "directors",
     photo: "/officers/elizabeth-hu.webp",
     alt: "Elizabeth Hu, SLHS TSA NQE Director",
+  },
+  {
+    name: "Kelly Zheng",
+    role: "NQE Director",
+    shortRole: "NQE",
+    group: "directors",
+    photo: "/officers/kelly-zheng.webp",
+    alt: "Kelly Zheng, SLHS TSA NQE Director",
   },
 ];
 
