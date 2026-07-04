@@ -28,14 +28,14 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
             onClick={() => setFront(isFront ? null : i)}
             aria-pressed={isFront}
             aria-label={`${card.label} — bring photo to front`}
-            className={`wood-grain group relative w-[85%] max-w-[19.5rem] border-2 border-ink/85 p-2.5 text-left shadow-[0_1px_2px_rgb(37_50_68_/_0.08),0_4px_14px_-4px_rgb(37_50_68_/_0.18),inset_0_2px_3px_rgb(230_190_130_/_0.3),inset_0_-3px_5px_rgb(20_12_4_/_0.5)] transition-all duration-200 edge-paper-sm hover:z-20 hover:rotate-0 hover:shadow-lift ${TILTS[i % TILTS.length]} ${i === 0 ? "" : "-mt-8"} ${isFront ? "z-30 rotate-0 scale-[1.04] shadow-lift" : ""}`}
+            className={`group relative w-[85%] max-w-[19.5rem] border-2 border-ink/85 bg-card p-2 pb-1.5 text-left shadow-paper transition-all duration-200 edge-paper-sm hover:z-20 hover:rotate-0 hover:shadow-lift ${TILTS[i % TILTS.length]} ${i === 0 ? "" : "-mt-8"} ${isFront ? "z-30 rotate-0 scale-[1.04] shadow-lift" : ""}`}
             style={{ zIndex: isFront ? 30 : i + 1 }}
           >
             <span
               aria-hidden="true"
               className={`edge-sketch absolute -right-3.5 ${TAB_TOPS[i % TAB_TOPS.length]} h-6 w-9 border-2 border-ink/70 bg-spartan-orange shadow-[2px_2px_0_0_rgb(37_50_68_/_0.35)]`}
             />
-            <span className="relative block aspect-[5/3] w-full overflow-hidden rounded-[4px] border-2 border-[#2e1c0b]/80 bg-cream shadow-[inset_0_1px_5px_rgb(20_12_4_/_0.55)]">
+            <span className="relative block aspect-[5/3] w-full overflow-hidden rounded-[6px] border border-ink/20 bg-cream">
               <Image
                 src={card.photo}
                 alt={card.alt}
@@ -54,42 +54,22 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
         );
       })}
 
-      {/* The hanging wooden gallery sign from the sketch — opens the full gallery. */}
-      <div className="relative z-0 -mt-2 w-[85%] max-w-[19.5rem]">
-        <Link
-          href="/gallery"
-          className="wood-grain edge-paper-sm group relative mx-auto mt-7 block w-[70%] max-w-[15rem] origin-top rotate-[-1.5deg] border-2 border-ink/85 px-4 py-3 text-center shadow-[0_1px_2px_rgb(37_50_68_/_0.08),0_4px_14px_-4px_rgb(37_50_68_/_0.18),inset_0_2px_3px_rgb(230_190_130_/_0.3),inset_0_-3px_5px_rgb(20_12_4_/_0.5)] transition-transform duration-300 hover:rotate-[1.5deg] hover:shadow-lift"
-        >
-          {/* ropes: children of the sign, so they always end in the rope holes */}
-          <span
+      {/* The smaller bottom card, per the planning note — opens the full gallery. */}
+      <Link
+        href="/gallery"
+        className="edge-paper-sm group relative z-10 -mt-6 block w-[62%] max-w-[15rem] rotate-[-2deg] border-2 border-ink/85 bg-card px-4 py-3 text-center shadow-paper transition hover:rotate-0 hover:shadow-lift"
+      >
+        <p className="font-display text-lg font-black uppercase tracking-wide text-tsa-blue">
+          Our Gallery
+          <IconArrowRight
+            className="ml-1.5 inline-block align-[-3px] text-base transition-transform group-hover:translate-x-1"
             aria-hidden="true"
-            className="absolute -top-7 left-4 h-9 w-1.5 rounded-t-sm bg-[repeating-linear-gradient(-45deg,#8a6134_0_3px,#5a3a1a_3px_6px)]"
           />
-          <span
-            aria-hidden="true"
-            className="absolute -top-7 right-4 h-9 w-1.5 rounded-t-sm bg-[repeating-linear-gradient(-45deg,#8a6134_0_3px,#5a3a1a_3px_6px)]"
-          />
-          {/* rope holes, painted over the rope ends so they look threaded */}
-          <span aria-hidden="true" className="absolute left-[13px] top-1.5 h-2.5 w-2.5 rounded-full bg-[#241608] shadow-[0_1px_0_rgb(214_172_116_/_0.35)]" />
-          <span aria-hidden="true" className="absolute right-[13px] top-1.5 h-2.5 w-2.5 rounded-full bg-[#241608] shadow-[0_1px_0_rgb(214_172_116_/_0.35)]" />
-          {/* stacked "our / GALLERY" like the sketch, routed-lettering style */}
-          <p className="leading-none text-[#f2e3c4] [text-shadow:0_1px_2px_rgb(20_12_4_/_0.75)]">
-            <span className="block font-hand text-lg font-semibold lowercase leading-none">
-              our
-            </span>
-            <span className="font-display text-lg font-black uppercase tracking-wide">
-              Gallery
-              <IconArrowRight
-                className="ml-1.5 inline-block align-[-3px] text-base transition-transform group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </span>
-          </p>
-          <p className="mt-1.5 font-hand text-lg font-semibold leading-tight text-[#e3cda2]">
-            Seven Lakes High School
-          </p>
-        </Link>
-      </div>
+        </p>
+        <p className="font-hand text-lg leading-tight text-muted-ink">
+          Seven Lakes High School
+        </p>
+      </Link>
     </div>
   );
 }

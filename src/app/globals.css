@@ -155,13 +155,6 @@
     background-size: 100% 118px, 236px 100%;
   }
 
-  /* Dark campground-sign walnut: real horizontal grain via turbulence noise. */
-  .wood-grain {
-    background-color: #6a4623;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Crect width='100%25' height='100%25' fill='%236a4623'/%3E%3Cfilter id='d' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.09' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0.7 0.7 0 -0.63'/%3E%3C/filter%3E%3Cfilter id='l' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.09' numOctaves='4' seed='43' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.85 0 0 0 0 0.65 0 0 0 0 0.42 0.55 0.55 0.55 0 -0.578'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23d)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");
-    background-size: 280px 280px;
-  }
-
   /* Colored-pencil texture for the blue hero panel. */
   .pencil-blue {
     background-color: var(--color-soft-blue);
