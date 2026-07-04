@@ -14,7 +14,8 @@ const TILTS = [-1.2, 0.9, -0.8, 1.1, -1, 0.8];
 
 export default function OfficersPage() {
   const exec = officers.filter((o) => o.group === "exec");
-  const directors = officers.filter((o) => o.group === "directors");
+  const ute = officers.filter((o) => o.shortRole === "UTE");
+  const nqe = officers.filter((o) => o.shortRole === "NQE");
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-10">
@@ -27,6 +28,9 @@ export default function OfficersPage() {
             className="text-[1.7rem] leading-none sm:text-[2.4rem]"
           />
         </DashWrap>
+        <p className="mt-3 -rotate-1 font-hand text-xl font-semibold text-muted-ink">
+          click a badge to see it up close!
+        </p>
       </div>
 
       <section
@@ -45,12 +49,23 @@ export default function OfficersPage() {
         </ul>
 
         <h2 className="mt-14 rotate-1 font-hand text-3xl font-bold text-tsa-blue">
-          UTE &amp; NQE directors
+          UTE directors
         </h2>
         <ul className="mt-2 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
-          {directors.map((officer, i) => (
+          {ute.map((officer, i) => (
             <li key={officer.name}>
               <OfficerCard officer={officer} tilt={TILTS[(i + 3) % TILTS.length]} />
+            </li>
+          ))}
+        </ul>
+
+        <h2 className="mt-14 -rotate-1 font-hand text-3xl font-bold text-tsa-blue">
+          NQE directors
+        </h2>
+        <ul className="mt-2 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
+          {nqe.map((officer, i) => (
+            <li key={officer.name}>
+              <OfficerCard officer={officer} tilt={TILTS[(i + 1) % TILTS.length]} />
             </li>
           ))}
         </ul>
