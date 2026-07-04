@@ -18,6 +18,8 @@ export type StackCard = {
   label: string;
   photo: string;
   alt: string;
+  /** Easter egg: little stickers that pop out when the card is clicked. */
+  stickers?: string[];
 };
 
 export type SearchEntry = {
@@ -38,7 +40,7 @@ export const site = {
   socials: {
     instagram: "https://www.instagram.com/slhs.tsa/",
     discord: "https://discord.gg/64C4qZgmV",
-    // TODO(content): confirm whether a new class code replaces slhstsa26 for 26-27.
+    // TODO(content): new remind class code
     remind: "https://www.remind.com/join/slhstsa26",
   },
 
@@ -46,7 +48,7 @@ export const site = {
     tsaOfficial: "https://tsaweb.org/",
     // Katy ISD "A+ Pay N' Go" webstore (RevTrak).
     payNGo: "https://katyisd.revtrak.net/",
-    // TODO(content): swap in the new registration form URL when 26-27 sign-ups open.
+    // TODO(content): swap in the new registration form URL next year
     // The 25-26 form is closed: https://docs.google.com/forms/d/e/1FAIpQLSetwcN1dc2PUCb37QvF0NOotmqfw2I8ycfgL_4vBxpO7eNtNg/viewform
     registrationForm: null as string | null,
     calendarEmbedSrc:
@@ -66,7 +68,7 @@ export const nav: NavItem[] = [
 export const whatIsTsa =
   "The Technology Student Association is a national org of 300,000+ students who compete in everything from engineering and coding to film, fashion, and flight. SLHS TSA is Seven Lakes' chapter — one of the strongest in Texas.";
 
-// TODO(content): fill in the real numbers — placeholders until the stats are updated.
+// TODO(content): fill in the real numbers
 export const achievements = [
   { stat: "XX", text: "unique national top-ten placements" },
   { stat: "XX", text: "unique state top-ten placements" },
@@ -80,7 +82,7 @@ export const meetings = {
 };
 
 /**
- * Meeting slide decks (Canva / Google Slides links) — newest first.
+ * Meeting slide decks
  * Add an entry after each meeting, e.g.:
  * { date: "Sep 4, 2026", title: "Kickoff — welcome to TSA!", url: "https://www.canva.com/design/...", platform: "canva" }
  */
@@ -208,24 +210,28 @@ export const officers: Officer[] = [
 /** The tilted photo cards stacked on the homepage hero, top to bottom. */
 export const stackCards: StackCard[] = [
   {
-    label: "Nats team 2026",
+    label: "Nats 2026",
     photo: "/gallery/nationals.webp",
-    alt: "SLHS TSA nationals team in blue blazers at the national conference",
+    alt: "SLHS TSA national qualifiers in blue blazers at the national conference",
+    stickers: ["🏆", "✨", "🕶️"],
   },
   {
     label: "Nats with Lex!",
     photo: "/gallery/nationals-mascot.webp",
     alt: "SLHS TSA members posing with Lex the longhorn plush at the Gaylord National atrium",
+    stickers: ["🤘", "🦬", "🧡"],
   },
   {
     label: "Zoo picture",
     photo: "/gallery/zoo-gift-shop.webp",
     alt: "Members wearing panda headbands at the zoo gift shop on the chapter zoo trip",
+    stickers: ["🐼", "🐼", "🎋", "🐼"],
   },
   {
     label: "Full chapter gym pic",
     photo: "/gallery/chapter-team.webp",
     alt: "The full SLHS TSA chapter posing on the gym bleachers",
+    stickers: ["🎉", "💙", "🧡"],
   },
 ];
 
@@ -266,6 +272,12 @@ export const searchIndex: SearchEntry[] = [
     href: "/calendar",
     hint: "Meetings, deadlines, socials, trips",
     keywords: ["calendar", "dates", "events", "meetings", "deadlines", "schedule"],
+  },
+  {
+    label: "Contact Us",
+    href: "/contact",
+    hint: "Email the chapter",
+    keywords: ["contact", "email", "message", "reach", "question", "help"],
   },
   {
     label: "CEG Navigation",

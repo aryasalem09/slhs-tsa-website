@@ -67,14 +67,29 @@ export default function SiteHeader() {
               {nav.map((item) => {
                 const active = isActive(pathname, item.href);
                 return (
-                  <li key={item.href}>
+                  <li key={item.href} className="group relative">
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
+                      // blur, or focus-within keeps the flyout pinned open after navigating
+                      onClick={(e) => e.currentTarget.blur()}
                       className={`${linkBase} ${active ? pill : "text-ink/80 hover:bg-cream"}`}
                     >
                       {item.label}
                     </Link>
+                    {item.href === "/about" && (
+                      <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 opacity-0 transition-all duration-150 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                        <div className="edge-paper-sm w-48 -rotate-1 border-2 border-ink bg-card p-1.5 shadow-lift">
+                          <Link
+                            href="/officers"
+                            onClick={(e) => e.currentTarget.blur()}
+                            className="block rounded-lg px-3 py-2 text-sm font-bold text-ink hover:bg-cream hover:text-tsa-blue"
+                          >
+                            Meet the Officers →
+                          </Link>
+                        </div>
+                      </div>
+                    )}
                   </li>
                 );
               })}
@@ -135,6 +150,15 @@ export default function SiteHeader() {
                   >
                     {item.label}
                   </Link>
+                  {item.href === "/about" && (
+                    <Link
+                      href="/officers"
+                      onClick={closeMenu}
+                      className="block rounded-xl px-4 py-1.5 pl-9 font-hand text-lg font-semibold text-muted-ink hover:bg-cream"
+                    >
+                      ↳ Meet the Officers
+                    </Link>
+                  )}
                 </li>
               );
             })}

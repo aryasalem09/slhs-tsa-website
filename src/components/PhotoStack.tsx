@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { StackCard } from "@/content/site";
+import Stickers from "@/components/Stickers";
 import { IconArrowRight } from "@/components/icons";
 
 const TILTS = ["-rotate-[3.5deg]", "rotate-[2.5deg]", "-rotate-[2.5deg]", "rotate-[3deg]"];
@@ -47,6 +48,8 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
                 {card.label}
               </span>
             </span>
+            {/* easter egg: stickers pop out when the card is brought to front */}
+            {isFront && <Stickers emojis={card.stickers} size="text-2xl" />}
           </button>
         );
       })}

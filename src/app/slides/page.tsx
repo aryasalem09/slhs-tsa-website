@@ -21,9 +21,6 @@ export default function SlidesPage() {
             className="text-[1.7rem] leading-none sm:text-[2.4rem]"
           />
         </DashWrap>
-        <p className="mx-auto mt-4 max-w-md font-hand text-2xl font-semibold leading-snug text-muted-ink">
-          missed a meeting? every deck lives here, forever
-        </p>
       </div>
 
       {meetingSlides.length === 0 ? (

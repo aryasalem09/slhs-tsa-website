@@ -215,7 +215,9 @@ export default function HomePage() {
       <section aria-labelledby="contact-h" className="mt-16">
         <div className="edge-paper flex flex-wrap items-center gap-x-10 gap-y-3 border-[3px] border-ink/85 bg-tsa-blue px-6 py-5 text-cream shadow-paper">
           <h2 id="contact-h" className="-rotate-2 font-hand text-3xl font-bold">
-            Contact us!
+            <Link href="/contact" className="underline-offset-4 hover:underline">
+              Contact us!
+            </Link>
           </h2>
           <a
             href={`mailto:${site.email}`}

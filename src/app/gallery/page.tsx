@@ -23,7 +23,7 @@ export default function GalleryPage() {
           />
         </DashWrap>
         <p className="mt-4 font-hand text-2xl font-semibold text-muted-ink">
-          the scrapbook, digitized — click any photo to see it big
+          click any photo to see it big!
         </p>
       </div>
 

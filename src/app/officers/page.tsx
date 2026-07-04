@@ -27,9 +27,6 @@ export default function OfficersPage() {
             className="text-[1.7rem] leading-none sm:text-[2.4rem]"
           />
         </DashWrap>
-        <p className="mt-4 font-hand text-2xl font-semibold text-muted-ink">
-          the 26–27 crew, on their official badges
-        </p>
       </div>
 
       <section

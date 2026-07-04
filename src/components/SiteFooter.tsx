@@ -98,13 +98,12 @@ export default function SiteFooter() {
               </a>
             </li>
             <li>
-              <a
-                href={`mailto:${site.email}`}
-                className="inline-flex min-w-0 max-w-full items-center gap-2 hover:text-tsa-red hover:underline"
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 hover:text-tsa-red hover:underline"
               >
-                <IconMail aria-hidden="true" className="shrink-0" />
-                <span className="min-w-0 break-all">{site.email}</span>
-              </a>
+                <IconMail aria-hidden="true" className="shrink-0" /> Contact us
+              </Link>
             </li>
           </ul>
         </div>

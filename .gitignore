@@ -6,9 +6,11 @@ next-env.d.ts
 *.tsbuildinfo
 npm-debug.log*
 
-# env & OS noise
+# env, editor & OS noise
 .env*
 .DS_Store
+.idea/
+.vscode/
 
 # local planning docs — never commit these
 *.pdf

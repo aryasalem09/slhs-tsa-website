@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { GalleryPhoto } from "@/content/gallery";
+import Stickers from "@/components/Stickers";
 import { IconArrowRight, IconX } from "@/components/icons";
 import { useOverlay } from "@/lib/useOverlay";
 
@@ -102,6 +103,9 @@ export default function PhotoWall({ photos }: { photos: GalleryPhoto[] }) {
                 priority
               />
             </div>
+            {/* easter egg: themed stickers pop out around the photo */}
+            <Stickers key={current.src} emojis={current.stickers} />
+
             <figcaption className="flex items-center justify-between gap-3 px-1 pt-2">
               <span className="font-hand text-xl leading-tight text-ink/85 sm:text-2xl">
                 {current.caption ?? current.alt}

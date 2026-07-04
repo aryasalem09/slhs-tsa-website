@@ -52,6 +52,25 @@
     border-radius: 4px;
     box-shadow: 0 0 0 2px var(--color-card);
   }
+
+  /* The fun cursor: a little pencil (sparkly over anything clickable). */
+  body {
+    cursor: url("/cursors/pencil.png") 4 28, auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  summary,
+  select {
+    cursor: url("/cursors/pencil-active.png") 4 28, pointer;
+  }
+
+  /* Text fields keep the I-beam so selection still feels right. */
+  input,
+  textarea {
+    cursor: auto;
+  }
 }
 
 /* ------------------------------- hand-drawn ------------------------------- */
@@ -148,6 +167,29 @@
         transparent 9px 14px
       ),
       linear-gradient(180deg, #9db9e0 0%, #86a6d4 55%, #7b9cce 100%);
+  }
+}
+
+/* Gallery easter-egg stickers popping out around a photo. */
+@keyframes sticker-pop {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.25) rotate(var(--rot, 0deg));
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(var(--rot, 0deg));
+    opacity: 1;
+  }
+}
+
+@layer components {
+  .sticker-pop {
+    transform: rotate(var(--rot, 0deg));
+    animation: sticker-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
   }
 }
 

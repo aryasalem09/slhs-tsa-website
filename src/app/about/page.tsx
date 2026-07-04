@@ -149,15 +149,15 @@ export default function AboutPage() {
             <figure className="mx-auto mt-7 max-w-[22rem] rotate-[1.2deg] border-2 border-ink/15 bg-white p-2 pb-1 shadow-paper">
               <span className="relative block h-52 w-full overflow-hidden bg-cream sm:h-56">
                 <Image
-                  src="/gallery/state-champs.webp"
-                  alt="The full SLHS TSA chapter under a balloon arch at Texas TSA State 2025, holding two State Champion banners"
+                  src="/gallery/nationals.webp"
+                  alt="SLHS TSA national qualifiers in blue blazers at the national conference"
                   fill
                   sizes="(min-width: 640px) 22rem, 90vw"
                   className="object-cover"
                 />
               </span>
               <figcaption className="py-1 text-center font-hand text-lg text-muted-ink">
-                Texas TSA State 2025 — we brought home banners.
+                TSA Nationals 2026 — our national qualifiers.
               </figcaption>
             </figure>
           </div>
