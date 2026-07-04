@@ -33,7 +33,7 @@ export const site = {
   fullName: "Seven Lakes High School Technology Student Association",
   school: "Seven Lakes High School",
   address: "9251 S Fry Rd, Katy, TX 77494",
-  email: "slhstsa@gmail.com",
+  email: "sltechnologystudentassociation@gmail.com",
 
   socials: {
     instagram: "https://www.instagram.com/slhs.tsa/",
@@ -59,27 +59,41 @@ export const nav: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "CEG", href: "/ceg" },
   { label: "TSA Museum", href: "/museum" },
+  { label: "Slides", href: "/slides" },
   { label: "Calendar", href: "/calendar" },
 ];
 
 export const whatIsTsa =
   "The Technology Student Association is a national org of 300,000+ students who compete in everything from engineering and coding to film, fashion, and flight. SLHS TSA is Seven Lakes' chapter — one of the strongest in Texas.";
 
+// TODO(content): fill in the real numbers — placeholders until the stats are updated.
 export const achievements = [
-  { stat: "12+", text: "unique national top-ten placements" },
-  { stat: "25+", text: "unique state top-ten placements" },
-  { stat: "50+", text: "unique individual national qualifiers" },
-  { stat: "2nd", text: "place School Award at State, out of 125 high schools" },
+  { stat: "XX", text: "unique national top-ten placements" },
+  { stat: "XX", text: "unique state top-ten placements" },
+  { stat: "XX", text: "unique individual national qualifiers" },
+  { stat: "XX", text: "place School Award at State, out of 125 high schools" },
 ];
 
 export const meetings = {
-  blurb:
-    "We meet about every two weeks on Thursdays — Room 1906 (Mr. Power's room) or the LGI.",
-  note: "Exact dates always live on the calendar.",
+  blurb: "The 26–27 meeting schedule is TBD.",
+  note: "We'll announce it on Remind & Discord — dates will land on the calendar.",
 };
 
+/**
+ * Meeting slide decks (Canva / Google Slides links) — newest first.
+ * Add an entry after each meeting, e.g.:
+ * { date: "Sep 4, 2026", title: "Kickoff — welcome to TSA!", url: "https://www.canva.com/design/...", platform: "canva" }
+ */
+export type SlideDeck = {
+  date: string;
+  title: string;
+  url: string;
+  platform: "canva" | "google";
+};
+
+export const meetingSlides: SlideDeck[] = [];
+
 export const competing = {
-  intro: "New to TSA competitions? The two-minute version:",
   points: [
     {
       title: "Static events",
@@ -194,14 +208,14 @@ export const officers: Officer[] = [
 /** The tilted photo cards stacked on the homepage hero, top to bottom. */
 export const stackCards: StackCard[] = [
   {
-    label: "Officers",
+    label: "Nats team 2026",
     photo: "/gallery/nationals.webp",
-    alt: "SLHS TSA members in blue blazers together at the national conference",
+    alt: "SLHS TSA nationals team in blue blazers at the national conference",
   },
   {
-    label: "Nats team 2026",
+    label: "Nats with Lex!",
     photo: "/gallery/nationals-mascot.webp",
-    alt: "SLHS TSA nationals team posing with a longhorn plush at the Gaylord National atrium",
+    alt: "SLHS TSA members posing with Lex the longhorn plush at the Gaylord National atrium",
   },
   {
     label: "Zoo picture",
@@ -221,7 +235,19 @@ export const searchIndex: SearchEntry[] = [
     label: "About SLHS TSA",
     href: "/about",
     hint: "Achievements, meetings, leadership",
-    keywords: ["about", "achievements", "awards", "meetings", "room 1906", "lgi", "chapter"],
+    keywords: ["about", "achievements", "awards", "meetings", "chapter"],
+  },
+  {
+    label: "Gallery",
+    href: "/gallery",
+    hint: "The scrapbook — photos by season",
+    keywords: ["gallery", "photos", "pictures", "scrapbook", "memories", "24-25", "25-26"],
+  },
+  {
+    label: "Meeting Slides",
+    href: "/slides",
+    hint: "Every meeting's deck, any time",
+    keywords: ["slides", "meeting slides", "presentations", "canva", "decks", "recap"],
   },
   {
     label: "Officers",

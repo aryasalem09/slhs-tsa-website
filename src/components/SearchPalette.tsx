@@ -1,9 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { searchIndex, type SearchEntry } from "@/content/site";
-import { IconExternal, IconSearch } from "@/components/icons";
+import { IconArrowRight, IconExternal, IconSearch, IconX } from "@/components/icons";
+import { useOverlay } from "@/lib/useOverlay";
 
 const LIST_ID = "site-search-listbox";
 
@@ -16,6 +18,22 @@ function score(entry: SearchEntry, q: string): number {
   return 0;
 }
 
+/** Underline the matched part of a label so results explain themselves. */
+function Highlight({ label, query }: { label: string; query: string }) {
+  const q = query.trim().toLowerCase();
+  const idx = q ? label.toLowerCase().indexOf(q) : -1;
+  if (idx === -1) return <>{label}</>;
+  return (
+    <>
+      {label.slice(0, idx)}
+      <span className="text-tsa-blue underline decoration-tsa-blue/50 decoration-2 underline-offset-2">
+        {label.slice(idx, idx + q.length)}
+      </span>
+      {label.slice(idx + q.length)}
+    </>
+  );
+}
+
 export default function SearchPalette({
   open,
   onOpen,
@@ -26,9 +44,10 @@ export default function SearchPalette({
   onClose: () => void;
 }) {
   const router = useRouter();
-  const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
+  const isTop = useOverlay(open, panelRef);
 
   // Reset the query on the way out so every open starts fresh.
   function close() {
@@ -37,14 +56,14 @@ export default function SearchPalette({
     onClose();
   }
 
-  // Global ⌘K / Ctrl+K toggle, Escape to close.
+  // Global ⌘K / Ctrl+K toggle, Escape to close (only when topmost overlay).
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         if (open) close();
         else onOpen();
-      } else if (e.key === "Escape" && open) {
+      } else if (e.key === "Escape" && open && isTop()) {
         close();
       }
     }
@@ -53,19 +72,23 @@ export default function SearchPalette({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, onOpen, onClose]);
 
+  // Keep the active option visible while arrowing through the list.
   useEffect(() => {
     if (!open) return;
-    document.body.style.overflow = "hidden";
-    const t = window.setTimeout(() => inputRef.current?.focus(), 10);
-    return () => {
-      document.body.style.overflow = "";
-      window.clearTimeout(t);
-    };
-  }, [open]);
+    document
+      .getElementById(`search-opt-${active}`)
+      ?.scrollIntoView({ block: "nearest" });
+  }, [active, open, query]);
 
+  // Flat, ordered result list; pages before external links when browsing.
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return searchIndex.filter(() => true).slice(0, 9);
+    if (!q) {
+      return [
+        ...searchIndex.filter((e) => !e.external),
+        ...searchIndex.filter((e) => e.external),
+      ];
+    }
     return searchIndex
       .map((entry) => ({ entry, s: score(entry, q) }))
       .filter(({ s }) => s > 0)
@@ -73,6 +96,9 @@ export default function SearchPalette({
       .map(({ entry }) => entry)
       .slice(0, 8);
   }, [query]);
+
+  const browsing = query.trim() === "";
+  const firstExternalIdx = results.findIndex((r) => r.external);
 
   function choose(entry: SearchEntry | undefined) {
     if (!entry) return;
@@ -99,34 +125,63 @@ export default function SearchPalette({
 
   if (!open) return null;
 
-  return (
+  function renderRow(r: SearchEntry, i: number) {
+    const isActive = i === active;
+    return (
+      <li
+        key={`${r.href}-${r.label}`}
+        id={`search-opt-${i}`}
+        role="option"
+        aria-selected={isActive}
+        onMouseEnter={() => setActive(i)}
+        onClick={() => choose(r)}
+        className={`flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 transition-colors ${
+          isActive ? "bg-cream" : ""
+        }`}
+      >
+        <span
+          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-sm ${
+            isActive ? "bg-tsa-blue text-cream" : "bg-ink/[0.06] text-muted-ink"
+          }`}
+          aria-hidden="true"
+        >
+          {r.external ? <IconExternal /> : <IconArrowRight />}
+        </span>
+        <span className="min-w-0 flex-1 truncate font-bold text-ink">
+          <Highlight label={r.label} query={query} />
+        </span>
+        <span className="hidden shrink-0 text-sm font-semibold text-muted-ink sm:block">
+          {r.hint}
+        </span>
+      </li>
+    );
+  }
+
+  return createPortal(
     <div className="fixed inset-0 z-50">
       <div
-        className="absolute inset-0 bg-ink/45"
+        className="absolute inset-0 bg-ink/50 backdrop-blur-[2px]"
         aria-hidden="true"
         onClick={close}
       />
       <div
+        ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Search the site"
-        className="edge-paper relative mx-auto mt-[12vh] w-[min(92vw,34rem)] border-2 border-ink bg-card shadow-lift"
+        className="relative mx-auto mt-[11vh] w-[min(94vw,35rem)] overflow-hidden rounded-2xl border border-ink/15 bg-card shadow-lift"
       >
-        <span
-          aria-hidden="true"
-          className="tape left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rotate-[-3deg]"
-        />
-        <div className="flex items-center gap-2.5 border-b-2 border-ink/10 px-4 py-3">
-          <IconSearch className="shrink-0 text-xl text-muted-ink" aria-hidden="true" />
+        <div className="flex items-center gap-3 border-b border-ink/10 px-4 py-3.5">
+          <IconSearch className="shrink-0 text-xl text-muted-ink/70" aria-hidden="true" />
           <input
-            ref={inputRef}
+            data-autofocus
             role="combobox"
             aria-expanded="true"
             aria-controls={LIST_ID}
             aria-activedescendant={results.length ? `search-opt-${active}` : undefined}
             aria-label="Search pages and links"
-            className="w-full bg-transparent text-lg font-semibold outline-none placeholder:font-normal placeholder:text-muted-ink/70"
-            placeholder="Where to? Try “join” or “calendar”…"
+            className="w-full bg-transparent text-lg font-semibold outline-none placeholder:font-normal placeholder:text-muted-ink/90"
+            placeholder="Search pages and links…"
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
@@ -134,54 +189,78 @@ export default function SearchPalette({
             }}
             onKeyDown={onInputKeyDown}
           />
+          <kbd className="hidden shrink-0 rounded-md bg-ink/[0.06] px-1.5 py-0.5 text-[11px] font-bold text-muted-ink sm:block">
+            esc
+          </kbd>
+          <button
+            type="button"
+            onClick={close}
+            aria-label="Close search"
+            className="shrink-0 rounded-md p-1 text-lg text-muted-ink hover:bg-cream hover:text-ink sm:hidden"
+          >
+            <IconX aria-hidden="true" />
+          </button>
         </div>
 
-        <ul id={LIST_ID} role="listbox" aria-label="Results" className="max-h-80 overflow-y-auto p-2">
+        <ul
+          id={LIST_ID}
+          role="listbox"
+          aria-label="Results"
+          className="max-h-[19rem] overflow-y-auto p-2"
+        >
           {results.map((r, i) => (
-            <li
-              key={`${r.href}-${r.label}`}
-              id={`search-opt-${i}`}
-              role="option"
-              aria-selected={i === active}
-              onMouseEnter={() => setActive(i)}
-              onClick={() => choose(r)}
-              className={`edge-paper-sm flex cursor-pointer items-baseline justify-between gap-3 border-2 px-3.5 py-2.5 ${
-                i === active
-                  ? "border-ink bg-cream"
-                  : "border-transparent hover:bg-cream/60"
-              }`}
-            >
-              <span className="font-bold">
-                {r.label}
-                {r.external && (
-                  <IconExternal
-                    className="ml-1.5 inline-block align-[-2px] text-sm text-muted-ink"
-                    aria-label="(opens in a new tab)"
-                  />
-                )}
-              </span>
-              <span className="truncate text-sm text-muted-ink">{r.hint}</span>
-            </li>
+            <Fragment key={`${r.href}-${r.label}`}>
+              {browsing && i === 0 && (
+                <li
+                  role="presentation"
+                  className="px-3 pb-1 pt-2 text-[11px] font-extrabold uppercase tracking-[0.14em] text-muted-ink"
+                >
+                  Pages
+                </li>
+              )}
+              {browsing && i === firstExternalIdx && (
+                <li
+                  role="presentation"
+                  className="px-3 pb-1 pt-3 text-[11px] font-extrabold uppercase tracking-[0.14em] text-muted-ink"
+                >
+                  Elsewhere
+                </li>
+              )}
+              {renderRow(r, i)}
+            </Fragment>
           ))}
           {results.length === 0 && (
-            <li className="px-3 py-8 text-center font-hand text-2xl text-muted-ink">
-              nothing here… try “join”, “events”, or “museum”
+            <li className="px-3 py-8 text-center font-semibold text-muted-ink">
+              No matches — try{" "}
+              <button
+                type="button"
+                className="font-bold text-tsa-blue underline underline-offset-2"
+                onClick={() => setQuery("join")}
+              >
+                join
+              </button>{" "}
+              or{" "}
+              <button
+                type="button"
+                className="font-bold text-tsa-blue underline underline-offset-2"
+                onClick={() => setQuery("gallery")}
+              >
+                gallery
+              </button>
             </li>
           )}
         </ul>
 
-        <div className="flex gap-4 border-t-2 border-ink/10 px-4 py-2 text-xs font-semibold text-muted-ink">
+        <div className="flex items-center gap-4 border-t border-ink/10 bg-cream/50 px-4 py-2 text-[11px] font-semibold text-muted-ink">
           <span>
-            <kbd className="rounded border border-ink/20 bg-cream px-1">↑↓</kbd> navigate
+            <kbd className="rounded bg-ink/[0.07] px-1 py-0.5 font-bold">↑↓</kbd> to browse
           </span>
           <span>
-            <kbd className="rounded border border-ink/20 bg-cream px-1">↵</kbd> open
-          </span>
-          <span>
-            <kbd className="rounded border border-ink/20 bg-cream px-1">esc</kbd> close
+            <kbd className="rounded bg-ink/[0.07] px-1 py-0.5 font-bold">↵</kbd> to open
           </span>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

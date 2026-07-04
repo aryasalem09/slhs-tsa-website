@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import SpartanSurprise from "@/components/SpartanSurprise";
 import { nav, site } from "@/content/site";
 import {
   IconDiscord,
@@ -16,13 +16,8 @@ export default function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2.5 -rotate-1">
-            <Image
-              src="/logos/spartan-mark-512.png"
-              alt=""
-              width={36}
-              height={36}
-              className="h-9 w-9 object-contain"
-            />
+            {/* looks like a logo, is actually the easter egg */}
+            <SpartanSurprise imageSize={36} />
             <span className="font-display text-xl font-black tracking-tight">
               <span className="text-spartan-orange">SLHS</span>{" "}
               <span className="text-tsa-blue">TSA</span>
@@ -54,6 +49,11 @@ export default function SiteFooter() {
             <li>
               <Link href="/officers" className="hover:text-tsa-red hover:underline">
                 Officers
+              </Link>
+            </li>
+            <li>
+              <Link href="/gallery" className="hover:text-tsa-red hover:underline">
+                Gallery
               </Link>
             </li>
             <li>
@@ -100,9 +100,10 @@ export default function SiteFooter() {
             <li>
               <a
                 href={`mailto:${site.email}`}
-                className="inline-flex items-center gap-2 hover:text-tsa-red hover:underline"
+                className="inline-flex min-w-0 max-w-full items-center gap-2 hover:text-tsa-red hover:underline"
               >
-                <IconMail aria-hidden="true" /> {site.email}
+                <IconMail aria-hidden="true" className="shrink-0" />
+                <span className="min-w-0 break-all">{site.email}</span>
               </a>
             </li>
           </ul>

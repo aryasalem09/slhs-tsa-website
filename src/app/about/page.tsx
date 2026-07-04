@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import StickerLogo from "@/components/StickerLogo";
 import { DashWrap, JoinArrowLink, WonkyTitle } from "@/components/decor";
 import { IconArrowRight } from "@/components/icons";
 import { achievements, competing, meetings, officers } from "@/content/site";
@@ -55,7 +56,7 @@ export default function AboutPage() {
                     />
                   </span>
                   <span className="block py-1 text-center font-hand text-xl font-semibold text-ink">
-                    {officer.shortRole === "Prez" ? "★ Prez" : officer.shortRole}
+                    {officer.role === "President" ? "★ President" : officer.role}
                   </span>
                 </Link>
               </li>
@@ -106,7 +107,7 @@ export default function AboutPage() {
 
         {/* ------------------------ brag column ------------------------ */}
         <section aria-labelledby="about-title" className="min-w-0">
-          <div className="text-center lg:text-left">
+          <div className="text-center">
             <DashWrap>
               <WonkyTitle
                 text="SLHS TSA"
@@ -180,10 +181,19 @@ export default function AboutPage() {
           {/* competing 101 */}
           <div
             id="competing"
-            className="edge-paper mt-6 scroll-mt-24 border-2 border-ink/80 bg-card p-5 sm:p-6"
+            className="edge-paper relative mt-6 scroll-mt-24 border-2 border-ink/80 bg-card p-5 sm:p-6"
           >
+            {/* Texas TSA runs our Regionals & State circuit — sticker of honor */}
+            <StickerLogo
+              src="/logos/texas-tsa.png"
+              alt="Texas TSA logo"
+              href="https://www.texastsa.org/"
+              width={72}
+              height={72}
+              tilt={7}
+              className="absolute -top-6 right-4"
+            />
             <h2 className="font-display text-xl font-black text-tsa-blue">Competing 101</h2>
-            <p className="mt-1 font-semibold text-muted-ink">{competing.intro}</p>
             <ul className="mt-3 space-y-2.5">
               {competing.points.map((p) => (
                 <li key={p.title} className="text-[15px] leading-snug">

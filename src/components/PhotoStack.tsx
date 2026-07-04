@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import type { StackCard } from "@/content/site";
+import { IconArrowRight } from "@/components/icons";
 
 const TILTS = ["-rotate-[3.5deg]", "rotate-[2.5deg]", "-rotate-[2.5deg]", "rotate-[3deg]"];
 const TAB_TOPS = ["top-5", "top-9", "top-6", "top-10"];
@@ -49,15 +51,22 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
         );
       })}
 
-      {/* The smaller bottom card, per the planning note. */}
-      <div className="edge-paper-sm relative z-10 -mt-6 w-[62%] max-w-[15rem] rotate-[-2deg] border-2 border-ink/85 bg-card px-4 py-3 text-center shadow-paper">
+      {/* The smaller bottom card, per the planning note — opens the full gallery. */}
+      <Link
+        href="/gallery"
+        className="edge-paper-sm group relative z-10 -mt-6 block w-[62%] max-w-[15rem] rotate-[-2deg] border-2 border-ink/85 bg-card px-4 py-3 text-center shadow-paper transition hover:rotate-0 hover:shadow-lift"
+      >
         <p className="font-display text-lg font-black uppercase tracking-wide text-tsa-blue">
           Our Gallery
+          <IconArrowRight
+            className="ml-1.5 inline-block align-[-3px] text-base transition-transform group-hover:translate-x-1"
+            aria-hidden="true"
+          />
         </p>
         <p className="font-hand text-lg leading-tight text-muted-ink">
           Seven Lakes High School
         </p>
-      </div>
+      </Link>
     </div>
   );
 }

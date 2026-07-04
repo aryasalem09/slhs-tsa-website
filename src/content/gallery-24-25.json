@@ -1,0 +1,526 @@
+{
+  "albums": [
+    {
+      "title": "Regionals",
+      "photos": [
+        {
+          "file": "regionals-01-three-members.webp",
+          "desc": "Three members in blue TSA shirts smiling together indoors",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-02-classroom-prep.webp",
+          "desc": "Members preparing project materials in the engineering classroom",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-03-co2-dragster.webp",
+          "desc": "Member holding his finished CO2 dragster in the shop",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "regionals-04-judging-table.webp",
+          "desc": "Members reviewing paperwork with laptops at a cafeteria table during Regionals",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-05-model-homes.webp",
+          "desc": "Architecture model homes lined up on display tables",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-06-orange-glider.webp",
+          "desc": "Hand-built orange rubber-band flyer on a cafeteria table",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "regionals-07-architecture-display.webp",
+          "desc": "Architectural models and the Southwest Texas Park Lodge display board",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-08-biotech-boards.webp",
+          "desc": "Biotechnology Design tri-fold boards set up for judging",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-09-dragster-lineup.webp",
+          "desc": "CO2 dragsters lined up with their design sheets for judging",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-10-boxes-smiles.webp",
+          "desc": "Two members smiling over competition kits and boxes in the cafeteria",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-11-round-table.webp",
+          "desc": "Members hanging out at a round table between events",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-12-thumbs-up.webp",
+          "desc": "Member in blue TSA shirt giving two thumbs up in the cafeteria",
+          "w": 1200,
+          "h": 1600
+        },
+        {
+          "file": "regionals-13-dual-laptops.webp",
+          "desc": "Member focused between two laptops during the competition",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-14-sealed-kit.webp",
+          "desc": "Member holding a sealed competition kit bag in the classroom",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-15-team-six.webp",
+          "desc": "Six members posing together at a work table",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-16-engineer-binder.webp",
+          "desc": "Member holding a binder reading 'Didn't You Hear? I Can Be An Engineer!'",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-17-lunch-break.webp",
+          "desc": "Members around a table during a break at Regionals",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-18-laptops-thumbs.webp",
+          "desc": "Members giving thumbs up behind their laptops",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-19-engineering-board.webp",
+          "desc": "Two members presenting their Engineering Design tri-fold in the shop",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-20-sunset-worktable.webp",
+          "desc": "Team working at a laptop as afternoon sun fills the cafeteria",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-21-bus-daytime.webp",
+          "desc": "Chapter members lined up in front of the charter bus",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-22-cracker-builds.webp",
+          "desc": "Members showing off graham-cracker builds at a red table",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-23-hotel-selfie.webp",
+          "desc": "Five members take a selfie in the hotel atrium in TSA shirts",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-24-trophy-stage.webp",
+          "desc": "Members receiving a trophy on the awards stage",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "regionals-25-laptop-table.webp",
+          "desc": "Three members working on laptops at a round cafeteria table",
+          "w": 1600,
+          "h": 1200
+        }
+      ]
+    },
+    {
+      "title": "State",
+      "photos": [
+        {
+          "file": "state-01-night-treats.webp",
+          "desc": "Members enjoying iced drinks downtown under string lights at State",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "state-02-park-selfie.webp",
+          "desc": "Members take a selfie on a climbing sculpture in a downtown park",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-03-escape-room.webp",
+          "desc": "Group photo with props after beating the Escape The Room theater",
+          "w": 1600,
+          "h": 1195
+        },
+        {
+          "file": "state-04-downtown-night.webp",
+          "desc": "Members posing on a brick street in downtown Fort Worth at night",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-05-conference-floor.webp",
+          "desc": "Members in blue TSA shirts at their table on the conference floor",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-06-bus-night.webp",
+          "desc": "Members unloading by the charter bus at night",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-07-aerial-formation.webp",
+          "desc": "Aerial shot of members arranged in formation on the pavement",
+          "w": 1600,
+          "h": 1145
+        },
+        {
+          "file": "state-08-bus-group.webp",
+          "desc": "Chapter group photo in front of the First Class Tours bus",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-09-awards-plaques.webp",
+          "desc": "Members receiving plaques on the State awards stage",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "state-10-stage-recognition.webp",
+          "desc": "Competitors recognized on stage at the State conference",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-11-team-wall.webp",
+          "desc": "Full chapter photo in matching shirts in front of the stone wall",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-12-hallway-fun.webp",
+          "desc": "Members playing with a beach ball in the hotel hallway",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-13-sidewalk-walk.webp",
+          "desc": "Members gathered on the red brick sidewalk downtown",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-14-ivy-courtyard.webp",
+          "desc": "Members kneeling in an ivy-covered courtyard",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "state-15-hotel-entrance.webp",
+          "desc": "Members outside the hotel entrance before heading out",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-16-expo-furniture.webp",
+          "desc": "Student-built furniture entries on the expo hall floor",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-17-escape-lobby.webp",
+          "desc": "Group photo with a beach ball at the Escape The Room lobby",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-18-water-gardens.webp",
+          "desc": "Members at the Fort Worth Water Gardens",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "state-19-escape-scientist.webp",
+          "desc": "Member in lab coat and hard hat inside the escape room set",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "state-20-awards-trophies.webp",
+          "desc": "Members holding their awards on the State stage",
+          "w": 1600,
+          "h": 1200
+        }
+      ]
+    },
+    {
+      "title": "Nationals",
+      "photos": [],
+      "externalLink": "https://photos.app.goo.gl/SLbmBffWyfNGBSdz9"
+    },
+    {
+      "title": "Socials",
+      "photos": [
+        {
+          "file": "socials-01-fall-showcase.webp",
+          "desc": "Member presenting a colorful creation at the fall social",
+          "w": 1600,
+          "h": 908
+        },
+        {
+          "file": "socials-02-pumpkin-pair.webp",
+          "desc": "Two members showing off their carved pumpkin at the fall social",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-03-pumpkin-peace.webp",
+          "desc": "Members posing with their pumpkin, one flashing a peace sign",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-04-pumpkin-hold.webp",
+          "desc": "Members holding their carved pumpkin together",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-05-pumpkin-crew.webp",
+          "desc": "Six members with their carved pumpkin at the fall social",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-06-pumpkin-carve.webp",
+          "desc": "Team presenting their carved pumpkin design",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-07-pumpkin-design.webp",
+          "desc": "Members displaying the finished pumpkin carving",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-08-pumpkin-table.webp",
+          "desc": "Members lined up behind their pumpkin and candy prizes",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-09-jack-o-lantern.webp",
+          "desc": "Members with their glowing jack-o-lantern on the table",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-10-fall-lineup.webp",
+          "desc": "Fall social pumpkin-carving team lined up for a photo",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-11-fall-group.webp",
+          "desc": "Group photo at the end of the fall social pumpkin contest",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-12-gingerbread-showcase.webp",
+          "desc": "Members presenting their candy-covered gingerbread house",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-13-cracker-house.webp",
+          "desc": "Decorated graham-cracker house from the winter social",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-14-marshmallow-build.webp",
+          "desc": "Members with their marshmallow-and-pretzel structure",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-15-snack-table.webp",
+          "desc": "Members at the blue table with their builds and snacks",
+          "w": 562,
+          "h": 422
+        },
+        {
+          "file": "socials-16-build-lineup.webp",
+          "desc": "Members lined up along the build table at the winter social",
+          "w": 513,
+          "h": 385
+        },
+        {
+          "file": "socials-17-wreckage-crew.webp",
+          "desc": "Members posing behind the aftermath of their candy build",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-18-build-trio.webp",
+          "desc": "Members flashing peace signs over the build table",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-19-candy-house.webp",
+          "desc": "Graham-cracker house decorated with candy and marshmallows",
+          "w": 600,
+          "h": 800
+        },
+        {
+          "file": "socials-20-candy-cake.webp",
+          "desc": "Layered candy-and-cracker build on the blue tablecloth",
+          "w": 600,
+          "h": 800
+        },
+        {
+          "file": "socials-21-candy-path.webp",
+          "desc": "Gingerbread-style house with a candy walkway",
+          "w": 600,
+          "h": 800
+        },
+        {
+          "file": "socials-22-build-fun.webp",
+          "desc": "Members building and snacking at the winter social",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "socials-23-table-hangout.webp",
+          "desc": "Members hanging out around the winter social table",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "socials-24-build-crowd.webp",
+          "desc": "Members crowding the table to work on candy builds",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "socials-25-build-tables.webp",
+          "desc": "Members building along the long cafeteria tables",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "socials-26-build-group.webp",
+          "desc": "Members working on builds together at the table",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "socials-27-afternoon-build.webp",
+          "desc": "Members decorating builds in the cafeteria",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "socials-28-leaning-build.webp",
+          "desc": "Members leaning in to finish their candy build",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "socials-29-tarp-build.webp",
+          "desc": "Members working over the blue tarp full of builds",
+          "w": 1600,
+          "h": 2133
+        }
+      ]
+    },
+    {
+      "title": "Events",
+      "photos": [
+        {
+          "file": "events-01-balsa-bridge.webp",
+          "desc": "Structural Design balsa bridge entry packed with its documentation",
+          "w": 1390,
+          "h": 1630
+        },
+        {
+          "file": "events-02-v8-model.webp",
+          "desc": "3D-printed V8 engine model built for competition",
+          "w": 1600,
+          "h": 1202
+        },
+        {
+          "file": "events-03-flocculants-board.webp",
+          "desc": "Biotechnology Design tri-fold on flocculants and cyanobacteria",
+          "w": 1600,
+          "h": 1200
+        },
+        {
+          "file": "events-04-balsa-dragster.webp",
+          "desc": "Finished balsa dragster next to its Pitsco kit box",
+          "w": 1600,
+          "h": 2133
+        },
+        {
+          "file": "events-05-opossum-photo.webp",
+          "desc": "Black-and-white photography entry of an opossum in a barrel",
+          "w": 1600,
+          "h": 1066
+        },
+        {
+          "file": "events-06-board-game.webp",
+          "desc": "Hand-painted Cavern Conundrum board game box",
+          "w": 606,
+          "h": 644
+        },
+        {
+          "file": "events-07-tech-bowl.webp",
+          "desc": "Members at the buzzer table during a Technology Bowl round",
+          "w": 1440,
+          "h": 960
+        },
+        {
+          "file": "events-08-co2-launch.webp",
+          "desc": "Member lining up a CO2 car at the launch rail",
+          "w": 1440,
+          "h": 960
+        }
+      ]
+    }
+  ],
+  "notes": "Migrated from the old Wix gallery (slhstsa.wixsite.com/home/gallery). Album mapping from site structure: Regionals -> /copy-of-regionals, State -> /regionals, Socials -> /copy-of-gallery (Fall Social sub-gallery /copy-of-nationals + Winter Social sub-gallery /copy-of-socials-gallery), Events -> /copy-of-socials, Nationals -> external Google Photos album only (no Wix-hosted photos). The Events album is a fifth album that exists on the old site (student competition project showcase); only its real photographs were migrated. 17 videos (10 State, 7 Fall Social) and 12 digital-artifact items (website/DAW/game/CAD screenshots, renders, promotional posters, one near-black video frame, one video still) were on the site but not migrated as photos. StateGalleryCover was a near-duplicate of state-11-team-wall and was skipped. Photos date to the 2021-2023 seasons; none duplicate the seven existing 24-25 photos already in public/gallery/.",
+  "inaccessible": [
+    "Nationals album photos: hosted only in the external Google Photos album (https://photos.app.goo.gl/SLbmBffWyfNGBSdz9), not on Wix; not migrated.",
+    "17 gallery videos (.mov/.mp4: 10 in State, 7 in Fall Social) - video items, not photos; media IDs recorded in scratchpad wix-gallery/api-items.json."
+  ]
+}

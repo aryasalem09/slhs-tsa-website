@@ -1,7 +1,7 @@
 import Link from "next/link";
-import ParticleLogo from "@/components/ParticleLogo";
 import PhotoStack from "@/components/PhotoStack";
 import SocialTile from "@/components/SocialTile";
+import StickerLogo from "@/components/StickerLogo";
 import { CoilDivider, DashWrap, JoinArrowLink, WonkyTitle } from "@/components/decor";
 import {
   IconArrowRight,
@@ -102,6 +102,19 @@ export default function HomePage() {
               <JoinArrowLink />
             </div>
           </div>
+
+          {/* the real TSA logo, slapped on like a sticker — corner on desktop,
+              bottom of the panel on smaller screens */}
+          <StickerLogo
+            src="/logos/tsa-logo.webp"
+            alt="Official Technology Student Association logo"
+            href={site.links.tsaOfficial}
+            width={104}
+            height={68}
+            tilt={6}
+            label="the real deal"
+            className="mt-9 self-center lg:absolute lg:right-7 lg:top-7 lg:mt-0 lg:self-auto"
+          />
         </div>
       </section>
 
@@ -198,30 +211,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* -------------------------- particle spartan -------------------------- */}
-      <section aria-labelledby="spartan-h" className="mt-16">
-        <div className="edge-paper relative border-[3px] border-ink/85 bg-card p-5 shadow-paper sm:p-8">
-          <span aria-hidden="true" className="tape -top-3 left-8 rotate-[-5deg]" />
-          <span aria-hidden="true" className="tape -top-3 right-8 rotate-[4deg]" />
-
-          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-            <h2 id="spartan-h" className="font-display text-3xl font-black">
-              Meet our Spartan
-            </h2>
-            <p className="-rotate-1 font-hand text-2xl font-semibold text-tsa-red">
-              psst — move your cursor over him! (tap on phone)
-            </p>
-          </div>
-
-          <ParticleLogo src="/logos/spartan-tsa-colors.png" className="mt-5" />
-
-          <p className="mt-3 text-center font-hand text-xl text-muted-ink">
-            a few thousand dots in TSA colors — click to scatter him, he&apos;ll pull
-            himself back together
-          </p>
-        </div>
-      </section>
-
       {/* ------------------------------ contact ------------------------------ */}
       <section aria-labelledby="contact-h" className="mt-16">
         <div className="edge-paper flex flex-wrap items-center gap-x-10 gap-y-3 border-[3px] border-ink/85 bg-tsa-blue px-6 py-5 text-cream shadow-paper">
@@ -230,10 +219,10 @@ export default function HomePage() {
           </h2>
           <a
             href={`mailto:${site.email}`}
-            className="inline-flex items-center gap-2 font-semibold underline-offset-4 hover:underline"
+            className="inline-flex min-w-0 max-w-full items-center gap-2 font-semibold underline-offset-4 hover:underline"
           >
-            <IconMail aria-hidden="true" className="text-lg" />
-            {site.email}
+            <IconMail aria-hidden="true" className="shrink-0 text-lg" />
+            <span className="min-w-0 break-all">{site.email}</span>
           </a>
           <a
             href={site.socials.discord}

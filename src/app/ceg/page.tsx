@@ -23,10 +23,7 @@ export default function CegPage() {
   return (
     <>
       <h1 className="sr-only">CEG Navigation</h1>
-      <UnderConstruction
-        title="CEG NAVIGATION"
-        message="The officer team starts building this in August — it'll be your map through the Competitive Events Guide."
-      />
+      <UnderConstruction title="CEG NAVIGATION" />
     </>
   );
 }

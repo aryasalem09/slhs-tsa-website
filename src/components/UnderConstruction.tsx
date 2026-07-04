@@ -1,13 +1,7 @@
 import { DashWrap, WonkyTitle } from "@/components/decor";
 
 /** Minimal cozy shell for pages that aren't built yet. */
-export default function UnderConstruction({
-  title,
-  message,
-}: {
-  title: string;
-  message: string;
-}) {
+export default function UnderConstruction({ title }: { title: string }) {
   return (
     <div className="mx-auto max-w-3xl px-4 pt-10 text-center">
       <DashWrap>
@@ -25,9 +19,6 @@ export default function UnderConstruction({
         />
         <p className="mt-7 px-6 font-hand text-3xl font-bold text-ink">
           under construction right now!
-        </p>
-        <p className="mx-auto mt-3 max-w-sm px-6 font-semibold text-muted-ink">
-          {message}
         </p>
       </div>
     </div>

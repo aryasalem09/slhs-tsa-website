@@ -14,10 +14,7 @@ export default function MuseumPage() {
   return (
     <>
       <h1 className="sr-only">TSA Museum</h1>
-      <UnderConstruction
-        title="TSA MUSEUM"
-        message="The chapter archive is being dusted off — photos, trophies, and history are on their way."
-      />
+      <UnderConstruction title="TSA MUSEUM" />
     </>
   );
 }
