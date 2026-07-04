@@ -1,0 +1,35 @@
+# dependencies / build
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+npm-debug.log*
+
+# env & OS noise
+.env*
+.DS_Store
+
+# local planning docs — never commit these
+*.pdf
+Website planning.pdf
+26-27 Officer Post.pdf
+
+# agent/assistant working files — local only
+AGENTS.md
+agents.md
+CLAUDE.md
+claude.md
+.claude/
+.fable/
+.agents/
+.agent/
+scratch/
+tmp/
+scrape-cache/
+extraction-cache/
+*.agent-notes.md
+agent-*.log
+
+# vercel
+.vercel

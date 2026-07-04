@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors sampled from the actual TSA logo file */
+  --color-tsa-blue: #005eab;
+  --color-tsa-blue-deep: #084d85;
+  --color-tsa-red: #ef3224;
+  --color-tsa-red-deep: #b3170d;
+  --color-spartan-orange: #f68428;
+
+  /* Paper & ink */
+  --color-paper: #faf6ed;
+  --color-cream: #f6eedb;
+  --color-card: #fffcf3;
+  --color-soft-blue: #8fafd9;
+  --color-soft-blue-deep: #6b8fc4;
+  --color-ink: #253244;
+  --color-muted-ink: #55637a;
+  --color-locker: #b9a28e;
+
+  --shadow-paper: 0 1px 2px rgb(37 50 68 / 0.08), 0 4px 14px -4px rgb(37 50 68 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(37 50 68 / 0.1), 0 14px 30px -10px rgb(37 50 68 / 0.3);
+}
+
+/* Font tokens reference next/font runtime variables, so they must be inlined. */
+@theme inline {
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-nunito);
+  --font-hand: var(--font-caveat);
+}
+
+/* ---------------------------------- base ---------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Warm paper with a whisper of grain baked into the tiling background. */
+body {
+  background-color: var(--color-paper);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background-color: var(--color-tsa-blue);
+  color: var(--color-cream);
+}
+
+:focus-visible {
+  outline: 3px dashed var(--color-tsa-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ------------------------------- hand-drawn ------------------------------- */
+
+/* Slightly uneven corners, like hand-cut paper. */
+.edge-paper {
+  border-radius: 0.95rem 1.2rem 0.9rem 1.25rem / 1.2rem 0.9rem 1.3rem 0.95rem;
+}
+
+.edge-paper-sm {
+  border-radius: 0.55rem 0.75rem 0.5rem 0.8rem / 0.75rem 0.5rem 0.85rem 0.55rem;
+}
+
+/* More obviously sketchy, for buttons and labels. */
+.edge-sketch {
+  border-radius: 1.4rem 0.6rem 1.3rem 0.7rem / 0.7rem 1.5rem 0.6rem 1.4rem;
+}
+
+/* Marker-style button: solid ink offset shadow that presses in. */
+.btn-marker {
+  border: 2px solid var(--color-ink);
+  box-shadow: 3px 3px 0 0 var(--color-ink);
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+}
+
+.btn-marker:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+}
+
+.btn-marker:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 0 var(--color-ink);
+}
+
+/* Squiggly hand-drawn underline for headings. */
+.squiggle-underline {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='9' viewBox='0 0 120 9' preserveAspectRatio='none'%3E%3Cpath d='M2 6.5 C 12 1.5, 22 1.5, 32 6 S 52 8, 62 4.5 82 1.5 92 5.5 112 7.5 118 4' fill='none' stroke='%23ef3224' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 9px;
+  padding-bottom: 12px;
+}
+
+/* A strip of washi tape. Position with absolute placement. */
+.tape {
+  position: absolute;
+  width: 5.5rem;
+  height: 1.5rem;
+  background: rgb(238 226 198 / 0.8);
+  border-left: 2px dashed rgb(37 50 68 / 0.12);
+  border-right: 2px dashed rgb(37 50 68 / 0.12);
+  box-shadow: 0 1px 3px rgb(37 50 68 / 0.12);
+  pointer-events: none;
+}
+
+/* Barcode strip for the officer ID cards. */
+.barcode {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-tsa-red-deep) 0 2px,
+    transparent 2px 4px,
+    var(--color-tsa-red-deep) 4px 7px,
+    transparent 7px 8px,
+    var(--color-tsa-red-deep) 8px 9px,
+    transparent 9px 13px,
+    var(--color-tsa-red-deep) 13px 14px,
+    transparent 14px 16px
+  );
+}
+
+/* Subtle locker-wall backdrop for officer sections. */
+.locker-wall {
+  background-color: #efe6d8;
+  background-image:
+    linear-gradient(rgb(185 162 142 / 0.16) 2px, transparent 2px),
+    linear-gradient(90deg, rgb(185 162 142 / 0.1) 2px, transparent 2px);
+  background-size: 100% 118px, 236px 100%;
+}
+
+/* Colored-pencil texture for the blue hero panel. */
+.pencil-blue {
+  background-color: var(--color-soft-blue);
+  background-image:
+    repeating-linear-gradient(
+      104deg,
+      rgb(255 255 255 / 0.12) 0 3px,
+      transparent 3px 7px,
+      rgb(0 96 174 / 0.1) 7px 9px,
+      transparent 9px 14px
+    ),
+    linear-gradient(180deg, #9db9e0 0%, #86a6d4 55%, #7b9cce 100%);
+}
+
+/* ------------------------------ tiny motions ------------------------------ */
+
+@keyframes nudge-x {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+.animate-nudge {
+  animation: nudge-x 1.6s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--float-rot, 0deg));
+  }
+  50% {
+    transform: translateY(-5px) rotate(var(--float-rot, 0deg));
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
