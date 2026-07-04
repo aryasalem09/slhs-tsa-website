@@ -35,7 +35,7 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
               aria-hidden="true"
               className={`edge-sketch absolute -right-3.5 ${TAB_TOPS[i % TAB_TOPS.length]} h-6 w-9 border-2 border-ink/70 bg-spartan-orange shadow-[2px_2px_0_0_rgb(37_50_68_/_0.35)]`}
             />
-            <span className="relative block aspect-[5/3] w-full overflow-hidden rounded-[4px] border-2 border-[#8a5a28]/70 bg-cream shadow-[inset_0_1px_4px_rgb(60_35_10_/_0.45)]">
+            <span className="relative block aspect-[5/3] w-full overflow-hidden rounded-[4px] border-2 border-[#2e1c0b]/80 bg-cream shadow-[inset_0_1px_5px_rgb(20_12_4_/_0.55)]">
               <Image
                 src={card.photo}
                 alt={card.alt}
@@ -61,18 +61,18 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
           aria-hidden="true"
           className="mx-auto flex w-[70%] max-w-[15rem] justify-between px-3.5"
         >
-          <span className="h-8 w-1.5 rounded-b-sm bg-gradient-to-b from-[#7c5124] to-[#9a6a35]" />
-          <span className="h-8 w-1.5 rounded-b-sm bg-gradient-to-b from-[#7c5124] to-[#9a6a35]" />
+          <span className="h-8 w-1.5 rounded-b-sm bg-gradient-to-b from-[#5a3a1a] to-[#8a6134]" />
+          <span className="h-8 w-1.5 rounded-b-sm bg-gradient-to-b from-[#5a3a1a] to-[#8a6134]" />
         </div>
         <Link
           href="/gallery"
           className="wood-grain edge-paper-sm group relative -mt-px mx-auto block w-[70%] max-w-[15rem] origin-top rotate-[-1.5deg] border-2 border-ink/85 px-4 py-3 text-center shadow-paper transition-transform duration-300 hover:rotate-[1.5deg] hover:shadow-lift"
         >
-          {/* screws where the ropes attach */}
-          <span aria-hidden="true" className="absolute left-4 top-1.5 h-1.5 w-1.5 rounded-full bg-[#5d3a15] shadow-[0_1px_0_rgb(255_235_200_/_0.4)]" />
-          <span aria-hidden="true" className="absolute right-4 top-1.5 h-1.5 w-1.5 rounded-full bg-[#5d3a15] shadow-[0_1px_0_rgb(255_235_200_/_0.4)]" />
-          {/* stacked "our / GALLERY" exactly like the sketch */}
-          <p className="leading-none text-[#432a0e] [text-shadow:0_1px_0_rgb(255_235_200_/_0.45)]">
+          {/* rope holes where the ropes attach */}
+          <span aria-hidden="true" className="absolute left-4 top-1.5 h-1.5 w-1.5 rounded-full bg-[#241608] shadow-[0_1px_0_rgb(214_172_116_/_0.35)]" />
+          <span aria-hidden="true" className="absolute right-4 top-1.5 h-1.5 w-1.5 rounded-full bg-[#241608] shadow-[0_1px_0_rgb(214_172_116_/_0.35)]" />
+          {/* stacked "our / GALLERY" like the sketch, routed-lettering style */}
+          <p className="leading-none text-[#f2e3c4] [text-shadow:0_1px_2px_rgb(20_12_4_/_0.75)]">
             <span className="block font-hand text-lg font-semibold lowercase leading-none">
               our
             </span>
@@ -84,7 +84,7 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
               />
             </span>
           </p>
-          <p className="mt-1.5 font-hand text-lg font-semibold leading-tight text-[#5d3a15]">
+          <p className="mt-1.5 font-hand text-lg font-semibold leading-tight text-[#e3cda2]">
             Seven Lakes High School
           </p>
         </Link>

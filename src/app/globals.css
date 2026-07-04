@@ -155,19 +155,19 @@
     background-size: 100% 118px, 236px 100%;
   }
 
-  /* Warm oak for the hero photo frames and the hanging gallery sign. */
+  /* Dark campground-sign walnut for the hero photo frames and gallery sign. */
   .wood-grain {
-    background-color: #c08c52;
+    background-color: #6a4623;
     background-image:
       repeating-linear-gradient(
         94deg,
-        rgb(255 240 210 / 0.14) 0 2px,
+        rgb(214 172 116 / 0.16) 0 2px,
         transparent 2px 7px,
-        rgb(115 70 28 / 0.18) 7px 9px,
-        transparent 9px 18px
+        rgb(38 22 8 / 0.32) 7px 9px,
+        transparent 9px 16px
       ),
-      repeating-linear-gradient(2deg, rgb(115 70 28 / 0.08) 0 1px, transparent 1px 13px),
-      linear-gradient(180deg, #cf9a5e, #b8834a);
+      repeating-linear-gradient(2deg, rgb(38 22 8 / 0.14) 0 1px, transparent 1px 11px),
+      linear-gradient(180deg, #7b5530, #56381b);
   }
 
   /* Colored-pencil texture for the blue hero panel. */
