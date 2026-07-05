@@ -112,7 +112,8 @@ export default function HomePage() {
           {/* the TSA letters, drawn in living dots */}
           <div className="mt-9 w-48 self-center lg:w-56">
             <ParticleLogo
-              src="/logos/tsa-letters.png"
+              src="/logos/tsa-mark-particles.png"
+              aspect={0.64}
               label="The TSA logo drawn in dots. Move your cursor through it or give it a tap."
             />
           </div>

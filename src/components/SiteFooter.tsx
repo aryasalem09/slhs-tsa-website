@@ -24,11 +24,11 @@ export default function SiteFooter() {
                 SLHS
               </span>
               <Image
-                src="/logos/tsa-emblem.png"
+                src="/logos/tsa-mark.png"
                 alt="TSA"
-                width={47}
-                height={24}
-                className="h-[23px] w-auto"
+                width={42}
+                height={27}
+                className="h-[28px] w-auto"
               />
             </span>
           </div>

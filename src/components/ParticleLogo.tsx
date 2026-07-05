@@ -22,10 +22,13 @@ type Particle = {
 export default function ParticleLogo({
   src,
   className = "",
+  aspect = 0.58,
   label = "Interactive SLHS TSA Spartan logo made of dots. Move your cursor to scatter them.",
 }: {
   src: string;
   className?: string;
+  /** canvas height as a fraction of width — tune to the source art's shape */
+  aspect?: number;
   label?: string;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -55,7 +58,7 @@ export default function ParticleLogo({
     function layout() {
       const rect = wrap!.getBoundingClientRect();
       W = Math.max(120, Math.floor(rect.width));
-      H = Math.floor(Math.min(W * 0.58, 400));
+      H = Math.floor(Math.min(W * aspect, 400));
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas!.width = Math.floor(W * dpr);
       canvas!.height = Math.floor(H * dpr);
@@ -262,7 +265,7 @@ export default function ParticleLogo({
       document.removeEventListener("visibilitychange", onVisibility);
       mqReduce.removeEventListener("change", onReduceChange);
     };
-  }, [src]);
+  }, [src, aspect]);
 
   return (
     <div ref={wrapRef} className={`relative w-full ${className}`}>
