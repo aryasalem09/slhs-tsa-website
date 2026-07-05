@@ -82,7 +82,7 @@ export default function OfficersPage() {
           Back to About
         </Link>
         <div className="flex flex-col items-center">
-          <p className="rotate-1 pb-1 font-hand text-xl font-semibold text-muted-ink">
+          <p className="rotate-1 pb-1 pr-9 font-hand text-xl font-semibold text-muted-ink">
             wanna be on this wall someday?
           </p>
           <JoinArrowLink />

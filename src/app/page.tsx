@@ -44,18 +44,15 @@ export default function HomePage() {
 
         {/* Right: warm panel — what is TSA */}
         <div className="relative flex flex-1 flex-col bg-cream p-6 sm:p-10 lg:justify-center">
-          {/* right padding reserves the corner for the particle logo on lg+ */}
-          <div className="lg:pr-48">
-            <DashWrap>
-              <WonkyTitle
-                text="WHAT IS TSA?"
-                outline
-                className="text-[1.9rem] leading-none sm:text-[2.5rem]"
-              />
-            </DashWrap>
-          </div>
+          <DashWrap>
+            <WonkyTitle
+              text="WHAT IS TSA?"
+              outline
+              className="text-[1.9rem] leading-none sm:text-[2.5rem] lg:text-[2.1rem] xl:text-[2.5rem]"
+            />
+          </DashWrap>
 
-          <p className="mt-6 max-w-prose text-lg font-semibold leading-relaxed text-ink/90 lg:pr-48 xl:pr-0">
+          <p className="mt-6 max-w-prose text-lg font-semibold leading-relaxed text-ink/90">
             {whatIsTsa}
           </p>
           <p className="mt-2 text-[15px] font-semibold text-muted-ink">
@@ -105,23 +102,19 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col items-center">
-              <p className="rotate-1 pb-1 font-hand text-xl font-semibold text-muted-ink">
+              <p className="rotate-1 pb-1 pr-9 font-hand text-xl font-semibold text-muted-ink">
                 new here?
               </p>
               <JoinArrowLink />
             </div>
           </div>
 
-          {/* the real TSA logo, drawn in living dots — corner on desktop,
-              bottom of the panel on smaller screens */}
-          <div className="mt-9 w-44 self-center lg:absolute lg:right-6 lg:top-6 lg:mt-0 lg:w-48 lg:self-auto">
+          {/* the TSA letters, drawn in living dots */}
+          <div className="mt-9 w-48 self-center lg:w-56">
             <ParticleLogo
-              src="/logos/tsa-logo-particles.png"
+              src="/logos/tsa-letters.png"
               label="The TSA logo drawn in dots. Move your cursor through it or give it a tap."
             />
-            <p className="text-center font-hand text-base font-semibold text-muted-ink">
-              the real deal. poke it!
-            </p>
           </div>
         </div>
       </section>

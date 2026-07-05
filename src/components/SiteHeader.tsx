@@ -54,7 +54,7 @@ export default function SiteHeader() {
               SLHS
             </span>
             <Image
-              src="/logos/tsa-logo-particles.png"
+              src="/logos/tsa-emblem.png"
               alt="TSA"
               width={53}
               height={27}

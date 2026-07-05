@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import SpartanSurprise from "@/components/SpartanSurprise";
 import { nav, site } from "@/content/site";
@@ -18,9 +19,17 @@ export default function SiteFooter() {
           <div className="flex items-center gap-2.5 -rotate-1">
             {/* looks like a logo, is actually the easter egg */}
             <SpartanSurprise imageSize={36} />
-            <span className="font-display text-xl font-black tracking-tight">
-              <span className="text-spartan-orange">SLHS</span>{" "}
-              <span className="text-tsa-blue">TSA</span>
+            <span className="flex items-center gap-1.5">
+              <span className="font-display text-xl font-black leading-none tracking-tight text-spartan-orange">
+                SLHS
+              </span>
+              <Image
+                src="/logos/tsa-emblem.png"
+                alt="TSA"
+                width={47}
+                height={24}
+                className="h-[23px] w-auto"
+              />
             </span>
           </div>
           <p className="mt-3 text-sm font-semibold text-muted-ink">

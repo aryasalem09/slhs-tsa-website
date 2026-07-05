@@ -216,7 +216,7 @@ export default function AboutPage() {
 
           <div className="mt-8 flex justify-end">
             <div className="flex flex-col items-center">
-              <p className="rotate-1 pb-1 font-hand text-xl font-semibold text-muted-ink">
+              <p className="rotate-1 pb-1 pr-9 font-hand text-xl font-semibold text-muted-ink">
                 sound fun?
               </p>
               <JoinArrowLink />
