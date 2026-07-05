@@ -1,11 +1,22 @@
 import { DashWrap, WonkyTitle } from "@/components/decor";
 
 /** Minimal cozy shell for pages that aren't built yet. */
-export default function UnderConstruction({ title }: { title: string }) {
+export default function UnderConstruction({
+  title,
+  logoWord,
+}: {
+  title: string;
+  logoWord?: string;
+}) {
   return (
     <div className="mx-auto max-w-3xl px-4 pt-10 text-center">
       <DashWrap>
-        <WonkyTitle text={title} outline className="text-[1.8rem] leading-none sm:text-[2.4rem]" />
+        <WonkyTitle
+          text={title}
+          outline
+          logoWord={logoWord}
+          className="text-[1.8rem] leading-none sm:text-[2.4rem]"
+        />
       </DashWrap>
 
       <div className="edge-paper relative mx-auto mt-10 max-w-xl rotate-[-0.5deg] border-[3px] border-ink/85 bg-card pb-8 shadow-paper">
@@ -21,11 +32,11 @@ export default function UnderConstruction({ title }: { title: string }) {
           under construction right now!
         </p>
 
-        {/* little construction crew doodles */}
+        {/* little construction crew doodles (hidden on narrow screens where they'd overhang the viewport) */}
         <svg
           aria-hidden="true"
           viewBox="0 0 64 60"
-          className="absolute -bottom-7 -left-7 w-16 rotate-[-8deg] drop-shadow-[1px_2px_2px_rgb(37_50_68_/_0.25)]"
+          className="absolute -bottom-7 -left-7 hidden w-16 rotate-[-8deg] drop-shadow-[1px_2px_2px_rgb(37_50_68_/_0.25)] sm:block"
         >
           <path d="M32 6 L46 44 H18 z" fill="#f68428" stroke="#253244" strokeWidth="2.4" strokeLinejoin="round" />
           <path d="M25 25 h14 M22 34 h20" stroke="#f2e3c4" strokeWidth="5" />
@@ -35,7 +46,7 @@ export default function UnderConstruction({ title }: { title: string }) {
         <svg
           aria-hidden="true"
           viewBox="0 0 64 64"
-          className="absolute -right-6 -top-8 w-14 rotate-[10deg] drop-shadow-[1px_2px_2px_rgb(37_50_68_/_0.25)]"
+          className="absolute -right-6 -top-8 hidden w-14 rotate-[10deg] drop-shadow-[1px_2px_2px_rgb(37_50_68_/_0.25)] sm:block"
         >
           <g transform="rotate(-32 32 32)">
             <rect x="28.5" y="24" width="7" height="32" rx="3" fill="#c99860" stroke="#253244" strokeWidth="2.4" />

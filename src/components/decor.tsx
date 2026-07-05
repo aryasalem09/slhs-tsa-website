@@ -1,46 +1,74 @@
+import Image from "next/image";
 import Link from "next/link";
 
 /**
  * Hand-lettered heading: each letter gets a tiny fixed tilt so the title
  * looks written, not typeset. Screen readers get the plain string.
+ * Pass `logoWord` (e.g. "TSA") to swap that word for the real TSA mark.
  */
 const ROTS = [-2.4, 1.8, -1.1, 2.3, -1.7, 1.3, -2.1, 2.0, -1.4, 1.6];
 const DYS = [0, 1.5, -1, 0.5, -1.5, 1, -0.5, 1.5, -1, 0.5];
 
+function WonkyChar({ ch, i, outline }: { ch: string; i: number; outline: boolean }) {
+  if (ch === " ") return <span className="inline-block w-[0.45em]" />;
+  return (
+    <span
+      className="inline-block font-display font-black"
+      style={{
+        transform: `rotate(${ROTS[i % ROTS.length]}deg) translateY(${DYS[i % DYS.length]}px)`,
+        ...(outline
+          ? {
+              color: "var(--color-card)",
+              WebkitTextStroke: "2px var(--color-tsa-blue)",
+              textShadow: "3px 3px 0 rgb(37 50 68 / 0.14)",
+            }
+          : {}),
+      }}
+    >
+      {ch}
+    </span>
+  );
+}
+
 export function WonkyTitle({
   text,
   outline = false,
+  logoWord,
   className = "",
 }: {
   text: string;
   outline?: boolean;
+  logoWord?: string;
   className?: string;
 }) {
+  // Split the string around the logo word so it can be swapped for the mark.
+  const segments = logoWord
+    ? text.split(new RegExp(`(${logoWord})`, "g"))
+    : [text];
+  let key = 0;
+  let charIdx = 0;
+
   return (
     <span aria-label={text} role="heading" aria-level={2} className={className}>
       <span aria-hidden="true" className="inline-block whitespace-pre-wrap">
-        {text.split("").map((ch, i) =>
-          ch === " " ? (
-            <span key={i} className="inline-block w-[0.45em]" />
-          ) : (
-            <span
-              key={i}
-              className="inline-block font-display font-black"
-              style={{
-                transform: `rotate(${ROTS[i % ROTS.length]}deg) translateY(${DYS[i % DYS.length]}px)`,
-                ...(outline
-                  ? {
-                      color: "var(--color-card)",
-                      WebkitTextStroke: "2px var(--color-tsa-blue)",
-                      textShadow: "3px 3px 0 rgb(37 50 68 / 0.14)",
-                    }
-                  : {}),
-              }}
-            >
-              {ch}
-            </span>
-          ),
-        )}
+        {segments.map((seg) => {
+          if (logoWord && seg === logoWord) {
+            return (
+              <Image
+                key={key++}
+                src="/logos/tsa-mark.png"
+                alt=""
+                width={128}
+                height={81}
+                // sits on the title baseline, sized to the letters, matching tilt + shadow
+                className="mx-[0.08em] inline-block h-[0.92em] w-auto -rotate-2 align-[-0.16em] drop-shadow-[3px_3px_0_rgb(37_50_68_/_0.14)]"
+              />
+            );
+          }
+          return seg
+            .split("")
+            .map((ch) => <WonkyChar key={key++} ch={ch} i={charIdx++} outline={outline} />);
+        })}
       </span>
     </span>
   );

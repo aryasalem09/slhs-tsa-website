@@ -48,6 +48,7 @@ export default function HomePage() {
             <WonkyTitle
               text="WHAT IS TSA?"
               outline
+              logoWord="TSA"
               className="text-[1.9rem] leading-none sm:text-[2.5rem] lg:text-[2.1rem] xl:text-[2.5rem]"
             />
           </DashWrap>
@@ -109,8 +110,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* the TSA letters, drawn in living dots */}
-          <div className="mt-9 w-48 self-center lg:w-56">
+          {/* the TSA logo, drawn in living dots */}
+          <div className="mt-9 w-64 self-center sm:w-72 lg:w-80">
             <ParticleLogo
               src="/logos/tsa-mark-particles.png"
               aspect={0.64}

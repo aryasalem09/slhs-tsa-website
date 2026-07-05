@@ -114,6 +114,7 @@ export default function AboutPage() {
               <WonkyTitle
                 text="SLHS TSA"
                 outline
+                logoWord="TSA"
                 className="text-[2rem] leading-none sm:text-[2.6rem]"
               />
             </DashWrap>

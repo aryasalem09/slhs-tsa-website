@@ -16,7 +16,7 @@ export default function MuseumPage() {
   return (
     <>
       <h1 className="sr-only">TSA Museum</h1>
-      <UnderConstruction title="TSA MUSEUM" />
+      <UnderConstruction title="TSA MUSEUM" logoWord="TSA" />
     </>
   );
 }
