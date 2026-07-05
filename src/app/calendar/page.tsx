@@ -5,7 +5,7 @@ import { meetings, site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Calendar",
   description:
-    "SLHS TSA calendar — meetings, presubmit deadlines, competitions, payment deadlines, socials, trips, and check-ins.",
+    "The SLHS TSA calendar: meetings, deadlines, competitions, socials, and trips.",
 };
 
 export default function CalendarPage() {
@@ -38,7 +38,7 @@ export default function CalendarPage() {
       </div>
 
       <p className="mt-3 text-center text-sm font-semibold text-muted-ink">
-        Tap an event for details — times are US Central.
+        Tap an event for details. Times are Central.
       </p>
     </div>
   );

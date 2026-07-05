@@ -1,7 +1,7 @@
 import Link from "next/link";
+import ParticleLogo from "@/components/ParticleLogo";
 import PhotoStack from "@/components/PhotoStack";
 import SocialTile from "@/components/SocialTile";
-import StickerLogo from "@/components/StickerLogo";
 import { CoilDivider, DashWrap, JoinArrowLink, WonkyTitle } from "@/components/decor";
 import {
   IconArrowRight,
@@ -18,7 +18,7 @@ export default function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-4 pt-6">
       <h1 className="sr-only">
-        SLHS TSA — Seven Lakes High School Technology Student Association
+        SLHS TSA, the Seven Lakes High School Technology Student Association
       </h1>
 
       {/* ------------------------------- hero ------------------------------- */}
@@ -38,15 +38,18 @@ export default function HomePage() {
 
         {/* Right: warm panel — what is TSA */}
         <div className="relative flex flex-1 flex-col bg-cream p-6 sm:p-10 lg:justify-center">
-          <DashWrap>
-            <WonkyTitle
-              text="WHAT IS TSA?"
-              outline
-              className="text-[1.9rem] leading-none sm:text-[2.5rem]"
-            />
-          </DashWrap>
+          {/* right padding reserves the corner for the particle logo on lg+ */}
+          <div className="lg:pr-48">
+            <DashWrap>
+              <WonkyTitle
+                text="WHAT IS TSA?"
+                outline
+                className="text-[1.9rem] leading-none sm:text-[2.5rem]"
+              />
+            </DashWrap>
+          </div>
 
-          <p className="mt-6 max-w-prose text-lg font-semibold leading-relaxed text-ink/90">
+          <p className="mt-6 max-w-prose text-lg font-semibold leading-relaxed text-ink/90 lg:pr-48 xl:pr-0">
             {whatIsTsa}
           </p>
           <p className="mt-2 text-[15px] font-semibold text-muted-ink">
@@ -103,18 +106,17 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* the real TSA logo, slapped on like a sticker — corner on desktop,
+          {/* the real TSA logo, drawn in living dots — corner on desktop,
               bottom of the panel on smaller screens */}
-          <StickerLogo
-            src="/logos/tsa-logo.webp"
-            alt="Official Technology Student Association logo"
-            href={site.links.tsaOfficial}
-            width={104}
-            height={68}
-            tilt={6}
-            label="the real deal"
-            className="mt-9 self-center lg:absolute lg:right-7 lg:top-7 lg:mt-0 lg:self-auto"
-          />
+          <div className="mt-9 w-44 self-center lg:absolute lg:right-6 lg:top-6 lg:mt-0 lg:w-48 lg:self-auto">
+            <ParticleLogo
+              src="/logos/tsa-logo-particles.png"
+              label="The TSA logo drawn in dots. Move your cursor through it or give it a tap."
+            />
+            <p className="text-center font-hand text-base font-semibold text-muted-ink">
+              the real deal. poke it!
+            </p>
+          </div>
         </div>
       </section>
 
@@ -148,8 +150,7 @@ export default function HomePage() {
               />
             </p>
             <p className="mt-3 max-w-lg font-semibold text-cream/90">
-              Your map through TSA&apos;s Competitive Events Guide — team sizes, rules,
-              dress code, rubrics. Landing this August.
+              Everything you need to compete, all in one place. Coming this August.
             </p>
           </Link>
 
@@ -187,7 +188,7 @@ export default function HomePage() {
               />
             </p>
             <p className="mt-2 text-[15px] font-semibold text-muted-ink">
-              A little archive of chapter history, photos, and trophies.
+              Old photos, trophies, and chapter memories.
             </p>
           </Link>
 
@@ -205,7 +206,7 @@ export default function HomePage() {
               />
             </p>
             <p className="mt-2 text-[15px] font-semibold text-muted-ink">
-              The national Technology Student Association — tsaweb.org.
+              The national Technology Student Association.
             </p>
           </a>
         </div>

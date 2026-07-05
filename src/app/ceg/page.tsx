@@ -3,7 +3,7 @@ import UnderConstruction from "@/components/UnderConstruction";
 
 export const metadata: Metadata = {
   title: "CEG Navigation",
-  description: "SLHS TSA's guide through the TSA Competitive Events Guide — under construction.",
+  description: "SLHS TSA's guide through the Competitive Events Guide. Under construction.",
 };
 
 /*

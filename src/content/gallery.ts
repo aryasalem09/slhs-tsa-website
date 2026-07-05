@@ -54,7 +54,7 @@ export const scrapbook: GalleryPhoto[] = [
   {
     src: "/gallery/nationals.webp",
     alt: "SLHS TSA nationals team in blue blazers at the national conference",
-    caption: "blazers on — Nationals",
+    caption: "blazers on at Nationals",
     w: 1600,
     h: 1205,
     stickers: ["trophy", "firework", "shades"],
@@ -70,7 +70,7 @@ export const scrapbook: GalleryPhoto[] = [
   {
     src: "/gallery/zoo-trip.webp",
     alt: "Members in front of the bamboo forest on the chapter zoo trip",
-    caption: "zoo trip — bamboo forest",
+    caption: "bamboo forest at the zoo",
     w: 1536,
     h: 2048,
     stickers: ["bamboo", "panda", "bamboo"],
@@ -135,7 +135,7 @@ const NATS26_STICKERS = ["trophy", "firework", "paper-plane"];
 export const seasons: Season[] = [
   {
     id: "25-26",
-    title: "25–26 season",
+    title: "25-26 season",
     albums: [
       {
         title: "State",
@@ -249,7 +249,7 @@ export const seasons: Season[] = [
   },
   {
     id: "24-25",
-    title: "24–25 season",
+    title: "24-25 season",
     note: "migrated from our old site",
     albums: archiveAlbums,
   },

@@ -78,7 +78,7 @@ export default function SpartanSurprise({
             <ParticleLogo
               src="/logos/spartan-tsa-colors.png"
               className="mt-3"
-              label="Interactive Spartan logo made of dots — move your cursor through it, click to scatter"
+              label="Interactive Spartan logo made of dots. Move your cursor through it and click to scatter."
             />
             <button
               type="button"

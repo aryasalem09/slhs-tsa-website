@@ -9,7 +9,7 @@ import { achievements, competing, meetings, officers } from "@/content/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "What SLHS TSA has done, when we meet, and who runs the chapter — achievements, meeting schedule, and the officer team.",
+    "Who we are, what we've won, and who runs SLHS TSA.",
 };
 
 const POLAROID_TILTS = [
@@ -129,22 +129,31 @@ export default function AboutPage() {
               bragging about our achievements :)
             </p>
 
-            <ul className="mt-5 space-y-4">
-              {achievements.map((a, i) => (
-                <li key={a.text} className="flex items-baseline gap-4">
-                  <span
-                    className={`w-20 shrink-0 text-right font-display text-4xl font-black ${
-                      i % 2 === 0 ? "text-tsa-blue" : "text-tsa-red"
-                    }`}
-                  >
-                    {a.stat}
-                  </span>
-                  <span className="text-[17px] font-semibold leading-snug text-ink/90">
-                    {a.text}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            {/* the numbers are getting a refresh, so they stay hazy for now */}
+            <div className="relative mt-5">
+              <ul className="select-none space-y-4 opacity-50 blur-[7px]" aria-hidden="true">
+                {achievements.map((a, i) => (
+                  <li key={a.text} className="flex items-baseline gap-4">
+                    <span
+                      className={`w-20 shrink-0 text-right font-display text-4xl font-black ${
+                        i % 2 === 0 ? "text-tsa-blue" : "text-tsa-red"
+                      }`}
+                    >
+                      {a.stat}
+                    </span>
+                    <span className="text-[17px] font-semibold leading-snug text-ink/90">
+                      {a.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-shimmer -rotate-2 font-hand text-4xl font-bold sm:text-5xl">
+                  <span className="sr-only">our achievement numbers are </span>
+                  updating soon…
+                </p>
+              </div>
+            </div>
 
             <figure className="mx-auto mt-7 max-w-[22rem] rotate-[1.2deg] border-2 border-ink/15 bg-white p-2 pb-1 shadow-paper">
               <span className="relative block h-52 w-full overflow-hidden bg-cream sm:h-56">
@@ -157,7 +166,7 @@ export default function AboutPage() {
                 />
               </span>
               <figcaption className="py-1 text-center font-hand text-lg text-muted-ink">
-                TSA Nationals 2026 — our national qualifiers.
+                our national qualifiers at Nats 2026!
               </figcaption>
             </figure>
           </div>
@@ -167,7 +176,6 @@ export default function AboutPage() {
             <div>
               <h2 className="font-display text-xl font-black text-tsa-blue">When we meet</h2>
               <p className="mt-1 max-w-md font-semibold text-ink/90">{meetings.blurb}</p>
-              <p className="font-hand text-lg text-muted-ink">{meetings.note}</p>
             </div>
             <Link
               href="/calendar"

@@ -6,7 +6,7 @@ import { meetingSlides } from "@/content/site";
 export const metadata: Metadata = {
   title: "Meeting Slides",
   description:
-    "Every SLHS TSA meeting deck in one place — catch up on anything you missed, any time.",
+    "Every SLHS TSA meeting deck in one place.",
 };
 
 export default function SlidesPage() {
@@ -30,8 +30,7 @@ export default function SlidesPage() {
             nothing here yet!
           </p>
           <p className="mx-auto mt-3 max-w-sm font-semibold text-muted-ink">
-            The first meeting&apos;s slides will land here right after the first
-            meeting of the year.
+            Slides from every meeting will show up here once the year kicks off.
           </p>
         </div>
       ) : (

@@ -231,7 +231,7 @@ export default function SearchPalette({
           ))}
           {results.length === 0 && (
             <li className="px-3 py-8 text-center font-semibold text-muted-ink">
-              No matches — try{" "}
+              No matches. Try{" "}
               <button
                 type="button"
                 className="font-bold text-tsa-blue underline underline-offset-2"

@@ -7,7 +7,7 @@ import { scrapbook, seasons } from "@/content/gallery";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "The SLHS TSA scrapbook — chapter photos from conferences, socials, and trips, season by season.",
+    "Chapter photos from conferences, socials, and trips, season by season.",
 };
 
 export default function GalleryPage() {

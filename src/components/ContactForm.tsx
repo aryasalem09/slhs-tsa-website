@@ -18,9 +18,9 @@ export default function ContactForm() {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const mailSubject = `[SLHS TSA] ${subject || "Hello!"}${name ? ` — from ${name}` : ""}`;
+    const mailSubject = `[SLHS TSA] ${subject || "Hello!"}${name ? ` from ${name}` : ""}`;
     // RFC 6068: line breaks in mailto bodies must be CRLF.
-    const body = `${message}${name ? `\n\n— ${name}` : ""}`.replace(/\r?\n/g, "\r\n");
+    const body = `${message}${name ? `\n\n- ${name}` : ""}`.replace(/\r?\n/g, "\r\n");
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
       mailSubject,
     )}&body=${encodeURIComponent(body)}`;
@@ -93,7 +93,7 @@ export default function ContactForm() {
           Send it
         </button>
         <p className="font-hand text-lg leading-tight text-muted-ink">
-          this opens your email app, addressed to us — we read everything!
+          this opens your email app with our address filled in. we read everything!
         </p>
       </div>
 

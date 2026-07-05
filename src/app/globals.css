@@ -155,12 +155,6 @@
     background-size: 100% 118px, 236px 100%;
   }
 
-  /* Faint notebook doodles for the wide-screen page margins. */
-  .doodle-margin {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='1040' viewBox='0 0 170 1040'%3E %3Cpath d='M52 30 l6.5 14 15.5 1.8 -11.5 10.5 3.2 15.2 -13.5 -7.8 -13.8 7.4 3.6 -15 -11 -11 15.2 -1.4 z' fill='none' stroke='%23253244' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M110 148 c14 -10 26 4 14 13 c-9 7 -20 -3 -12 -10 c5 -4 11 1 7 5' fill='none' stroke='%23005eab' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M38 262 l52 -18 -22 40 -8 -14 z M68 244 l-10 26' fill='none' stroke='%23253244' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M30 292 q-8 8 -18 8 M42 300 q-6 10 -16 14' fill='none' stroke='%23253244' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='4 5'/%3E %3Ccircle cx='118' cy='400' r='16' fill='none' stroke='%23253244' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Ccircle cx='118' cy='400' r='6' fill='none' stroke='%23253244' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M118 378 v-7 M118 422 v7 M96 400 h-7 M140 400 h7 M103 385 l-5 -5 M133 415 l5 5 M103 415 l-5 5 M133 385 l5 -5' fill='none' stroke='%23253244' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M52 510 q10 -24 0 -44 q-10 20 0 44 z' fill='none' stroke='%23ef3224' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M46 496 q-8 4 -8 14 q8 -2 10 -6 M58 496 q8 4 8 14 q-8 -2 -10 -6' fill='none' stroke='%23ef3224' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M52 514 q-3 8 0 14 q3 -6 0 -14' fill='none' stroke='%23ef3224' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Ccircle cx='52' cy='478' r='4' fill='none' stroke='%23ef3224' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M118 610 c-10 -12 -26 -4 -22 8 c3 10 14 16 22 24 c8 -8 19 -14 22 -24 c4 -12 -12 -20 -22 -8 z' fill='none' stroke='%23253244' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M50 738 a14 14 0 1 1 8 0 q-2 4 -2 8 h-12 q0 -4 -2 -8 z M46 754 h12 M47 760 h10' fill='none' stroke='%23005eab' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M32 712 l-7 -5 M76 712 l7 -5 M54 694 v-8' fill='none' stroke='%23005eab' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M112 852 q20 14 6 26 q-12 10 -4 22 q6 10 0 22' fill='none' stroke='%23253244' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M108 916 l6 8 8 -6' fill='none' stroke='%23253244' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M140 90 l0 10 M135 95 l10 0' fill='none' stroke='%23ef3224' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3Cpath d='M26 960 l0 10 M21 965 l10 0 M120 990 l0 8 M116 994 l8 0' fill='none' stroke='%23005eab' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E %3C/svg%3E");
-    background-repeat: repeat-y;
-    background-size: 170px 1040px;
-  }
 
   /* Colored-pencil texture for the blue hero panel. */
   .pencil-blue {
@@ -197,6 +191,24 @@
   .sticker-pop {
     transform: rotate(var(--rot, 0deg));
     animation: sticker-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  }
+}
+
+/* Hazy "updating soon" shimmer for the achievements card. */
+@keyframes shimmer-sweep {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@layer components {
+  .text-shimmer {
+    background-image: linear-gradient(100deg, #005eab 25%, #8fafd9 45%, #005eab 65%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer-sweep 3.2s linear infinite;
   }
 }
 

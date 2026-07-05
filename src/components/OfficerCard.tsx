@@ -134,7 +134,7 @@ export default function OfficerCard({
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
             role="dialog"
             aria-modal="true"
-            aria-label={`${officer.name} — ${officer.role}`}
+            aria-label={`${officer.name}, ${officer.role}`}
           >
             <div
               className="absolute inset-0 bg-ink/75"

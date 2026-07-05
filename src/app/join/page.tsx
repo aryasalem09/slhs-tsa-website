@@ -53,8 +53,7 @@ export default function JoinPage() {
           />
         </DashWrap>
         <p className="mx-auto mt-5 max-w-lg font-hand text-2xl font-semibold leading-snug text-muted-ink">
-          sign-ups for 26–27 open soon — we&apos;ll announce it by email &amp; Remind. here&apos;s
-          how it works:
+          sign-ups for 26-27 open soon! we&apos;ll announce it by email and Remind.
         </p>
       </div>
 
@@ -66,7 +65,7 @@ export default function JoinPage() {
             Fill out the registration form
           </h2>
           <p className="mt-2 font-semibold leading-relaxed text-ink/85">
-            Every member starts here — it puts you on the roster and on our email list.
+            Every member starts here. It gets you on the roster and our email list.
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {form ? (
@@ -145,8 +144,7 @@ export default function JoinPage() {
             Stay in the loop
           </h2>
           <p className="mt-2 font-semibold leading-relaxed text-ink/85">
-            Every announcement — meetings, deadlines, socials — goes out on Remind and
-            Discord. Join both so nothing sneaks past you.
+            All our announcements go out on Remind and Discord, so join both!
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <a
@@ -185,7 +183,7 @@ export default function JoinPage() {
         >
           {site.email}
         </a>{" "}
-        or ask any officer — we don&apos;t bite.
+        or ask any officer.
       </p>
     </div>
   );

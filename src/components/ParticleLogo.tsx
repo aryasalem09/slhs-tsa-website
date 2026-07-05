@@ -22,7 +22,7 @@ type Particle = {
 export default function ParticleLogo({
   src,
   className = "",
-  label = "Interactive SLHS TSA Spartan logo made of dots — move your cursor to scatter them",
+  label = "Interactive SLHS TSA Spartan logo made of dots. Move your cursor to scatter them.",
 }: {
   src: string;
   className?: string;
@@ -54,7 +54,7 @@ export default function ParticleLogo({
 
     function layout() {
       const rect = wrap!.getBoundingClientRect();
-      W = Math.max(280, Math.floor(rect.width));
+      W = Math.max(120, Math.floor(rect.width));
       H = Math.floor(Math.min(W * 0.58, 400));
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas!.width = Math.floor(W * dpr);
@@ -112,7 +112,7 @@ export default function ParticleLogo({
           }
         }
       }
-      pointer.base = Math.max(60, W * 0.11);
+      pointer.base = Math.max(28, Math.min(W * 0.11, 120));
     }
 
     function drawStatic() {

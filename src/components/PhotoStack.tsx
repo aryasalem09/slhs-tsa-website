@@ -27,7 +27,7 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
             type="button"
             onClick={() => setFront(isFront ? null : i)}
             aria-pressed={isFront}
-            aria-label={`${card.label} — bring photo to front`}
+            aria-label={`${card.label}. Tap to bring the photo to the front.`}
             className={`group relative w-[85%] max-w-[19.5rem] border-2 border-ink/85 bg-card p-2 pb-1.5 text-left shadow-paper transition-all duration-200 edge-paper-sm hover:z-20 hover:rotate-0 hover:shadow-lift ${TILTS[i % TILTS.length]} ${i === 0 ? "" : "-mt-8"} ${isFront ? "z-30 rotate-0 scale-[1.04] shadow-lift" : ""}`}
             style={{ zIndex: isFront ? 30 : i + 1 }}
           >

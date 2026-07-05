@@ -49,9 +49,17 @@ export default function SiteHeader() {
             priority
             className="h-10 w-10 object-contain"
           />
-          <span className="font-display text-[1.35rem] font-black leading-none tracking-tight">
-            <span className="text-spartan-orange">SLHS</span>{" "}
-            <span className="text-tsa-blue">TSA</span>
+          <span className="flex items-center gap-1.5">
+            <span className="font-display text-[1.35rem] font-black leading-none tracking-tight text-spartan-orange">
+              SLHS
+            </span>
+            <Image
+              src="/logos/tsa-logo-particles.png"
+              alt="TSA"
+              width={53}
+              height={27}
+              className="h-[26px] w-auto"
+            />
           </span>
         </Link>
 

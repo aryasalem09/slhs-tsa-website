@@ -7,7 +7,7 @@ import { officers } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Officers",
-  description: "Meet the 2026–27 SLHS TSA officer team.",
+  description: "Meet the 2026-27 SLHS TSA officer team.",
 };
 
 const TILTS = [-1.2, 0.9, -0.8, 1.1, -1, 0.8];

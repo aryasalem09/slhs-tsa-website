@@ -3,7 +3,7 @@ import UnderConstruction from "@/components/UnderConstruction";
 
 export const metadata: Metadata = {
   title: "TSA Museum",
-  description: "The SLHS TSA chapter archive — under construction.",
+  description: "The SLHS TSA chapter archive. Under construction.",
 };
 
 /*

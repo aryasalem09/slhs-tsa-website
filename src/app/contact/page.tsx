@@ -7,7 +7,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with SLHS TSA — email the chapter, or find us on Discord and Instagram.",
+    "Get in touch with SLHS TSA by email, Discord, or Instagram.",
 };
 
 export default function ContactPage() {

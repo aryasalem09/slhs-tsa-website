@@ -31,7 +31,7 @@ const caveat = Caveat({
 
 export const metadata: Metadata = {
   title: {
-    default: "SLHS TSA — Seven Lakes High School Technology Student Association",
+    default: "SLHS TSA · Seven Lakes High School Technology Student Association",
     template: "%s · SLHS TSA",
   },
   description: whatIsTsa,
@@ -63,19 +63,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <SiteHeader />
-        <div className="relative">
-          {/* notebook doodles in the wide-screen margins — decoration only */}
-          <div
-            aria-hidden="true"
-            className="doodle-margin pointer-events-none absolute inset-y-0 left-3 hidden w-[170px] opacity-[0.18] min-[1500px]:block"
-          />
-          <div
-            aria-hidden="true"
-            className="doodle-margin pointer-events-none absolute inset-y-0 right-3 hidden w-[170px] opacity-[0.18] min-[1500px]:block"
-            style={{ backgroundPosition: "0 520px" }}
-          />
-          <main id="main">{children}</main>
-        </div>
+        <main id="main">{children}</main>
         <SiteFooter />
         <MobileTabBar />
         <TapSparkles />

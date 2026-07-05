@@ -66,19 +66,19 @@ export const nav: NavItem[] = [
 ];
 
 export const whatIsTsa =
-  "The Technology Student Association is a national org of 300,000+ students who compete in everything from engineering and coding to film, fashion, and flight. SLHS TSA is Seven Lakes' chapter — one of the strongest in Texas.";
+  "TSA is a national student organization where 300,000+ members compete in events like engineering, coding, film, and fashion design. We're the Seven Lakes chapter, and one of the strongest in Texas.";
 
-// TODO(content): fill in the real numbers
+// TODO(content): the real numbers are getting a refresh, so the site shows
+// these blurred behind an "updating soon" haze for now.
 export const achievements = [
-  { stat: "XX", text: "unique national top-ten placements" },
-  { stat: "XX", text: "unique state top-ten placements" },
-  { stat: "XX", text: "unique individual national qualifiers" },
-  { stat: "XX", text: "place School Award at State, out of 125 high schools" },
+  { stat: "??", text: "unique national top-ten placements" },
+  { stat: "??", text: "unique state top-ten placements" },
+  { stat: "??", text: "unique individual national qualifiers" },
+  { stat: "??", text: "place School Award at State, out of 125 high schools" },
 ];
 
 export const meetings = {
-  blurb: "The 26–27 meeting schedule is TBD.",
-  note: "We'll announce it on Remind & Discord — dates will land on the calendar.",
+  blurb: "The 26-27 meeting schedule is TBD.",
 };
 
 /**
@@ -99,19 +99,19 @@ export const competing = {
   points: [
     {
       title: "Static events",
-      text: "mostly completed before the conference — you build, write, or film ahead of time (think Webmaster or Engineering Design).",
+      text: "you do most of the work before the conference and submit it. Think Webmaster or Engineering Design.",
     },
     {
       title: "Non-static events",
-      text: "mostly completed at the conference — on-site challenges and presentations (think Technology Bowl or Extemporaneous Speech).",
+      text: "these happen live at the conference, like Technology Bowl or Extemporaneous Speech.",
     },
     {
       title: "Our advice",
-      text: "pick a mix of 2–3 events so your season has both a long-term project and some conference-day fun.",
+      text: "pick 2 or 3 events and mix both kinds.",
     },
     {
       title: "Levels",
-      text: "Regionals (February) → State (April) → Nationals (late June). Place well at one and you advance to the next.",
+      text: "Regionals in February, State in April, Nationals in late June. Place well and you move on to the next one.",
     },
   ],
 };
@@ -247,7 +247,7 @@ export const searchIndex: SearchEntry[] = [
   {
     label: "Gallery",
     href: "/gallery",
-    hint: "The scrapbook — photos by season",
+    hint: "Photos, sorted by season",
     keywords: ["gallery", "photos", "pictures", "scrapbook", "memories", "24-25", "25-26"],
   },
   {
@@ -259,7 +259,7 @@ export const searchIndex: SearchEntry[] = [
   {
     label: "Officers",
     href: "/officers",
-    hint: "Meet the 26–27 officer team",
+    hint: "Meet the 26-27 officer team",
     keywords: ["officers", "president", "vice president", "secretary", "treasurer", "reporter", "ute", "nqe", "leadership", "team"],
   },
   {

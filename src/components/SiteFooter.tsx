@@ -137,7 +137,7 @@ export default function SiteFooter() {
 
       <div className="border-t-2 border-ink/10">
         <p className="mx-auto max-w-6xl px-4 py-4 text-center text-sm font-semibold text-muted-ink">
-          Built with care by the SLHS TSA officer team. Go Spartans!
+          Made by the SLHS TSA officer team. Go Spartans!
         </p>
       </div>
     </footer>
