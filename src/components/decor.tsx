@@ -60,8 +60,8 @@ export function WonkyTitle({
                 alt=""
                 width={128}
                 height={81}
-                // sits on the title baseline, sized to the letters, matching tilt + shadow
-                className="mx-[0.08em] inline-block h-[0.92em] w-auto -rotate-2 align-[-0.16em] drop-shadow-[3px_3px_0_rgb(37_50_68_/_0.14)]"
+                // sized to the cap height and centered on the letters, matching tilt + shadow
+                className="mx-[0.12em] inline-block h-[1.03em] w-auto -rotate-1 align-[-0.14em] drop-shadow-[3px_3px_0_rgb(37_50_68_/_0.14)]"
               />
             );
           }

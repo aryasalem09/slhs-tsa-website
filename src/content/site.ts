@@ -65,7 +65,7 @@ export const moreNav: NavItem[] = [
 ];
 
 export const whatIsTsa =
-  "TSA is the club for people who like to build things. Every year, 300,000+ students across the country compete in engineering, coding, video, CAD, and design — and Seven Lakes is one of the biggest, most-awarded chapters in Texas. We build, compete, and travel from Regionals to State all the way to Nationals.";
+  "TSA is the club for people who like to build and create things. Every year, 300,000+ students across the country compete in engineering, coding, video, CAD, and design, Seven Lakes being one of the biggest, most-awarded chapters in Texas. We build, compete, and travel from Regionals to State all the way to Nationals (to win!).";
 
 // Short, search-result-friendly summary (~150 chars) for the default meta description.
 export const metaDescription =
@@ -91,10 +91,13 @@ export const seasonHighlights = {
   },
   state: {
     placements: [
-      { place: "3rd", event: "Computer-Aided Design (CAD)" },
+      { place: "2nd", event: "CAD – Engineering" },
+      { place: "4th", event: "Geospatial Technology" },
       { place: "4th", event: "Video Game Design" },
-      { place: "4th", event: "Geospatial Design" },
-      { place: "5th", event: "Chapter Team" },
+      { place: "5th", event: "Prepared Presentation" },
+      { place: "5th", event: "Technology Bowl" },
+      { place: "6th", event: "Forensic Science" },
+      { place: "7th", event: "Chapter Team" },
     ],
   },
 };

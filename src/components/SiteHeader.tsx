@@ -88,6 +88,7 @@ export default function SiteHeader() {
             <ul className="flex items-center gap-1">
               {nav.map((item) => {
                 const active = isActive(pathname, item.href);
+                const hasFlyout = item.href === "/about";
                 return (
                   <li key={item.href} className="group relative">
                     <Link
@@ -95,13 +96,25 @@ export default function SiteHeader() {
                       aria-current={active ? "page" : undefined}
                       // blur, or focus-within keeps the flyout pinned open after navigating
                       onClick={(e) => e.currentTarget.blur()}
-                      className={`${linkBase} ${active ? pill : "text-ink/80 hover:bg-cream"}`}
+                      className={`${linkBase} inline-flex items-center gap-1 ${active ? pill : "text-ink/80 hover:bg-cream"}`}
                     >
                       {item.label}
+                      {hasFlyout && (
+                        <span aria-hidden="true" className="text-[10px] leading-none">
+                          ▼
+                        </span>
+                      )}
                     </Link>
-                    {item.href === "/about" && (
+                    {hasFlyout && (
                       <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 opacity-0 transition-all duration-150 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                        <div className="edge-paper-sm w-48 -rotate-1 border-2 border-ink bg-card p-1.5 shadow-lift">
+                        <div className="edge-paper-sm w-52 -rotate-1 border-2 border-ink bg-card p-1.5 shadow-lift">
+                          <Link
+                            href="/about"
+                            onClick={(e) => e.currentTarget.blur()}
+                            className="block rounded-lg px-3 py-2 text-sm font-bold text-ink hover:bg-cream hover:text-tsa-blue"
+                          >
+                            About SLHS TSA →
+                          </Link>
                           <Link
                             href="/officers"
                             onClick={(e) => e.currentTarget.blur()}

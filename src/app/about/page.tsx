@@ -33,7 +33,10 @@ export default function AboutPage() {
 
       <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
         {/* ---------------------- leadership column ---------------------- */}
-        <section aria-labelledby="leadership-h" className="min-w-0">
+        <section
+          aria-labelledby="leadership-h"
+          className="min-w-0 lg:sticky lg:top-24 lg:self-start"
+        >
           <h2
             id="leadership-h"
             className="-rotate-1 font-hand text-3xl font-bold text-muted-ink"
@@ -124,11 +127,12 @@ export default function AboutPage() {
           </p>
 
           <p className="mt-6 text-lg font-semibold leading-relaxed text-ink/90">
-            We&apos;re the Technology Student Association chapter at Seven Lakes — a
-            STEM club where students design, build, code, and compete. New members
-            get paired with officers who&apos;ve been to State and Nationals, so you
-            learn how to actually place, not just sign up. One of the biggest and
-            most-awarded chapters in Texas, and we&apos;re just getting started.
+            We&apos;re the Technology Student Association chapter at Seven Lakes, a
+            STEM club where students design, build, code, and compete. We focus on
+            helping our members work on projects to submit at our Regional, State,
+            and National conferences. Officers and experienced members play a key
+            role in helping new members learn how to successfully prepare entries
+            and place well in their competitive events.
           </p>
 
           {/* achievements */}
@@ -162,15 +166,17 @@ export default function AboutPage() {
               <p className="-rotate-1 font-hand text-2xl font-semibold text-tsa-blue">
                 this past season ({seasonHighlights.season})
               </p>
-              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+
+              <div className="mt-3 space-y-3">
+                {/* Nationals */}
                 <div className="edge-paper-sm border-2 border-ink/15 bg-cream p-4">
-                  <p className="font-display text-lg font-black text-ink">
-                    Nationals
-                    <span className="ml-2 align-[1px] font-hand text-base font-semibold text-muted-ink">
-                      {seasonHighlights.nationals.qualifiers} qualifiers
+                  <p className="flex flex-wrap items-baseline gap-x-2">
+                    <span className="font-display text-lg font-black text-ink">Nationals</span>
+                    <span className="font-hand text-base font-semibold text-muted-ink">
+                      {seasonHighlights.nationals.qualifiers} national qualifiers
                     </span>
                   </p>
-                  <ul className="mt-2 space-y-1.5">
+                  <ul className="mt-2 grid gap-x-5 gap-y-1.5 sm:grid-cols-2">
                     {seasonHighlights.nationals.placements.map((p) => (
                       <li
                         key={p.event}
@@ -184,9 +190,11 @@ export default function AboutPage() {
                     ))}
                   </ul>
                 </div>
+
+                {/* State */}
                 <div className="edge-paper-sm border-2 border-ink/15 bg-cream p-4">
                   <p className="font-display text-lg font-black text-ink">State</p>
-                  <ul className="mt-2 space-y-1.5">
+                  <ul className="mt-2 grid gap-x-5 gap-y-1.5 sm:grid-cols-2">
                     {seasonHighlights.state.placements.map((p) => (
                       <li
                         key={p.event}
@@ -290,13 +298,11 @@ export default function AboutPage() {
             </ul>
           </div>
 
-          <div className="mt-8 flex justify-end">
-            <div className="flex flex-col items-center">
-              <p className="rotate-1 pb-1 pr-9 font-hand text-xl font-semibold text-muted-ink">
-                sound fun?
-              </p>
-              <JoinArrowLink />
-            </div>
+          <div className="mt-10 flex flex-col items-center border-t-2 border-dashed border-ink/15 pt-8">
+            <p className="rotate-1 pb-1 pr-9 font-hand text-2xl font-semibold text-muted-ink">
+              sound fun?
+            </p>
+            <JoinArrowLink />
           </div>
         </section>
       </div>
