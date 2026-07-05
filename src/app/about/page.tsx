@@ -242,36 +242,6 @@ export default function AboutPage() {
             </Link>
           </div>
 
-          {/* what we do beyond competing */}
-          <div className="edge-paper mt-6 border-2 border-ink/80 bg-card p-5 sm:p-6">
-            <h2 className="font-display text-xl font-black text-tsa-blue">
-              More than a competition team
-            </h2>
-            <ul className="mt-3 space-y-2.5 text-[15px]">
-              <li>
-                <span className="font-extrabold text-ink">Socials:</span>{" "}
-                <span className="font-semibold text-ink/85">
-                  pumpkin carving in the fall, gingerbread builds in winter, and the
-                  end-of-year TSA banquet.
-                </span>
-              </li>
-              <li>
-                <span className="font-extrabold text-ink">Trips:</span>{" "}
-                <span className="font-semibold text-ink/85">
-                  multi-day travel to State and Nationals — competition plus escape
-                  rooms, team dinners, shopping, and sightseeing.
-                </span>
-              </li>
-              <li>
-                <span className="font-extrabold text-ink">Giving back:</span>{" "}
-                <span className="font-semibold text-ink/85">
-                  we&apos;ve hosted a district-wide virtual hackathon for students
-                  across Katy ISD.
-                </span>
-              </li>
-            </ul>
-          </div>
-
           {/* competing 101 */}
           <div
             id="competing"
