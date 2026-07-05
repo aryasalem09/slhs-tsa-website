@@ -150,6 +150,13 @@ export const seasons: Season[] = [
             stickers: NATS26_STICKERS,
           },
           {
+            src: "/gallery/25-26/nats26-13-peace-signs.webp",
+            alt: "SLHS TSA members in navy competition blazers throwing peace signs in a blue-lit ballroom foyer at the 2026 National TSA Conference",
+            w: 1693,
+            h: 1275,
+            stickers: NATS26_STICKERS,
+          },
+          {
             src: "/gallery/25-26/nats26-01-airport-sendoff.webp",
             alt: "SLHS TSA members with their luggage at the airport check-in, ready to fly to the 2026 National TSA Conference",
             w: 1600,
@@ -186,9 +193,16 @@ export const seasons: Season[] = [
           },
           {
             src: "/gallery/25-26/nats26-09-night-selfie.webp",
-            alt: "SLHS TSA members leaning in for a group selfie outdoors at night, lit by stage lights at the 2026 National TSA Conference",
+            alt: "SLHS TSA members leaning in for a group selfie outdoors at dusk at the 2026 National TSA Conference",
             w: 1600,
             h: 1200,
+            stickers: NATS26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/nats26-14-session-selfie.webp",
+            alt: "SLHS TSA members leaning in for a tilted group selfie during an evening session at the 2026 National TSA Conference, stage lights and confetti behind them",
+            w: 956,
+            h: 1275,
             stickers: NATS26_STICKERS,
           },
           {
