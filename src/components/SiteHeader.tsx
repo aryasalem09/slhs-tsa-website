@@ -4,9 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { nav } from "@/content/site";
+import { nav, site } from "@/content/site";
 import SearchPalette from "@/components/SearchPalette";
-import { IconMenu, IconSearch, IconX } from "@/components/icons";
+import {
+  IconDiscord,
+  IconInstagram,
+  IconMenu,
+  IconRemind,
+  IconSearch,
+  IconX,
+} from "@/components/icons";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -27,7 +34,7 @@ export default function SiteHeader() {
     "border-2 border-ink bg-white shadow-[2px_2px_0_0_rgb(37_50_68_/_0.9)]";
 
   return (
-    <header className="sticky top-0 z-40 border-b-[3px] border-tsa-blue/70 bg-paper/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b-[3px] border-tsa-blue/70 bg-paper/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4">
         <Link
           href="/"
@@ -133,7 +140,7 @@ export default function SiteHeader() {
         <nav
           id="mobile-nav"
           aria-label="Main"
-          className="border-t-2 border-ink/10 bg-paper px-4 pb-5 pt-2 lg:hidden"
+          className="max-h-[calc(100dvh-4rem-4.5rem-env(safe-area-inset-bottom))] overflow-y-auto border-t-2 border-ink/10 bg-paper px-4 pb-5 pt-2 lg:hidden"
         >
           <ul className="flex flex-col gap-1">
             {nav.map((item) => {
@@ -172,6 +179,35 @@ export default function SiteHeader() {
               </Link>
             </li>
           </ul>
+          <div className="mt-4 flex items-center justify-center gap-6 border-t-2 border-ink/10 pt-4">
+            <a
+              href={site.socials.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="rounded-full bg-cream p-3 text-xl text-tsa-blue"
+            >
+              <IconInstagram aria-hidden="true" />
+            </a>
+            <a
+              href={site.socials.discord}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Discord"
+              className="rounded-full bg-cream p-3 text-xl text-tsa-blue"
+            >
+              <IconDiscord aria-hidden="true" />
+            </a>
+            <a
+              href={site.socials.remind}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Remind"
+              className="rounded-full bg-cream p-3 text-xl text-tsa-blue"
+            >
+              <IconRemind aria-hidden="true" />
+            </a>
+          </div>
         </nav>
       )}
 

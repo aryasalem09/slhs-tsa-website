@@ -95,3 +95,51 @@ export function IconRemind(props: IconProps) {
     </svg>
   );
 }
+
+export function IconHome(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...props}>
+      <path d="M4 11.6 12 4.4l8 7.2" />
+      <path d="M6.4 10.2v9.2h11.2v-9.2" />
+      <path d="M10 19.4v-5h4v5" />
+    </svg>
+  );
+}
+
+export function IconPhoto(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...props}>
+      <rect x="3.4" y="4.6" width="17.2" height="14.8" rx="2.5" />
+      <circle cx="9" cy="10" r="1.8" />
+      <path d="m5.5 17.5 4.5-4.5 3 3 3.5-3.5 2.5 2.5" />
+    </svg>
+  );
+}
+
+export function IconCalendar(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...props}>
+      <rect x="3.6" y="5.4" width="16.8" height="14" rx="2.5" />
+      <path d="M3.6 9.6h16.8M8 3.4v3.4M16 3.4v3.4" />
+      <path d="M7.5 13.4h3M7.5 16.4h5" />
+    </svg>
+  );
+}
+
+export function IconInfo(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...props}>
+      <circle cx="12" cy="12" r="8.6" />
+      <path d="M12 11v5.4" />
+      <circle cx="12" cy="7.8" r="0.6" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function IconStar(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...props}>
+      <path d="M12 3.6 14.5 9l5.9.6-4.4 3.9 1.3 5.8L12 16.2l-5.3 3.1 1.3-5.8-4.4-3.9L9.5 9z" />
+    </svg>
+  );
+}

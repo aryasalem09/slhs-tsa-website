@@ -17,6 +17,8 @@ const TILTS = ["-rotate-2", "rotate-1", "-rotate-1", "rotate-2", "-rotate-[1.5de
 export default function PhotoWall({ photos }: { photos: GalleryPhoto[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const panelRef = useRef<HTMLElement>(null);
+  const touchStartX = useRef<number | null>(null);
+  const multiTouch = useRef(false);
   const isTop = useOverlay(openIndex !== null, panelRef);
 
   const close = useCallback(() => setOpenIndex(null), []);
@@ -91,6 +93,24 @@ export default function PhotoWall({ photos }: { photos: GalleryPhoto[] }) {
             ref={panelRef}
             tabIndex={-1}
             className="relative max-h-full w-full max-w-4xl rotate-[-0.4deg] border-2 border-ink/20 bg-white p-2.5 pb-2 shadow-lift outline-none sm:p-3"
+            onTouchStart={(e) => {
+              // a second finger means pinch-zoom, not a swipe
+              if (e.touches.length > 1) {
+                multiTouch.current = true;
+                touchStartX.current = null;
+                return;
+              }
+              multiTouch.current = false;
+              touchStartX.current = e.touches[0]?.clientX ?? null;
+            }}
+            onTouchEnd={(e) => {
+              if (multiTouch.current || e.touches.length > 0) return;
+              const startX = touchStartX.current;
+              touchStartX.current = null;
+              if (startX === null || photos.length < 2) return;
+              const delta = (e.changedTouches[0]?.clientX ?? startX) - startX;
+              if (Math.abs(delta) > 48) step(delta < 0 ? 1 : -1);
+            }}
           >
             <div className="relative max-h-[74vh] overflow-hidden bg-cream">
               <Image

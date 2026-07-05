@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Caveat, Fraunces, Nunito_Sans } from "next/font/google";
-import SiteHeader from "@/components/SiteHeader";
+import MobileTabBar from "@/components/MobileTabBar";
 import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
+import TapSparkles from "@/components/TapSparkles";
 import { whatIsTsa } from "@/content/site";
 import "./globals.css";
 
@@ -42,13 +44,17 @@ export const metadata: Metadata = {
   ],
 };
 
+export const viewport: Viewport = {
+  themeColor: "#faf6ed",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
-        className={`${fraunces.variable} ${nunito.variable} ${caveat.variable} bg-paper font-body text-ink antialiased`}
+        className={`${fraunces.variable} ${nunito.variable} ${caveat.variable} bg-paper pb-[calc(4.5rem+env(safe-area-inset-bottom))] font-body text-ink antialiased lg:pb-0`}
       >
         <a
           href="#main"
@@ -71,6 +77,8 @@ export default function RootLayout({
           <main id="main">{children}</main>
         </div>
         <SiteFooter />
+        <MobileTabBar />
+        <TapSparkles />
       </body>
     </html>
   );
