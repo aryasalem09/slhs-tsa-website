@@ -5,7 +5,7 @@ import Link from "next/link";
 import StickerLogo from "@/components/StickerLogo";
 import { DashWrap, JoinArrowLink, WonkyTitle } from "@/components/decor";
 import { IconArrowRight } from "@/components/icons";
-import { achievements, competing, meetings, officers } from "@/content/site";
+import { achievements, competing, meetings, officers, seasonHighlights } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -123,6 +123,14 @@ export default function AboutPage() {
             About the chapter
           </p>
 
+          <p className="mt-6 text-lg font-semibold leading-relaxed text-ink/90">
+            We&apos;re the Technology Student Association chapter at Seven Lakes — a
+            STEM club where students design, build, code, and compete. New members
+            get paired with officers who&apos;ve been to State and Nationals, so you
+            learn how to actually place, not just sign up. One of the biggest and
+            most-awarded chapters in Texas, and we&apos;re just getting started.
+          </p>
+
           {/* achievements */}
           <div className="edge-paper relative mt-8 border-[3px] border-ink/85 bg-card p-6 shadow-paper sm:p-8">
             <span aria-hidden="true" className="tape -top-3 left-8 rotate-[-5deg]" />
@@ -132,29 +140,66 @@ export default function AboutPage() {
               bragging about our achievements :)
             </p>
 
-            {/* the numbers are getting a refresh, so they stay hazy for now */}
-            <div className="relative mt-5">
-              <ul className="select-none space-y-4 opacity-50 blur-[7px]" aria-hidden="true">
-                {achievements.map((a, i) => (
-                  <li key={a.text} className="flex items-baseline gap-4">
-                    <span
-                      className={`w-20 shrink-0 text-right font-display text-4xl font-black ${
-                        i % 2 === 0 ? "text-tsa-blue" : "text-tsa-red"
-                      }`}
-                    >
-                      {a.stat}
+            <ul className="mt-5 space-y-4">
+              {achievements.map((a, i) => (
+                <li key={a.text} className="flex items-baseline gap-4">
+                  <span
+                    className={`w-20 shrink-0 text-right font-display text-4xl font-black ${
+                      i % 2 === 0 ? "text-tsa-blue" : "text-tsa-red"
+                    }`}
+                  >
+                    {a.stat}
+                  </span>
+                  <span className="text-[17px] font-semibold leading-snug text-ink/90">
+                    {a.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            {/* this past season's headline placements */}
+            <div className="mt-7 border-t-2 border-dashed border-ink/20 pt-5">
+              <p className="-rotate-1 font-hand text-2xl font-semibold text-tsa-blue">
+                this past season ({seasonHighlights.season})
+              </p>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                <div className="edge-paper-sm border-2 border-ink/15 bg-cream p-4">
+                  <p className="font-display text-lg font-black text-ink">
+                    Nationals
+                    <span className="ml-2 align-[1px] font-hand text-base font-semibold text-muted-ink">
+                      {seasonHighlights.nationals.qualifiers} qualifiers
                     </span>
-                    <span className="text-[17px] font-semibold leading-snug text-ink/90">
-                      {a.text}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-shimmer -rotate-2 font-hand text-4xl font-bold sm:text-5xl">
-                  <span className="sr-only">our achievement numbers are </span>
-                  updating soon…
-                </p>
+                  </p>
+                  <ul className="mt-2 space-y-1.5">
+                    {seasonHighlights.nationals.placements.map((p) => (
+                      <li
+                        key={p.event}
+                        className="flex items-baseline gap-2 text-[15px] font-semibold text-ink/90"
+                      >
+                        <span className="w-9 shrink-0 font-display font-black text-tsa-red">
+                          {p.place}
+                        </span>
+                        <span>{p.event}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="edge-paper-sm border-2 border-ink/15 bg-cream p-4">
+                  <p className="font-display text-lg font-black text-ink">State</p>
+                  <ul className="mt-2 space-y-1.5">
+                    {seasonHighlights.state.placements.map((p) => (
+                      <li
+                        key={p.event}
+                        className="flex items-baseline gap-2 text-[15px] font-semibold text-ink/90"
+                      >
+                        <span className="w-9 shrink-0 font-display font-black text-tsa-blue">
+                          {p.place}
+                        </span>
+                        <span>{p.event}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
 
@@ -187,6 +232,36 @@ export default function AboutPage() {
               See the calendar
               <IconArrowRight className="ml-1.5 inline-block align-[-3px]" aria-hidden="true" />
             </Link>
+          </div>
+
+          {/* what we do beyond competing */}
+          <div className="edge-paper mt-6 border-2 border-ink/80 bg-card p-5 sm:p-6">
+            <h2 className="font-display text-xl font-black text-tsa-blue">
+              More than a competition team
+            </h2>
+            <ul className="mt-3 space-y-2.5 text-[15px]">
+              <li>
+                <span className="font-extrabold text-ink">Socials:</span>{" "}
+                <span className="font-semibold text-ink/85">
+                  pumpkin carving in the fall, gingerbread builds in winter, and the
+                  end-of-year TSA banquet.
+                </span>
+              </li>
+              <li>
+                <span className="font-extrabold text-ink">Trips:</span>{" "}
+                <span className="font-semibold text-ink/85">
+                  multi-day travel to State and Nationals — competition plus escape
+                  rooms, team dinners, shopping, and sightseeing.
+                </span>
+              </li>
+              <li>
+                <span className="font-extrabold text-ink">Giving back:</span>{" "}
+                <span className="font-semibold text-ink/85">
+                  we&apos;ve hosted a district-wide virtual hackathon for students
+                  across Katy ISD.
+                </span>
+              </li>
+            </ul>
           </div>
 
           {/* competing 101 */}

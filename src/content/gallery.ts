@@ -1,7 +1,6 @@
 /**
- * Gallery content: the scrapbook pile (greatest hits), plus per-season albums.
- * 24–25 was migrated from the old Wix site; 25–26 holds the State & Nationals
- * 2026 picks from the chapter's Google Photos albums.
+ * Gallery content: the scrapbook pile up top, plus per-season albums.
+ * Photos are curated picks from the chapter's Google Photos albums.
  */
 
 import archive from "./gallery-24-25.json";
@@ -21,9 +20,6 @@ export type GalleryPhoto = {
 export type Album = {
   title: string;
   photos: GalleryPhoto[];
-  /** Optional "see the full album" external link (e.g. Google Photos). */
-  externalLink?: { label: string; href: string };
-  comingSoon?: boolean;
 };
 
 export type Season = {
@@ -101,21 +97,20 @@ const ALBUM_STICKERS: Record<string, string[]> = {
   Events: ["wrench", "ruler", "gear"],
 };
 
-/** Albums migrated from the old Wix gallery (manifest: gallery-24-25.json). */
-const archiveAlbums: Album[] = archive.albums.map((album) => ({
-  title: album.title,
-  photos: album.photos.map((photo) => ({
-    src: `/gallery/24-25/${photo.file}`,
-    alt: photo.desc,
-    w: photo.w,
-    h: photo.h,
-    stickers: ALBUM_STICKERS[album.title],
-  })),
-  externalLink:
-    "externalLink" in album && album.externalLink
-      ? { label: "See the full album on Google Photos", href: album.externalLink }
-      : undefined,
-}));
+/** 24-25 albums, shown State → Regionals → Socials → Events (manifest: gallery-24-25.json). */
+const ARCHIVE_ORDER = ["State", "Regionals", "Socials", "Events"];
+const archiveAlbums: Album[] = archive.albums
+  .map((album) => ({
+    title: album.title,
+    photos: album.photos.map((photo) => ({
+      src: `/gallery/24-25/${photo.file}`,
+      alt: photo.desc,
+      w: photo.w,
+      h: photo.h,
+      stickers: ALBUM_STICKERS[album.title],
+    })),
+  }))
+  .sort((a, b) => ARCHIVE_ORDER.indexOf(a.title) - ARCHIVE_ORDER.indexOf(b.title));
 
 // The State-Champion banner photo (from the old site's home page) belongs
 // with the 24-25 State album now that the scrapbook features State 2026.
@@ -138,11 +133,93 @@ export const seasons: Season[] = [
     title: "25-26 season",
     albums: [
       {
+        title: "Nationals",
+        photos: [
+          {
+            src: "/gallery/25-26/nats26-10-blazer-lineup.webp",
+            alt: "Six SLHS TSA members in navy competition blazers lined up together in the hotel lobby at the 2026 National TSA Conference",
+            w: 856,
+            h: 642,
+            stickers: NATS26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/nats26-08-full-delegation.webp",
+            alt: "The full SLHS TSA delegation in blue competition shirts gathered in the convention center hallway",
+            w: 1600,
+            h: 1205,
+            stickers: NATS26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/nats26-01-airport-sendoff.webp",
+            alt: "SLHS TSA members with their luggage at the airport check-in, ready to fly to the 2026 National TSA Conference",
+            w: 1600,
+            h: 1205,
+            stickers: NATS26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/nats26-02-gaylord-teamwork.webp",
+            alt: "Members in competition attire prepping at a table in the Gaylord National atrium during the national conference",
+            w: 1600,
+            h: 2125,
+            stickers: NATS26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/nats26-04-capitol-sightseeing.webp",
+            alt: "Members pose at the James A. Garfield Monument with the U.S. Capitol dome behind them",
+            w: 1600,
+            h: 2125,
+            stickers: NATS26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/nats26-11-garden-group.webp",
+            alt: "The SLHS TSA delegation gathered together by blooming flowers and greenery on a sightseeing day at the 2026 National TSA Conference",
+            w: 1600,
+            h: 1205,
+            stickers: NATS26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/nats26-06-national-harbor.webp",
+            alt: "Members in official dress pose on the mosaic steps at National Harbor in the evening sun",
+            w: 1600,
+            h: 1205,
+            stickers: NATS26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/nats26-09-night-selfie.webp",
+            alt: "SLHS TSA members leaning in for a group selfie outdoors at night, lit by stage lights at the 2026 National TSA Conference",
+            w: 1600,
+            h: 1200,
+            stickers: NATS26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/nats26-12-team-dinner.webp",
+            alt: "The whole SLHS TSA delegation packed into a big restaurant booth for a team dinner at the 2026 National TSA Conference",
+            w: 1600,
+            h: 1205,
+            stickers: NATS26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/nats26-07-awards-stage.webp",
+            alt: "SLHS finalists give thumbs-up on the awards stage at the National TSA Conference",
+            w: 1600,
+            h: 900,
+            stickers: NATS26_STICKERS,
+          },
+        ],
+      },
+      {
         title: "State",
         photos: [
           {
             src: "/gallery/25-26/state26-01-bus-selfie.webp",
             alt: "SLHS TSA members packed across charter bus seats flashing peace signs on the ride to the 2026 Texas TSA State Conference",
+            w: 1600,
+            h: 1200,
+            stickers: STATE26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/state26-09-delegation-marquee.webp",
+            alt: "The full SLHS TSA delegation in navy conference blazers posing in front of the giant light-up TSA 2026 marquee letters at the Texas TSA State Conference",
             w: 1600,
             h: 1200,
             stickers: STATE26_STICKERS,
@@ -157,6 +234,13 @@ export const seasons: Season[] = [
           {
             src: "/gallery/25-26/state26-03-lobby-selfie.webp",
             alt: "Group selfie of members in navy blazers with blue Texas TSA lanyards and state conference badges inside the convention center",
+            w: 1600,
+            h: 1200,
+            stickers: STATE26_STICKERS,
+          },
+          {
+            src: "/gallery/25-26/state26-10-convention-group.webp",
+            alt: "SLHS TSA members in official conference dress gathered for a group photo inside the Fort Worth Convention Center at the 2026 Texas TSA State Conference",
             w: 1600,
             h: 1200,
             stickers: STATE26_STICKERS,
@@ -183,6 +267,13 @@ export const seasons: Season[] = [
             stickers: STATE26_STICKERS,
           },
           {
+            src: "/gallery/25-26/state26-11-night-social.webp",
+            alt: "SLHS TSA members flashing peace signs on a night out during the 2026 Texas TSA State Conference",
+            w: 1600,
+            h: 1200,
+            stickers: STATE26_STICKERS,
+          },
+          {
             src: "/gallery/25-26/state26-07-hotel-lobby.webp",
             alt: "Six members winding down together on a bench in the hotel lobby at night",
             w: 1600,
@@ -198,59 +289,11 @@ export const seasons: Season[] = [
           },
         ],
       },
-      {
-        title: "Nationals",
-        photos: [
-          {
-            src: "/gallery/25-26/nats26-01-airport-sendoff.webp",
-            alt: "SLHS TSA members with their luggage at the airport check-in, ready to fly to the 2026 National TSA Conference",
-            w: 1600,
-            h: 1205,
-            stickers: NATS26_STICKERS,
-          },
-          {
-            src: "/gallery/25-26/nats26-02-gaylord-teamwork.webp",
-            alt: "Members in competition attire prepping at a table in the Gaylord National atrium during the national conference",
-            w: 1600,
-            h: 2125,
-            stickers: NATS26_STICKERS,
-          },
-          {
-            src: "/gallery/25-26/nats26-04-capitol-sightseeing.webp",
-            alt: "Members pose at the James A. Garfield Monument with the U.S. Capitol dome behind them",
-            w: 1600,
-            h: 2125,
-            stickers: NATS26_STICKERS,
-          },
-          {
-            src: "/gallery/25-26/nats26-06-national-harbor.webp",
-            alt: "Members in official dress pose on the mosaic steps at National Harbor in the evening sun",
-            w: 1600,
-            h: 1205,
-            stickers: NATS26_STICKERS,
-          },
-          {
-            src: "/gallery/25-26/nats26-07-awards-stage.webp",
-            alt: "SLHS finalists give thumbs-up on the awards stage at the National TSA Conference",
-            w: 1600,
-            h: 900,
-            stickers: NATS26_STICKERS,
-          },
-          {
-            src: "/gallery/25-26/nats26-08-full-delegation.webp",
-            alt: "The full SLHS TSA delegation in blue competition shirts gathered in the convention center hallway",
-            w: 1600,
-            h: 1205,
-            stickers: NATS26_STICKERS,
-          },
-        ],
-      },
     ],
   },
   {
     id: "24-25",
     title: "24-25 season",
-    note: "migrated from our old site",
     albums: archiveAlbums,
   },
 ];

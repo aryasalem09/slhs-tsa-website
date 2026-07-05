@@ -22,14 +22,6 @@ export type StackCard = {
   stickers?: string[];
 };
 
-export type SearchEntry = {
-  label: string;
-  href: string;
-  hint: string;
-  keywords: string[];
-  external?: boolean;
-};
-
 export const site = {
   name: "SLHS TSA",
   fullName: "Seven Lakes High School Technology Student Association",
@@ -66,17 +58,46 @@ export const nav: NavItem[] = [
   { label: "Calendar", href: "/calendar" },
 ];
 
-export const whatIsTsa =
-  "TSA is a national student organization where 300,000+ members compete in events like engineering, coding, film, and fashion design. We're the Seven Lakes chapter, and one of the strongest in Texas.";
-
-// TODO(content): the real numbers are getting a refresh, so the site shows
-// these blurred behind an "updating soon" haze for now.
-export const achievements = [
-  { stat: "??", text: "unique national top-ten placements" },
-  { stat: "??", text: "unique state top-ten placements" },
-  { stat: "??", text: "unique individual national qualifiers" },
-  { stat: "??", text: "place School Award at State, out of 125 high schools" },
+/** Extra destinations tucked under the header's "More" menu. */
+export const moreNav: NavItem[] = [
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact us", href: "/contact" },
 ];
+
+export const whatIsTsa =
+  "TSA is the club for people who like to build things. Every year, 300,000+ students across the country compete in engineering, coding, video, CAD, and design — and Seven Lakes is one of the biggest, most-awarded chapters in Texas. We build, compete, and travel from Regionals to State all the way to Nationals.";
+
+// Short, search-result-friendly summary (~150 chars) for the default meta description.
+export const metaDescription =
+  "SLHS TSA is one of Texas's biggest, most-awarded Technology Student Association chapters — students compete in engineering, coding, CAD, and design.";
+
+// Career-spanning totals across every SLHS TSA season.
+export const achievements = [
+  { stat: "12+", text: "unique national top-ten placements" },
+  { stat: "25+", text: "unique state top-ten placements" },
+  { stat: "50+", text: "unique individual national qualifiers" },
+  { stat: "2nd", text: "place School Award at State, out of 125 high schools" },
+];
+
+/** This past season's headline placements (2025-26). */
+export const seasonHighlights = {
+  season: "2025-26",
+  nationals: {
+    qualifiers: 14,
+    placements: [
+      { place: "4th", event: "Video Game Design" },
+      { place: "10th", event: "Chapter Team" },
+    ],
+  },
+  state: {
+    placements: [
+      { place: "3rd", event: "Computer-Aided Design (CAD)" },
+      { place: "4th", event: "Video Game Design" },
+      { place: "4th", event: "Geospatial Design" },
+      { place: "5th", event: "Chapter Team" },
+    ],
+  },
+};
 
 export const meetings = {
   blurb: "The 26-27 meeting schedule is TBD.",
@@ -234,104 +255,5 @@ export const stackCards: StackCard[] = [
     photo: "/gallery/chapter-team.webp",
     alt: "The full SLHS TSA chapter posing on the gym bleachers",
     stickers: ["confetti", "heart-blue", "heart-orange"],
-  },
-];
-
-export const searchIndex: SearchEntry[] = [
-  { label: "Home", href: "/", hint: "Start here", keywords: ["home", "main", "start"] },
-  {
-    label: "About SLHS TSA",
-    href: "/about",
-    hint: "Achievements, meetings, leadership",
-    keywords: ["about", "achievements", "awards", "meetings", "chapter"],
-  },
-  {
-    label: "Gallery",
-    href: "/gallery",
-    hint: "Photos, sorted by season",
-    keywords: ["gallery", "photos", "pictures", "scrapbook", "memories", "24-25", "25-26"],
-  },
-  {
-    label: "Meeting Slides",
-    href: "/slides",
-    hint: "Every meeting's deck, any time",
-    keywords: ["slides", "meeting slides", "presentations", "canva", "decks", "recap"],
-  },
-  {
-    label: "Officers",
-    href: "/officers",
-    hint: "Meet the 26-27 officer team",
-    keywords: ["officers", "president", "vice president", "secretary", "treasurer", "reporter", "ute", "nqe", "leadership", "team"],
-  },
-  {
-    label: "How to Join",
-    href: "/join",
-    hint: "Form, dues, Remind & Discord",
-    keywords: ["join", "sign up", "register", "membership", "dues", "pay n go", "form"],
-  },
-  {
-    label: "Calendar",
-    href: "/calendar",
-    hint: "Meetings, deadlines, socials, trips",
-    keywords: ["calendar", "dates", "events", "meetings", "deadlines", "schedule"],
-  },
-  {
-    label: "Contact Us",
-    href: "/contact",
-    hint: "Email the chapter",
-    keywords: ["contact", "email", "message", "reach", "question", "help"],
-  },
-  {
-    label: "CEG Navigation",
-    href: "/ceg",
-    hint: "Competitive Events Guide (under construction)",
-    keywords: ["ceg", "competitive events guide", "events", "rules", "rubric"],
-  },
-  {
-    label: "TSA Museum",
-    href: "/museum",
-    hint: "Chapter archive (under construction)",
-    keywords: ["museum", "archive", "history", "photos", "gallery"],
-  },
-  {
-    label: "Competing 101",
-    href: "/about#competing",
-    hint: "Static vs non-static, levels",
-    keywords: ["static", "non-static", "regionals", "state", "nationals", "competitions"],
-  },
-  {
-    label: "Instagram",
-    href: site.socials.instagram,
-    hint: "@slhs.tsa",
-    keywords: ["instagram", "insta", "social", "photos"],
-    external: true,
-  },
-  {
-    label: "Discord",
-    href: site.socials.discord,
-    hint: "Chapter server",
-    keywords: ["discord", "chat", "server", "social"],
-    external: true,
-  },
-  {
-    label: "Remind",
-    href: site.socials.remind,
-    hint: "@slhstsa26 announcements",
-    keywords: ["remind", "announcements", "notifications", "text"],
-    external: true,
-  },
-  {
-    label: "Official TSA website",
-    href: site.links.tsaOfficial,
-    hint: "tsaweb.org",
-    keywords: ["tsa", "national", "official", "tsaweb"],
-    external: true,
-  },
-  {
-    label: "Pay N' Go (dues)",
-    href: site.links.payNGo,
-    hint: "Katy ISD payment portal",
-    keywords: ["pay", "dues", "payngo", "pay n go", "membership fee"],
-    external: true,
   },
 ];

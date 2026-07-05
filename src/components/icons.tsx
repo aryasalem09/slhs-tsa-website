@@ -10,15 +10,6 @@ const base = {
   strokeLinejoin: "round" as const,
 };
 
-export function IconSearch(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...props}>
-      <circle cx="10.5" cy="10.2" r="6.2" />
-      <path d="m15.3 15.4 4.9 4.7" />
-    </svg>
-  );
-}
-
 export function IconMenu(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...props}>

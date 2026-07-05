@@ -3,7 +3,7 @@
 import { useEffect, useState, type RefObject } from "react";
 
 /**
- * Coordinates stacked overlays (search palette, lightbox, easter egg) so they
+ * Coordinates stacked overlays (lightbox, easter egg) so they
  * don't fight over the page:
  * - refcounted body scroll lock (closing one overlay can't unlock another's)
  * - an overlay stack, so key handlers can act only when they're on top

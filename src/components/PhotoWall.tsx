@@ -33,7 +33,7 @@ export default function PhotoWall({ photos }: { photos: GalleryPhoto[] }) {
   useEffect(() => {
     if (openIndex === null) return;
     function onKey(e: KeyboardEvent) {
-      if (!isTop()) return; // another overlay (e.g. search) is above us
+      if (!isTop()) return; // another overlay is above us
       if (e.key === "Escape") close();
       else if (e.key === "ArrowRight") step(1);
       else if (e.key === "ArrowLeft") step(-1);
@@ -127,9 +127,13 @@ export default function PhotoWall({ photos }: { photos: GalleryPhoto[] }) {
             <Stickers key={current.src} names={current.stickers} />
 
             <figcaption className="flex items-center justify-between gap-3 px-1 pt-2">
-              <span className="font-hand text-xl leading-tight text-ink/85 sm:text-2xl">
-                {current.caption ?? current.alt}
-              </span>
+              {current.caption ? (
+                <span className="font-hand text-xl leading-tight text-ink/85 sm:text-2xl">
+                  {current.caption}
+                </span>
+              ) : (
+                <span aria-hidden="true" />
+              )}
               <span className="shrink-0 text-sm font-bold text-muted-ink">
                 {(openIndex ?? 0) + 1} / {photos.length}
               </span>

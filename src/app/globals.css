@@ -194,24 +194,6 @@
   }
 }
 
-/* Hazy "updating soon" shimmer for the achievements card. */
-@keyframes shimmer-sweep {
-  to {
-    background-position: -200% 0;
-  }
-}
-
-@layer components {
-  .text-shimmer {
-    background-image: linear-gradient(100deg, #005eab 25%, #8fafd9 45%, #005eab 65%);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmer-sweep 3.2s linear infinite;
-  }
-}
-
 /* Tap-burst sparkles on touch devices. */
 @keyframes tap-sparkle {
   0% {

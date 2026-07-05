@@ -169,9 +169,9 @@ export default function JoinPage() {
               href={site.socials.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-2 py-2 font-bold text-tsa-blue underline decoration-dashed underline-offset-4 hover:text-tsa-red"
+              className="btn-marker edge-sketch inline-flex items-center gap-2 bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] px-5 py-2 font-bold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55)]"
             >
-              <IconInstagram aria-hidden="true" /> @slhs.tsa
+              <IconInstagram aria-hidden="true" /> Follow @slhs.tsa
             </a>
           </div>
         </SpotlightCard>

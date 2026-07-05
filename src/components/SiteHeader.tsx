@@ -3,15 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { nav, site } from "@/content/site";
-import SearchPalette from "@/components/SearchPalette";
+import { useEffect, useRef, useState } from "react";
+import { moreNav, nav, site } from "@/content/site";
 import {
   IconDiscord,
   IconInstagram,
   IconMenu,
   IconRemind,
-  IconSearch,
   IconX,
 } from "@/components/icons";
 
@@ -25,8 +23,29 @@ function isActive(pathname: string, href: string) {
 export default function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLLIElement>(null);
   const closeMenu = () => setMenuOpen(false);
+  const moreActive = moreNav.some((item) => isActive(pathname, item.href));
+
+  // Close the "More" menu on Escape or a click outside it.
+  useEffect(() => {
+    if (!moreOpen) return;
+    function onDown(e: PointerEvent) {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMoreOpen(false);
+    }
+    document.addEventListener("pointerdown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [moreOpen]);
 
   const linkBase =
     "rounded-full px-3.5 py-1.5 text-[15px] font-bold transition-colors";
@@ -65,18 +84,6 @@ export default function SiteHeader() {
 
         {/* Desktop */}
         <div className="hidden items-center gap-1.5 lg:flex">
-          <button
-            type="button"
-            onClick={() => setSearchOpen(true)}
-            className="mr-1.5 flex w-44 items-center gap-2 rounded-full border-2 border-ink/25 bg-card px-3 py-1.5 text-sm font-semibold text-muted-ink transition-colors hover:border-ink/60"
-          >
-            <IconSearch className="text-base" aria-hidden="true" />
-            Search
-            <kbd className="ml-auto rounded border border-ink/20 bg-cream px-1.5 font-body text-[10px] font-bold">
-              ⌘K
-            </kbd>
-          </button>
-
           <nav aria-label="Main">
             <ul className="flex items-center gap-1">
               {nav.map((item) => {
@@ -108,6 +115,46 @@ export default function SiteHeader() {
                   </li>
                 );
               })}
+
+              {/* More → Gallery / Contact */}
+              <li className="relative" ref={moreRef}>
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded={moreOpen}
+                  onClick={() => setMoreOpen((v) => !v)}
+                  className={`${linkBase} inline-flex items-center gap-1 ${
+                    moreActive ? pill : "text-ink/80 hover:bg-cream"
+                  }`}
+                >
+                  More
+                  <span
+                    aria-hidden="true"
+                    className={`text-[10px] leading-none transition-transform ${
+                      moreOpen ? "rotate-180" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
+                </button>
+                {moreOpen && (
+                  <div className="absolute right-0 top-full z-50 pt-2">
+                    <div className="edge-paper-sm w-44 -rotate-1 border-2 border-ink bg-card p-1.5 shadow-lift">
+                      {moreNav.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setMoreOpen(false)}
+                          aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                          className="block rounded-lg px-3 py-2 text-sm font-bold text-ink hover:bg-cream hover:text-tsa-blue"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </li>
             </ul>
           </nav>
 
@@ -122,14 +169,6 @@ export default function SiteHeader() {
 
         {/* Mobile controls */}
         <div className="flex items-center gap-1 lg:hidden">
-          <button
-            type="button"
-            onClick={() => setSearchOpen(true)}
-            aria-label="Search"
-            className="rounded-full p-2.5 text-xl hover:bg-cream"
-          >
-            <IconSearch aria-hidden="true" />
-          </button>
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
@@ -177,6 +216,23 @@ export default function SiteHeader() {
                 </li>
               );
             })}
+            {moreNav.map((item) => {
+              const active = isActive(pathname, item.href);
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={closeMenu}
+                    aria-current={active ? "page" : undefined}
+                    className={`block rounded-xl px-4 py-2.5 text-lg font-bold ${
+                      active ? "border-2 border-ink bg-white" : "hover:bg-cream"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
             <li className="pt-2">
               <Link
                 href="/join"
@@ -218,12 +274,6 @@ export default function SiteHeader() {
           </div>
         </nav>
       )}
-
-      <SearchPalette
-        open={searchOpen}
-        onOpen={() => setSearchOpen(true)}
-        onClose={() => setSearchOpen(false)}
-      />
     </header>
   );
 }

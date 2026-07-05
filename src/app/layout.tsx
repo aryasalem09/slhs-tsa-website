@@ -4,7 +4,7 @@ import MobileTabBar from "@/components/MobileTabBar";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import TapSparkles from "@/components/TapSparkles";
-import { site, whatIsTsa } from "@/content/site";
+import { metaDescription, site } from "@/content/site";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     default: "SLHS TSA · Seven Lakes High School Technology Student Association",
     template: "%s · SLHS TSA",
   },
-  description: whatIsTsa,
+  description: metaDescription,
   keywords: [
     "SLHS TSA",
     "Seven Lakes High School",
