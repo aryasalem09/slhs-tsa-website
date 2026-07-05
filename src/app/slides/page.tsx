@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 import { DashWrap, WonkyTitle } from "@/components/decor";
 import { IconExternal } from "@/components/icons";
 import { meetingSlides } from "@/content/site";
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   title: "Meeting Slides",
   description:
     "Every SLHS TSA meeting deck in one place.",
+  ...pageSeo("/slides"),
 };
 
 export default function SlidesPage() {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import { DashWrap, WonkyTitle } from "@/components/decor";
 import {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   title: "How to Join",
   description:
     "Join SLHS TSA in three steps: registration form, membership dues on Katy ISD Pay N' Go, and Remind + Discord.",
+  ...pageSeo("/join"),
 };
 
 const payNGoPath = [

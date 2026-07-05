@@ -36,6 +36,7 @@ export const site = {
   school: "Seven Lakes High School",
   address: "9251 S Fry Rd, Katy, TX 77494",
   email: "sltechnologystudentassociation@gmail.com",
+  url: "https://slhstsa.vercel.app",
 
   socials: {
     instagram: "https://www.instagram.com/slhs.tsa/",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 import { DashWrap, WonkyTitle } from "@/components/decor";
 import { meetings, site } from "@/content/site";
 
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   title: "Calendar",
   description:
     "The SLHS TSA calendar: meetings, deadlines, competitions, socials, and trips.",
+  ...pageSeo("/calendar"),
 };
 
 export default function CalendarPage() {

@@ -4,7 +4,7 @@ import MobileTabBar from "@/components/MobileTabBar";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import TapSparkles from "@/components/TapSparkles";
-import { whatIsTsa } from "@/content/site";
+import { site, whatIsTsa } from "@/content/site";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -30,6 +30,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: {
     default: "SLHS TSA · Seven Lakes High School Technology Student Association",
     template: "%s · SLHS TSA",
@@ -42,6 +43,25 @@ export const metadata: Metadata = {
     "Katy ISD",
     "STEM club",
   ],
+  // No title/description here: each page's own resolved title and
+  // description flow into its og/twitter tags automatically.
+  openGraph: {
+    siteName: "SLHS TSA",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SLHS TSA members at the TSA 2026 state conference marquee",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.jpg"],
+  },
 };
 
 export const viewport: Viewport = {
@@ -67,6 +87,35 @@ export default function RootLayout({
         <SiteFooter />
         <MobileTabBar />
         <TapSparkles />
+        <script
+          type="application/ld+json"
+          // Organization structured data so search engines understand the chapter.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: site.fullName,
+              alternateName: "SLHS TSA",
+              url: site.url,
+              logo: `${site.url}/logos/spartan-mark-512.png`,
+              email: site.email,
+              sameAs: [site.socials.instagram, "https://tsaweb.org/"],
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "9251 S Fry Rd",
+                addressLocality: "Katy",
+                addressRegion: "TX",
+                postalCode: "77494",
+                addressCountry: "US",
+              },
+              parentOrganization: {
+                "@type": "Organization",
+                name: "Technology Student Association",
+                url: "https://tsaweb.org/",
+              },
+            }),
+          }}
+        />
       </body>
     </html>
   );

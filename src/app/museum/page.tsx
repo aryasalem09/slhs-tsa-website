@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 import UnderConstruction from "@/components/UnderConstruction";
 
 export const metadata: Metadata = {
   title: "TSA Museum",
   description: "The SLHS TSA chapter archive. Under construction.",
+  ...pageSeo("/museum"),
 };
 
 /*

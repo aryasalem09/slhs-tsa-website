@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 import Link from "next/link";
 import ParticleLogo from "@/components/ParticleLogo";
 import PhotoStack from "@/components/PhotoStack";
@@ -13,6 +15,10 @@ import {
   IconRemind,
 } from "@/components/icons";
 import { site, stackCards, whatIsTsa } from "@/content/site";
+
+export const metadata: Metadata = {
+  ...pageSeo("/"),
+};
 
 export default function HomePage() {
   return (

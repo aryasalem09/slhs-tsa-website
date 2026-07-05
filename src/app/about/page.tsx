@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import StickerLogo from "@/components/StickerLogo";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Who we are, what we've won, and who runs SLHS TSA.",
+  ...pageSeo("/about"),
 };
 
 const POLAROID_TILTS = [

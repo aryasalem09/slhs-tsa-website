@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 import PhotoWall from "@/components/PhotoWall";
 import { DashWrap, WonkyTitle } from "@/components/decor";
 import { IconExternal } from "@/components/icons";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   title: "Gallery",
   description:
     "Chapter photos from conferences, socials, and trips, season by season.",
+  ...pageSeo("/gallery"),
 };
 
 export default function GalleryPage() {

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 import UnderConstruction from "@/components/UnderConstruction";
 
 export const metadata: Metadata = {
   title: "CEG Navigation",
   description: "SLHS TSA's guide through the Competitive Events Guide. Under construction.",
+  ...pageSeo("/ceg"),
 };
 
 /*

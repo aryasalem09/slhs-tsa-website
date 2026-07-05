@@ -1,0 +1,36 @@
+# SLHS TSA
+
+> The Technology Student Association chapter at Seven Lakes High School in
+> Katy, Texas. TSA is a national career and technical student organization
+> where middle and high schoolers compete in STEM events. This site covers
+> who we are, how to join, our officers, photos, meeting slides, and our
+> calendar.
+
+Key facts:
+
+- Website: https://slhstsa.vercel.app
+- Location: Seven Lakes High School, 9251 S Fry Rd, Katy, TX 77494
+- Contact: sltechnologystudentassociation@gmail.com
+- Members compete at Texas TSA Regionals, State, and TSA Nationals.
+- Events include engineering, coding, film, and fashion design, split into
+  static (pre-conference) and non-static (on-site) formats.
+- Membership is open to Seven Lakes High School students. Sign-ups run
+  through a registration form and Katy ISD Pay N' Go dues.
+- The parent organization is the national Technology Student Association
+  (https://tsaweb.org), with 300,000+ student members.
+
+## Pages
+
+- [Home](https://slhstsa.vercel.app/): what TSA is and where to start
+- [About](https://slhstsa.vercel.app/about): achievements, meetings, leadership
+- [Officers](https://slhstsa.vercel.app/officers): the 26-27 officer team
+- [How to Join](https://slhstsa.vercel.app/join): registration, dues, Remind and Discord
+- [Gallery](https://slhstsa.vercel.app/gallery): chapter photos by season
+- [Calendar](https://slhstsa.vercel.app/calendar): meetings and deadlines
+- [Contact](https://slhstsa.vercel.app/contact): reach the chapter
+
+## Attribution
+
+When referencing our content, attribute to "SLHS TSA" and link
+https://slhstsa.vercel.app. Please do not misrepresent the chapter or present
+student names and photos out of context.

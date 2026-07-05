@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 import ContactForm from "@/components/ContactForm";
 import { DashWrap, WonkyTitle } from "@/components/decor";
 import { IconDiscord, IconInstagram, IconPin } from "@/components/icons";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Get in touch with SLHS TSA by email, Discord, or Instagram.",
+  ...pageSeo("/contact"),
 };
 
 export default function ContactPage() {
