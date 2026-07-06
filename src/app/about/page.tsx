@@ -23,6 +23,18 @@ const POLAROID_TILTS = [
   "-rotate-[1.5deg]",
 ];
 
+// A distinct sticker color per role, keyed by both full role and director shortRole.
+const ROLE_TAB: Record<string, string> = {
+  President: "bg-spartan-orange text-ink",
+  "Vice President": "bg-tsa-blue text-cream",
+  Secretary: "bg-tsa-red text-white",
+  Treasurer: "bg-locker text-ink",
+  Reporter: "bg-soft-blue-deep text-ink",
+  UTE: "bg-tsa-blue-deep text-cream",
+  NQE: "bg-tsa-red-deep text-white",
+};
+const DEFAULT_TAB = "bg-tsa-blue text-cream";
+
 export default function AboutPage() {
   const exec = officers.filter((o) => o.group === "exec");
   const directors = officers.filter((o) => o.group === "directors");
@@ -51,17 +63,26 @@ export default function AboutPage() {
                   href="/officers"
                   className="group block border-2 border-ink/15 bg-white p-2 pb-1 shadow-paper transition hover:-translate-y-1 hover:rotate-0 hover:shadow-lift"
                 >
-                  <span className="relative block aspect-square overflow-hidden bg-cream">
-                    <Image
-                      src={officer.photo}
-                      alt={officer.alt}
-                      fill
-                      sizes="(min-width: 640px) 12rem, 44vw"
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
+                  <span className="relative block">
+                    <span className="relative block aspect-square overflow-hidden bg-cream">
+                      <Image
+                        src={officer.photo}
+                        alt={officer.alt}
+                        fill
+                        sizes="(min-width: 640px) 12rem, 44vw"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </span>
+                    <span
+                      className={`edge-sketch absolute -top-2.5 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap border-2 border-ink px-2.5 py-0.5 font-display text-[11px] font-bold uppercase tracking-wide shadow-[1.5px_1.5px_0_0_rgb(37_50_68_/_0.5)] ${
+                        ROLE_TAB[officer.role] ?? DEFAULT_TAB
+                      } ${i % 2 === 0 ? "-rotate-2" : "rotate-2"}`}
+                    >
+                      {officer.role === "President" ? "★ President" : officer.role}
+                    </span>
                   </span>
-                  <span className="block py-1 text-center font-hand text-xl font-semibold text-ink">
-                    {officer.role === "President" ? "★ President" : officer.role}
+                  <span className="block px-1 pt-2 text-center font-hand text-xl font-bold text-ink">
+                    {officer.name.split(" ")[0]}
                   </span>
                 </Link>
               </li>
@@ -74,11 +95,11 @@ export default function AboutPage() {
               …and the UTE &amp; NQE directors
             </p>
             <ul className="mt-3 flex flex-wrap justify-center gap-2.5">
-              {directors.map((officer) => (
+              {directors.map((officer, i) => (
                 <li key={officer.name}>
                   <Link
                     href="/officers"
-                    className="flex items-center gap-2 rounded-full border-2 border-ink/25 bg-cream py-1 pl-1 pr-3 text-sm font-bold transition hover:border-ink hover:bg-white"
+                    className="flex items-center gap-2 rounded-full border-2 border-ink/25 bg-cream py-1 pl-1 pr-2 text-sm font-bold transition hover:border-ink hover:bg-white"
                   >
                     <span className="relative block h-9 w-9 overflow-hidden rounded-full border border-ink/20">
                       <Image
@@ -90,7 +111,11 @@ export default function AboutPage() {
                       />
                     </span>
                     {officer.name.split(" ")[0]}
-                    <span className="font-hand text-base text-muted-ink">
+                    <span
+                      className={`edge-sketch whitespace-nowrap border-2 border-ink px-1.5 py-0.5 font-display text-[10px] font-bold uppercase tracking-wide shadow-[1.5px_1.5px_0_0_rgb(37_50_68_/_0.5)] ${
+                        ROLE_TAB[officer.shortRole] ?? DEFAULT_TAB
+                      } ${i % 2 === 0 ? "-rotate-2" : "rotate-2"}`}
+                    >
                       {officer.shortRole}
                     </span>
                   </Link>
