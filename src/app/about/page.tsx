@@ -14,15 +14,6 @@ export const metadata: Metadata = {
   ...pageSeo("/about"),
 };
 
-const POLAROID_TILTS = [
-  "-rotate-2",
-  "rotate-[1.5deg]",
-  "rotate-2",
-  "-rotate-1",
-  "rotate-1",
-  "-rotate-[1.5deg]",
-];
-
 // A distinct sticker color per role, keyed by both full role and director shortRole.
 const ROLE_TAB: Record<string, string> = {
   President: "bg-spartan-orange text-ink",
@@ -56,63 +47,46 @@ export default function AboutPage() {
             the people running the show ↓
           </h2>
 
-          <ul className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-2">
-            {exec.map((officer, i) => (
-              <li key={officer.name} className={POLAROID_TILTS[i % POLAROID_TILTS.length]}>
-                <Link
-                  href="/officers"
-                  className="group block border-2 border-ink/15 bg-white p-2 pb-1 shadow-paper transition hover:-translate-y-1 hover:rotate-0 hover:shadow-lift"
-                >
-                  <span className="relative block">
-                    <span className="relative block aspect-square overflow-hidden bg-cream">
-                      <Image
-                        src={officer.photo}
-                        alt={officer.alt}
-                        fill
-                        sizes="(min-width: 640px) 12rem, 44vw"
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
+          {/* text roster — the photos & bios live on /officers */}
+          <div className="edge-paper mt-5 border-[3px] border-ink/85 bg-card shadow-paper">
+            <ul className="divide-y divide-dashed divide-ink/15">
+              {exec.map((officer, i) => (
+                <li key={officer.name}>
+                  <Link
+                    href="/officers"
+                    className="group flex items-center justify-between gap-3 px-5 py-3 transition hover:bg-cream/70"
+                  >
+                    <span className="min-w-0 font-display text-lg font-bold text-ink group-hover:text-tsa-blue">
+                      {officer.name}
                     </span>
                     <span
-                      className={`edge-sketch absolute -top-2.5 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap border-2 border-ink px-2.5 py-0.5 font-display text-[11px] font-bold uppercase tracking-wide shadow-[1.5px_1.5px_0_0_rgb(37_50_68_/_0.5)] ${
+                      className={`edge-sketch shrink-0 whitespace-nowrap border-2 border-ink px-2.5 py-0.5 font-display text-[11px] font-bold uppercase tracking-wide shadow-[1.5px_1.5px_0_0_rgb(37_50_68_/_0.5)] ${
                         ROLE_TAB[officer.role] ?? DEFAULT_TAB
                       } ${i % 2 === 0 ? "-rotate-2" : "rotate-2"}`}
                     >
                       {officer.role === "President" ? "★ President" : officer.role}
                     </span>
-                  </span>
-                  <span className="block px-1 pt-2 text-center font-hand text-xl font-bold text-ink">
-                    {officer.name.split(" ")[0]}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-          {/* directors, framed like the little group picture in the sketch */}
-          <div className="edge-paper mt-7 rotate-[0.6deg] border-[3px] border-tsa-blue/80 bg-card p-4 shadow-paper">
-            <p className="text-center font-hand text-2xl font-semibold text-ink">
+            <p className="border-y-2 border-dashed border-ink/25 bg-cream/50 px-5 py-2 text-center font-hand text-xl font-semibold text-muted-ink">
               …and the UTE &amp; NQE directors
             </p>
-            <ul className="mt-3 flex flex-wrap justify-center gap-2.5">
+
+            <ul className="divide-y divide-dashed divide-ink/15">
               {directors.map((officer, i) => (
                 <li key={officer.name}>
                   <Link
                     href="/officers"
-                    className="flex items-center gap-2 rounded-full border-2 border-ink/25 bg-cream py-1 pl-1 pr-2 text-sm font-bold transition hover:border-ink hover:bg-white"
+                    className="group flex items-center justify-between gap-3 px-5 py-2.5 transition hover:bg-cream/70"
                   >
-                    <span className="relative block h-9 w-9 overflow-hidden rounded-full border border-ink/20">
-                      <Image
-                        src={officer.photo}
-                        alt=""
-                        fill
-                        sizes="2.25rem"
-                        className="object-cover"
-                      />
+                    <span className="min-w-0 font-display text-base font-bold text-ink group-hover:text-tsa-blue">
+                      {officer.name}
                     </span>
-                    {officer.name.split(" ")[0]}
                     <span
-                      className={`edge-sketch whitespace-nowrap border-2 border-ink px-1.5 py-0.5 font-display text-[10px] font-bold uppercase tracking-wide shadow-[1.5px_1.5px_0_0_rgb(37_50_68_/_0.5)] ${
+                      className={`edge-sketch shrink-0 whitespace-nowrap border-2 border-ink px-2 py-0.5 font-display text-[10px] font-bold uppercase tracking-wide shadow-[1.5px_1.5px_0_0_rgb(37_50_68_/_0.5)] ${
                         ROLE_TAB[officer.shortRole] ?? DEFAULT_TAB
                       } ${i % 2 === 0 ? "-rotate-2" : "rotate-2"}`}
                     >
@@ -124,7 +98,7 @@ export default function AboutPage() {
             </ul>
           </div>
 
-          <div className="mt-7 text-center">
+          <div className="mt-6 text-center">
             <Link
               href="/officers"
               className="btn-marker edge-sketch inline-block bg-tsa-blue px-6 py-2.5 font-display text-lg font-bold text-cream"
@@ -132,6 +106,9 @@ export default function AboutPage() {
               Meet the Officers
               <IconArrowRight className="ml-2 inline-block align-[-3px]" aria-hidden="true" />
             </Link>
+            <p className="mt-2 font-hand text-lg text-muted-ink">
+              see everyone with their photos →
+            </p>
           </div>
         </section>
 
