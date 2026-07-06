@@ -237,6 +237,15 @@ export default function HomePage() {
             <IconDiscord aria-hidden="true" className="text-lg" />
             Discord
           </a>
+          <a
+            href={site.socials.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-semibold underline-offset-4 hover:underline"
+          >
+            <IconInstagram aria-hidden="true" className="text-lg" />
+            Instagram
+          </a>
           <span className="inline-flex items-center gap-2 font-semibold text-cream/95">
             <IconPin aria-hidden="true" className="text-lg" />
             {site.school} · {site.address}

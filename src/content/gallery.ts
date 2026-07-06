@@ -94,12 +94,12 @@ const ALBUM_STICKERS: Record<string, string[]> = {
   Regionals: ["flag", "wrench", "pencil"],
   State: ["star", "trophy", "balloon"],
   Socials: ["pumpkin", "candy", "gingerbread"],
-  Events: ["wrench", "ruler", "gear"],
 };
 
-/** 24-25 albums, shown State → Regionals → Socials → Events (manifest: gallery-24-25.json). */
-const ARCHIVE_ORDER = ["State", "Regionals", "Socials", "Events"];
+/** 24-25 albums, shown State → Regionals → Socials (manifest: gallery-24-25.json). */
+const ARCHIVE_ORDER = ["State", "Regionals", "Socials"];
 const archiveAlbums: Album[] = archive.albums
+  .filter((album) => ARCHIVE_ORDER.includes(album.title))
   .map((album) => ({
     title: album.title,
     photos: album.photos.map((photo) => ({
