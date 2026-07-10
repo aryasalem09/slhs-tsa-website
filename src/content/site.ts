@@ -78,7 +78,7 @@ export const whatIsTsa =
 
 // Short, search-result-friendly summary (~150 chars) for the default meta description.
 export const metaDescription =
-  "SLHS TSA is one of Texas's biggest, most-awarded Technology Student Association chapters — students compete in engineering, coding, CAD, and design.";
+  "SLHS TSA is the Technology Student Association chapter at Seven Lakes High School in Katy, Texas.";
 
 // Career-spanning totals across every SLHS TSA season.
 export const achievements = [

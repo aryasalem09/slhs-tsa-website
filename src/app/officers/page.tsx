@@ -8,7 +8,7 @@ import { officers } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Officers",
-  description: "Meet the 2026-27 SLHS TSA officer team.",
+  description: "Meet the 26-27 officer team!",
   ...pageSeo("/officers"),
 };
 

@@ -7,7 +7,7 @@ import { meetingSlides } from "@/content/site";
 export const metadata: Metadata = {
   title: "Meeting Slides",
   description:
-    "Every SLHS TSA meeting deck in one place.",
+    "Missed a meeting? Every SLHS TSA slideshow lives here, so you can catch up whenever you need to.",
   ...pageSeo("/slides"),
 };
 

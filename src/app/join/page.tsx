@@ -14,7 +14,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "How to Join",
   description:
-    "Join SLHS TSA in three steps: registration form, membership dues on Katy ISD Pay N' Go, and Remind + Discord.",
+    "Want in? Here's how to join SLHS TSA: fill out the form, pay your dues on Katy ISD Pay N' Go, and hop on Remind and Discord.",
   ...pageSeo("/join"),
 };
 

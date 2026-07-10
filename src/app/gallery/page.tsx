@@ -7,8 +7,7 @@ import { scrapbook, seasons } from "@/content/gallery";
 
 export const metadata: Metadata = {
   title: "Gallery",
-  description:
-    "Chapter photos from conferences, socials, and trips, season by season.",
+  description: "Photos from our conferences, socials, and trips!",
   ...pageSeo("/gallery"),
 };
 

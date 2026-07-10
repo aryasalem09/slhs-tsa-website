@@ -8,7 +8,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with SLHS TSA by email, Discord, or Instagram.",
+    "Have a question about SLHS TSA? Reach us by email, Discord, or Instagram and we'll get back to you.",
   ...pageSeo("/contact"),
 };
 

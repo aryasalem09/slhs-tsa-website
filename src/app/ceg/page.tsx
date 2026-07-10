@@ -8,7 +8,7 @@ import { ceg } from "@/content/site";
 export const metadata: Metadata = {
   title: "CEG Navigation",
   description:
-    "SLHS TSA's guide through the Competitive Events Guide: one master slideshow plus a deck per event, and the TSA Museum project archive.",
+    "New to competing? Our slideshows walk you through the whole Competitive Events Guide, event by event, plus a museum of past projects to spark ideas.",
   ...pageSeo("/ceg"),
 };
 

@@ -5,8 +5,7 @@ import { meetings, site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Calendar",
-  description:
-    "The SLHS TSA calendar: meetings, deadlines, competitions, socials, and trips.",
+  description: "Check the calendar frequently for updates on anything SLHS TSA!",
   ...pageSeo("/calendar"),
 };
 

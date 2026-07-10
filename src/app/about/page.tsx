@@ -9,8 +9,7 @@ import { achievements, competing, meetings, officers, seasonHighlights } from "@
 
 export const metadata: Metadata = {
   title: "About",
-  description:
-    "Who we are, what we've won, and who runs SLHS TSA.",
+  description: "Who we are, our achievements, and our officers!",
   ...pageSeo("/about"),
 };
 
