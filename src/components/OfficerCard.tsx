@@ -86,7 +86,8 @@ function Badge({ officer, large = false }: { officer: Officer; large?: boolean }
 
 /**
  * A polished, responsive rebuild of the "26-27 Officer Post" ID-card design,
- * with a gentle 3D tilt on hover — click to see the badge up close.
+ * with a gentle 3D tilt on hover. Click a badge to expand it full-screen and
+ * read the officer's bio (add the copy in `officer.bio` — see content/site.ts).
  */
 export default function OfficerCard({
   officer,
@@ -123,7 +124,7 @@ export default function OfficerCard({
             type="button"
             onClick={() => setOpen(true)}
             aria-label={`See ${officer.name}'s badge up close`}
-            className="edge-paper-sm absolute inset-0 z-10"
+            className="edge-paper-sm absolute inset-0 z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tsa-blue"
           />
         </article>
       </TiltedCard>
@@ -131,31 +132,52 @@ export default function OfficerCard({
       {open &&
         createPortal(
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
+            className="fixed inset-0 z-50"
             role="dialog"
             aria-modal="true"
             aria-label={`${officer.name}, ${officer.role}`}
           >
+            <div className="fade-in fixed inset-0 bg-ink/75" aria-hidden="true" />
             <div
-              className="absolute inset-0 bg-ink/75"
-              aria-hidden="true"
-              onClick={() => setOpen(false)}
-            />
-            <div
-              ref={panelRef}
-              tabIndex={-1}
-              className="relative w-full max-w-xl rotate-[-0.6deg] outline-none"
+              className="absolute inset-0 overflow-y-auto overscroll-contain"
+              onClick={(e) => {
+                if (e.target === e.currentTarget) setOpen(false);
+              }}
             >
-              <Lanyard className="!-top-11 h-16" />
-              <Badge officer={officer} large />
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Close"
-                className="absolute -right-3 -top-3 rounded-full border-2 border-ink bg-tsa-red p-2 text-lg text-white shadow-paper transition hover:rotate-90"
+              <div
+                className="flex min-h-full items-center justify-center p-4 sm:p-8"
+                onClick={(e) => {
+                  if (e.target === e.currentTarget) setOpen(false);
+                }}
               >
-                <IconX aria-hidden="true" />
-              </button>
+                <div
+                  ref={panelRef}
+                  tabIndex={-1}
+                  className="officer-pop relative w-full max-w-xl rotate-[-0.6deg] outline-none"
+                >
+                  <Lanyard className="!-top-11 h-16" />
+                  <Badge officer={officer} large />
+
+                  {/* Officer bio — blank for now. Add the text in officer.bio (content/site.ts). */}
+                  <div className="edge-paper-sm mt-3 min-h-[5.5rem] rotate-[0.5deg] border-2 border-ink/25 bg-[#fffdf4] p-5 shadow-paper sm:mt-4 sm:min-h-[6.5rem] sm:p-6">
+                    {officer.bio ? (
+                      <p className="font-hand text-xl leading-snug text-ink/85 sm:text-2xl">
+                        {officer.bio}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    aria-label="Close"
+                    data-autofocus
+                    className="absolute -right-3 -top-3 rounded-full border-2 border-ink bg-tsa-red p-2 text-lg text-white shadow-paper transition hover:rotate-90"
+                  >
+                    <IconX aria-hidden="true" />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>,
           document.body,

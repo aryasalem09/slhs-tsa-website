@@ -206,6 +206,37 @@
   }
 }
 
+/* Quick "expand" for the officer close-up + its backdrop. */
+@keyframes officer-pop {
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@layer components {
+  .officer-pop {
+    animation: officer-pop 0.16s ease-out;
+  }
+
+  .fade-in {
+    animation: fade-in 0.16s ease-out;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

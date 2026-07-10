@@ -12,6 +12,12 @@ export type Officer = {
   group: "exec" | "directors";
   photo: string;
   alt: string;
+  /**
+   * Short blurb shown in the officer's expanded close-up (click a badge).
+   * Fill it in below (see the `bio: ""` line on each officer).
+   * Leave it as "" and the description area just stays blank.
+   */
+  bio: string;
 };
 
 export type StackCard = {
@@ -46,6 +52,10 @@ export const site = {
     registrationForm: null as string | null,
     calendarEmbedSrc:
       "https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FChicago&showPrint=0&src=c2x0ZWNobm9sb2d5c3R1ZGVudGFzc29jaWF0aW9uQGdtYWlsLmNvbQ&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039be5&color=%230b8043",
+    // TSA Museum submission form — members submit past projects to add to the archive.
+    museumFormShort: "https://forms.gle/E7dVCxpyeFhdbadD9",
+    museumFormEmbed:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfMQG7z7jOqYlKjiWgcaL_-v84BlRcSLxznyUaAvAS5eDibYw/viewform?embedded=true",
   },
 } as const;
 
@@ -141,6 +151,13 @@ export const competing = {
   ],
 };
 
+/**
+ * Officer bios: the `bio` string shows in each officer's expanded close-up
+ * (click a badge on the Officers page to open it).
+ * ▸ To add one, type your blurb between the quotes on the `bio:` line
+ *   (e.g. bio: "Senior. Loves CAD and robotics. 3rd year in TSA.").
+ * ▸ Leave it "" for now and the description area stays blank.
+ */
 export const officers: Officer[] = [
   {
     name: "Vitor Jones Anicio",
@@ -149,6 +166,7 @@ export const officers: Officer[] = [
     group: "exec",
     photo: "/officers/vitor-jones-anicio.webp",
     alt: "Vitor Jones Anicio, SLHS TSA President",
+    bio: "",
   },
   {
     name: "Niyatee Dalvi",
@@ -157,6 +175,7 @@ export const officers: Officer[] = [
     group: "exec",
     photo: "/officers/niyatee-dalvi.webp",
     alt: "Niyatee Dalvi, SLHS TSA Vice President",
+    bio: "",
   },
   {
     name: "Arya Salem",
@@ -165,6 +184,7 @@ export const officers: Officer[] = [
     group: "exec",
     photo: "/officers/arya-salem.webp",
     alt: "Arya Salem, SLHS TSA Secretary",
+    bio: "",
   },
   {
     name: "Sanvi Singh",
@@ -173,6 +193,7 @@ export const officers: Officer[] = [
     group: "exec",
     photo: "/officers/sanvi-singh.webp",
     alt: "Sanvi Singh, SLHS TSA Secretary",
+    bio: "",
   },
   {
     name: "Azaan Noman",
@@ -181,6 +202,7 @@ export const officers: Officer[] = [
     group: "exec",
     photo: "/officers/azaan-noman.webp",
     alt: "Azaan Noman, SLHS TSA Treasurer",
+    bio: "",
   },
   {
     name: "Rianna Ganta",
@@ -189,6 +211,7 @@ export const officers: Officer[] = [
     group: "exec",
     photo: "/officers/rianna-ganta.webp",
     alt: "Rianna Ganta, SLHS TSA Reporter",
+    bio: "",
   },
   // Directors are listed alphabetically within each role.
   {
@@ -198,6 +221,7 @@ export const officers: Officer[] = [
     group: "directors",
     photo: "/officers/alice-jin.webp",
     alt: "Alice Jin, SLHS TSA UTE Director",
+    bio: "",
   },
   {
     name: "Shaarika Ganti",
@@ -206,6 +230,7 @@ export const officers: Officer[] = [
     group: "directors",
     photo: "/officers/shaarika-ganti.webp",
     alt: "Shaarika Ganti, SLHS TSA UTE Director",
+    bio: "",
   },
   {
     name: "Bella Xiang",
@@ -214,6 +239,7 @@ export const officers: Officer[] = [
     group: "directors",
     photo: "/officers/bella-xiang.webp",
     alt: "Bella Xiang, SLHS TSA NQE Director",
+    bio: "",
   },
   {
     name: "Elizabeth Hu",
@@ -222,6 +248,7 @@ export const officers: Officer[] = [
     group: "directors",
     photo: "/officers/elizabeth-hu.webp",
     alt: "Elizabeth Hu, SLHS TSA NQE Director",
+    bio: "",
   },
   {
     name: "Kelly Zheng",
@@ -230,6 +257,7 @@ export const officers: Officer[] = [
     group: "directors",
     photo: "/officers/kelly-zheng.webp",
     alt: "Kelly Zheng, SLHS TSA NQE Director",
+    bio: "",
   },
 ];
 
