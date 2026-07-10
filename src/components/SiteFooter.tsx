@@ -140,6 +140,11 @@ export default function SiteFooter() {
                 CEG Navigation
               </Link>
             </li>
+            <li>
+              <Link href="/ceg#museum" className="hover:text-tsa-red hover:underline">
+                TSA Museum
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

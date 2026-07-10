@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import { pageSeo } from "@/lib/seo";
-import UnderConstruction from "@/components/UnderConstruction";
+import CegExplorer from "@/components/CegExplorer";
+import { DashWrap, WonkyTitle } from "@/components/decor";
+import { ceg } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "CEG Navigation",
-  description: "SLHS TSA's guide through the Competitive Events Guide. Under construction.",
+  description:
+    "SLHS TSA's guide through the Competitive Events Guide: one master slideshow plus a deck per event, and the TSA Museum project archive.",
   ...pageSeo("/ceg"),
 };
 
 /*
- * TODO(ceg, August): build the CEG Navigation experience. Planned content from
- * the planning doc — a slideshow/walkthrough of the Competitive Events Guide:
+ * TODO(ceg): as decks get made, fill in `ceg` in src/content/site.ts.
+ * Planned deck content from the planning doc:
  *   - how many people in each team
  *   - whether each event is an open event
  *   - dress code (state/regionals/nationals)
@@ -23,9 +26,22 @@ export const metadata: Metadata = {
  */
 export default function CegPage() {
   return (
-    <>
-      <h1 className="sr-only">CEG Navigation</h1>
-      <UnderConstruction title="CEG NAVIGATION" />
-    </>
+    <div className="mx-auto max-w-6xl px-4 pt-10">
+      <h1 className="sr-only">CEG Navigation and TSA Museum</h1>
+      <div className="text-center">
+        <DashWrap>
+          <WonkyTitle
+            text="CEG NAVIGATION"
+            outline
+            className="text-[1.8rem] leading-none sm:text-[2.4rem]"
+          />
+        </DashWrap>
+        <p className="mt-3 -rotate-1 font-hand text-xl font-semibold text-muted-ink">
+          your map through the Competitive Events Guide
+        </p>
+      </div>
+
+      <CegExplorer master={ceg.master} events={ceg.events} />
+    </div>
   );
 }

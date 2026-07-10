@@ -127,6 +127,15 @@ export function IconInfo(props: IconProps) {
   );
 }
 
+export function IconSearch(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...props}>
+      <circle cx="10.5" cy="10.2" r="6.2" />
+      <path d="m15.3 15.4 4.9 4.7" />
+    </svg>
+  );
+}
+
 export function IconStar(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" width="1em" height="1em" {...base} {...props}>

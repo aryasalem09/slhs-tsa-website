@@ -12,8 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/calendar", priority: 0.7 },
     { path: "/slides", priority: 0.6 },
     { path: "/contact", priority: 0.6 },
-    { path: "/ceg", priority: 0.4 },
-    { path: "/museum", priority: 0.4 },
+    { path: "/ceg", priority: 0.5 },
   ];
 
   return routes.map(({ path, priority }) => ({

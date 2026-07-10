@@ -31,7 +31,7 @@ export default function OfficersPage() {
           />
         </DashWrap>
         <p className="mt-3 -rotate-1 font-hand text-xl font-semibold text-muted-ink">
-          click a badge to see it up close!
+          tap a card to flip it over!
         </p>
       </div>
 

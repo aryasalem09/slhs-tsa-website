@@ -13,9 +13,9 @@ export type Officer = {
   photo: string;
   alt: string;
   /**
-   * Short blurb shown in the officer's expanded close-up (click a badge).
-   * Fill it in below (see the `bio: ""` line on each officer).
-   * Leave it as "" and the description area just stays blank.
+   * Shown on the back of the officer card when it flips.
+   * Fill each one in below (leave "" to show a friendly placeholder).
+   * A sentence or two is plenty: favorite event, grade, a fun fact.
    */
   bio: string;
 };
@@ -63,7 +63,6 @@ export const nav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "CEG", href: "/ceg" },
-  { label: "TSA Museum", href: "/museum" },
   { label: "Slides", href: "/slides" },
   { label: "Calendar", href: "/calendar" },
 ];
@@ -130,6 +129,22 @@ export type SlideDeck = {
 
 export const meetingSlides: SlideDeck[] = [];
 
+/**
+ * CEG Navigation decks. One master deck walks the whole Competitive Events
+ * Guide; each event gets its own deck as they're made.
+ * ▸ To add a deck: paste its Canva share link into `canvaUrl`
+ *   (looks like "https://www.canva.com/design/XXXX/YYYY/view").
+ *   The page turns it into an embed automatically.
+ * ▸ To add an event: append { name: "Animation", canvaUrl: null } to
+ *   `events` once TSA releases the 26-27 event list.
+ */
+export type CegDeck = { name: string; canvaUrl: string | null };
+
+export const ceg = {
+  master: { name: "CEG (Simplified)", canvaUrl: null } as CegDeck,
+  events: [] as CegDeck[],
+};
+
 export const competing = {
   points: [
     {
@@ -152,11 +167,11 @@ export const competing = {
 };
 
 /**
- * Officer bios: the `bio` string shows in each officer's expanded close-up
- * (click a badge on the Officers page to open it).
+ * Officer bios: the `bio` string shows on the BACK of each officer's card
+ * (tap a badge on the Officers page and it flips over).
  * ▸ To add one, type your blurb between the quotes on the `bio:` line
  *   (e.g. bio: "Senior. Loves CAD and robotics. 3rd year in TSA.").
- * ▸ Leave it "" for now and the description area stays blank.
+ * ▸ Leave it "" and the back shows a little "coming soon" note instead.
  */
 export const officers: Officer[] = [
   {
