@@ -237,6 +237,60 @@
   }
 }
 
+/* Gentle idle bob for the floating inspiration bubble. */
+@keyframes float-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* Kaboom: sparks fly outward from the bubble on click. */
+@keyframes spark-fly {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1)
+      rotate(var(--spin));
+    opacity: 0;
+  }
+}
+
+/* Kaboom: the comic "KABOOM!" word punches in and fades. */
+@keyframes kaboom-word {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2) rotate(-8deg);
+    opacity: 0;
+  }
+  35% {
+    transform: translate(-50%, -50%) scale(1.15) rotate(-8deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.55) rotate(-8deg);
+    opacity: 0;
+  }
+}
+
+@layer components {
+  .animate-float-bob {
+    animation: float-bob 3.4s ease-in-out infinite;
+  }
+
+  .spark-fly {
+    animation: spark-fly 0.7s cubic-bezier(0.22, 0.8, 0.3, 1) forwards;
+  }
+
+  .kaboom-word {
+    animation: kaboom-word 0.7s cubic-bezier(0.3, 1.4, 0.5, 1) forwards;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

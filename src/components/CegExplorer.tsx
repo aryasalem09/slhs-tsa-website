@@ -135,8 +135,7 @@ export default function CegExplorer({
                     </li>
                   ))}
                   <li className="px-1.5 pt-2 font-hand text-lg font-semibold leading-snug text-muted-ink">
-                    one slideshow per event, landing here when TSA releases the
-                    26-27 events!
+                    will update when TSA releases the 26-27 events!
                   </li>
                 </>
               ) : filtered.length === 0 ? (
@@ -196,7 +195,7 @@ export default function CegExplorer({
                 ) : (
                   <div className="flex aspect-video w-full items-center justify-center bg-paper/70 px-6 text-center">
                     <p className="font-hand text-2xl font-bold text-muted-ink sm:text-3xl">
-                      Canva slideshow goes here!
+                      slideshow…
                     </p>
                   </div>
                 )}
@@ -204,63 +203,32 @@ export default function CegExplorer({
 
               <DeckArrow dir="next" onClick={() => page(1)} disabled={!canPage} />
             </div>
-
-            <p className="mt-4 text-center font-hand text-lg font-semibold text-muted-ink">
-              one slideshow for CEG (Simplified), plus one for each event.
-            </p>
           </div>
         </section>
       </div>
 
-      {/* ---------- the museum: submit + "don't copy" note, below ---------- */}
-      <section id="museum" aria-labelledby="museum-h" className="mt-16 scroll-mt-24">
-        <h2
-          id="museum-h"
-          className="squiggle-underline inline-block font-display text-2xl font-black"
-        >
-          TSA Museum
-        </h2>
-
-        <div className="mt-6 grid items-center gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-          <div className="edge-paper relative rotate-[-0.3deg] border-2 border-ink/85 bg-card p-6 shadow-paper sm:p-7">
-            <span aria-hidden="true" className="tape -top-3 left-8 rotate-[-5deg]" />
-            <span aria-hidden="true" className="tape -top-3 right-8 rotate-[4deg]" />
-            <p className="font-hand text-3xl font-bold text-ink">Add your project!</p>
-            <p className="mt-2 max-w-lg font-semibold text-ink/80">
-              Competed before? Add your work to the chapter archive and browse
-              past submissions.
-            </p>
-            <a
-              href={site.links.museumFormShort}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-marker edge-sketch mt-5 inline-flex items-center gap-2.5 bg-tsa-blue px-5 py-2.5 font-display text-base font-bold text-card"
-            >
-              Submit a project
-              <IconExternal aria-hidden="true" />
-            </a>
-          </div>
-
-          {/* friendly "inspiration, not copying" thought bubble */}
-          <div className="relative mx-auto w-fit -rotate-1 lg:mx-0">
-            <div className="rounded-[1.9rem] border-2 border-ink/70 bg-[#fff7df] px-6 py-4 text-center shadow-paper">
-              <p className="font-hand text-xl font-bold text-ink">
-                Take <span className="text-tsa-red">inspiration</span>, don&apos;t copy!
-              </p>
-              <p className="mt-1 text-sm text-ink/75">
-                Reusing someone else&apos;s past work counts as plagiarism and can
-                get you disqualified. Use these to spark your own ideas.
-              </p>
-            </div>
-            <span
-              aria-hidden="true"
-              className="absolute -bottom-2 left-10 h-3.5 w-3.5 rounded-full border-2 border-ink/70 bg-[#fff7df]"
-            />
-            <span
-              aria-hidden="true"
-              className="absolute -bottom-5 left-7 h-2.5 w-2.5 rounded-full border-2 border-ink/70 bg-[#fff7df]"
-            />
-          </div>
+      {/* ------------------ the museum submit box, centered ------------------ */}
+      <section
+        id="museum"
+        aria-label="TSA Museum submissions"
+        className="mt-16 flex scroll-mt-24 justify-center"
+      >
+        <div className="edge-paper relative w-full max-w-xl rotate-[-0.3deg] border-2 border-ink/85 bg-card p-6 text-center shadow-paper sm:p-8">
+          <span aria-hidden="true" className="tape -top-3 left-1/2 w-16 -translate-x-1/2 rotate-[-3deg]" />
+          <p className="font-hand text-3xl font-bold text-ink">Add your project!</p>
+          <p className="mx-auto mt-2 max-w-md font-semibold text-ink/80">
+            Competed before? Add your work to the chapter archive and browse
+            past submissions.
+          </p>
+          <a
+            href={site.links.museumFormShort}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-marker edge-sketch mt-5 inline-flex items-center gap-2.5 bg-tsa-blue px-5 py-2.5 font-display text-base font-bold text-card"
+          >
+            Submit a project
+            <IconExternal aria-hidden="true" />
+          </a>
         </div>
       </section>
     </>

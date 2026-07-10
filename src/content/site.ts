@@ -141,7 +141,7 @@ export const meetingSlides: SlideDeck[] = [];
 export type CegDeck = { name: string; canvaUrl: string | null };
 
 export const ceg = {
-  master: { name: "CEG (Simplified)", canvaUrl: null } as CegDeck,
+  master: { name: "CEG", canvaUrl: null } as CegDeck,
   events: [] as CegDeck[],
 };
 
