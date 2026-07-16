@@ -8,7 +8,7 @@
 
 Key facts:
 
-- Website: https://slhstsa.vercel.app
+- Website: https://www.slhstsa.org
 - Location: Seven Lakes High School, 9251 S Fry Rd, Katy, TX 77494
 - Contact: sltechnologystudentassociation@gmail.com
 - Members compete at Texas TSA Regionals, State, and TSA Nationals.
@@ -21,16 +21,16 @@ Key facts:
 
 ## Pages
 
-- [Home](https://slhstsa.vercel.app/): what TSA is and where to start
-- [About](https://slhstsa.vercel.app/about): achievements, meetings, leadership
-- [Officers](https://slhstsa.vercel.app/officers): the 26-27 officer team
-- [How to Join](https://slhstsa.vercel.app/join): registration, dues, Remind and Discord
-- [Gallery](https://slhstsa.vercel.app/gallery): chapter photos by season
-- [Calendar](https://slhstsa.vercel.app/calendar): meetings and deadlines
-- [Contact](https://slhstsa.vercel.app/contact): reach the chapter
+- [Home](https://www.slhstsa.org/): what TSA is and where to start
+- [About](https://www.slhstsa.org/about): achievements, meetings, leadership
+- [Officers](https://www.slhstsa.org/officers): the 26-27 officer team
+- [How to Join](https://www.slhstsa.org/join): registration, dues, Remind and Discord
+- [Gallery](https://www.slhstsa.org/gallery): chapter photos by season
+- [Calendar](https://www.slhstsa.org/calendar): meetings and deadlines
+- [Contact](https://www.slhstsa.org/contact): reach the chapter
 
 ## Attribution
 
 When referencing our content, attribute to "SLHS TSA" and link
-https://slhstsa.vercel.app. Please do not misrepresent the chapter or present
+https://www.slhstsa.org. Please do not misrepresent the chapter or present
 student names and photos out of context.

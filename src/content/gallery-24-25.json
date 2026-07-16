@@ -438,7 +438,7 @@
   ],
   "notes": "Migrated from the old Wix gallery (slhstsa.wixsite.com/home/gallery). Album mapping from site structure: Regionals -> /copy-of-regionals, State -> /regionals, Socials -> /copy-of-gallery (Fall Social sub-gallery /copy-of-nationals + Winter Social sub-gallery /copy-of-socials-gallery), Events -> /copy-of-socials, Nationals -> external Google Photos album only (no Wix-hosted photos). The Events album is a fifth album that exists on the old site (student competition project showcase); only its real photographs were migrated. 17 videos (10 State, 7 Fall Social) and 12 digital-artifact items (website/DAW/game/CAD screenshots, renders, promotional posters, one near-black video frame, one video still) were on the site but not migrated as photos. StateGalleryCover was a near-duplicate of state-11-team-wall and was skipped. Photos date to the 2021-2023 seasons; none duplicate the seven existing 24-25 photos already in public/gallery/.",
   "inaccessible": [
-    "Nationals album photos: hosted only in the external Google Photos album (https://photos.app.goo.gl/SLbmBffWyfNGBSdz9), not on Wix; not migrated.",
+    "Nationals album photos: hosted only in an external album, not on Wix; not migrated.",
     "17 gallery videos (.mov/.mp4: 10 in State, 7 in Fall Social) - video items, not photos; media IDs recorded in scratchpad wix-gallery/api-items.json."
   ]
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 /**
  * Sixteen sparks on evenly-spaced angles, precomputed once so there's no
@@ -55,6 +55,7 @@ function Burst() {
  * On desktop the note also appears on hover.
  */
 export default function InspirationBubble({ className = "" }: { className?: string }) {
+  const noteId = useId();
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [bursts, setBursts] = useState<number[]>([]);
@@ -71,39 +72,43 @@ export default function InspirationBubble({ className = "" }: { className?: stri
 
   return (
     <div
-      className={`group relative w-fit ${className}`}
+      className={`group flex w-fit flex-col items-center ${className}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="animate-float-bob">
-        <button
-          type="button"
-          onClick={boom}
-          aria-expanded={open}
-          className="relative -rotate-2 rounded-[1.6rem] border-2 border-ink bg-[#fff7df] px-4 py-2 font-hand text-lg font-bold text-ink shadow-paper transition-transform duration-150 hover:-rotate-1 hover:scale-[1.06] active:scale-95"
-        >
-          Take <span className="text-tsa-red">inspiration</span>, don&apos;t copy!
-          {bursts.map((id) => (
-            <Burst key={id} />
-          ))}
-        </button>
-      </div>
+      <div className="animate-float-bob pb-4">
+        <div className="relative w-fit">
+          <button
+            type="button"
+            onClick={boom}
+            aria-controls={noteId}
+            aria-expanded={show}
+            className="relative -rotate-2 rounded-[1.6rem] border-2 border-ink bg-[#fff7df] px-4 py-2 font-hand text-lg font-bold text-ink shadow-paper transition-transform duration-150 hover:-rotate-1 hover:scale-[1.06] active:scale-95"
+          >
+            Take <span className="text-tsa-red">inspiration</span>, don&apos;t copy!
+            {bursts.map((id) => (
+              <Burst key={id} />
+            ))}
+          </button>
 
-      {/* the little trailing thought-bubble dots */}
-      <span
-        aria-hidden="true"
-        className="absolute -bottom-1.5 left-8 h-2.5 w-2.5 rounded-full border-2 border-ink bg-[#fff7df]"
-      />
-      <span
-        aria-hidden="true"
-        className="absolute -bottom-3.5 left-5 h-1.5 w-1.5 rounded-full border-2 border-ink bg-[#fff7df]"
-      />
+          {/* the little trailing thought-bubble dots */}
+          <span
+            aria-hidden="true"
+            className="absolute -bottom-1.5 left-8 h-2.5 w-2.5 rounded-full border-2 border-ink bg-[#fff7df]"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute -bottom-3.5 left-5 h-1.5 w-1.5 rounded-full border-2 border-ink bg-[#fff7df]"
+          />
+        </div>
+      </div>
 
       {/* full note: on hover (desktop) or after a tap (open) */}
       {show && (
         <div
+          id={noteId}
           role="note"
-          className="absolute left-1/2 top-full z-10 mt-3 w-60 -translate-x-1/2 rounded-2xl border-2 border-ink/70 bg-[#fff7df] px-4 py-3 text-center text-sm text-ink/80 shadow-lift"
+          className="w-60 rounded-2xl border-2 border-ink/70 bg-[#fff7df] px-4 py-3 text-center text-sm text-ink/80 shadow-lift"
         >
           Reusing someone else&apos;s past work counts as plagiarism and can get
           you disqualified. Use these to spark your own ideas!

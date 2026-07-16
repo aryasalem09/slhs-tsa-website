@@ -35,14 +35,20 @@ export default function SiteFooter() {
           <p className="mt-3 text-sm font-semibold text-muted-ink">
             {site.fullName}
           </p>
-          <p className="mt-3 flex items-start gap-2 text-sm text-muted-ink">
+          <a
+            href={site.links.mapsDirections}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Get directions to ${site.school}, ${site.address}, in Google Maps (opens in a new tab)`}
+            className="mt-3 flex w-fit items-start gap-2 rounded-sm text-sm text-muted-ink transition-colors hover:text-tsa-blue hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tsa-blue"
+          >
             <IconPin className="mt-0.5 shrink-0 text-base" aria-hidden="true" />
             <span>
               {site.school}
               <br />
               {site.address}
             </span>
-          </p>
+          </a>
         </div>
 
         <nav aria-label="Footer">
@@ -138,11 +144,6 @@ export default function SiteFooter() {
             <li>
               <Link href="/ceg" className="hover:text-tsa-red hover:underline">
                 CEG Navigation
-              </Link>
-            </li>
-            <li>
-              <Link href="/ceg#museum" className="hover:text-tsa-red hover:underline">
-                TSA Museum
               </Link>
             </li>
           </ul>

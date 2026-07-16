@@ -87,35 +87,6 @@ export default function RootLayout({
         <SiteFooter />
         <MobileTabBar />
         <TapSparkles />
-        <script
-          type="application/ld+json"
-          // Organization structured data so search engines understand the chapter.
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: site.fullName,
-              alternateName: "SLHS TSA",
-              url: site.url,
-              logo: `${site.url}/logos/spartan-mark-512.png`,
-              email: site.email,
-              sameAs: [site.socials.instagram, "https://tsaweb.org/"],
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "9251 S Fry Rd",
-                addressLocality: "Katy",
-                addressRegion: "TX",
-                postalCode: "77494",
-                addressCountry: "US",
-              },
-              parentOrganization: {
-                "@type": "Organization",
-                name: "Technology Student Association",
-                url: "https://tsaweb.org/",
-              },
-            }),
-          }}
-        />
       </body>
     </html>
   );

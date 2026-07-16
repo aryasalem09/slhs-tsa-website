@@ -44,7 +44,7 @@ export default function CegPage() {
         </div>
 
         {/* floating "don't copy" reminder — bobs, and kabooms when you poke it */}
-        <div className="mt-6 flex justify-center lg:absolute lg:right-1 lg:top-0 lg:mt-0 lg:block">
+        <div className="mt-6 flex justify-center">
           <InspirationBubble />
         </div>
       </div>

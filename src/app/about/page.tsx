@@ -9,7 +9,8 @@ import { achievements, competing, meetings, officers, seasonHighlights } from "@
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Who we are, our achievements, and our officers!",
+  description:
+    "Learn about SLHS TSA at Seven Lakes High School, our competition achievements, and how members advance from Regionals to Nationals.",
   ...pageSeo("/about"),
 };
 

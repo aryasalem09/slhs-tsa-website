@@ -8,7 +8,8 @@ import { officers } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Officers",
-  description: "Meet the 26-27 officer team!",
+  description:
+    "Meet the 2026-27 student officers and directors leading the Seven Lakes High School Technology Student Association in Katy, Texas.",
   ...pageSeo("/officers"),
 };
 

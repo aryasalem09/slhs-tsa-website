@@ -7,7 +7,8 @@ import { scrapbook, seasons } from "@/content/gallery";
 
 export const metadata: Metadata = {
   title: "Gallery",
-  description: "Photos from our conferences, socials, and trips!",
+  description:
+    "Explore photos from SLHS TSA competitions, conferences, chapter socials, and trips at Seven Lakes High School in Katy, Texas.",
   ...pageSeo("/gallery"),
 };
 

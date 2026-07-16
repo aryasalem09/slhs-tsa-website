@@ -34,7 +34,7 @@ export const site = {
   school: "Seven Lakes High School",
   address: "9251 S Fry Rd, Katy, TX 77494",
   email: "sltechnologystudentassociation@gmail.com",
-  url: "https://slhstsa.vercel.app",
+  url: "https://www.slhstsa.org",
 
   socials: {
     instagram: "https://www.instagram.com/slhs.tsa/",
@@ -45,6 +45,8 @@ export const site = {
 
   links: {
     tsaOfficial: "https://tsaweb.org/",
+    mapsDirections:
+      "https://www.google.com/maps/dir/?api=1&destination=Seven+Lakes+High+School%2C+9251+S+Fry+Rd%2C+Katy%2C+TX+77494",
     // Katy ISD "A+ Pay N' Go" webstore (RevTrak).
     payNGo: "https://katyisd.revtrak.net/",
     // TODO(content): swap in the new registration form URL next year

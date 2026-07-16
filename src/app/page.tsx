@@ -20,9 +20,53 @@ export const metadata: Metadata = {
   ...pageSeo("/"),
 };
 
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      alternateName: site.fullName,
+      publisher: { "@id": `${site.url}/#organization` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.fullName,
+      alternateName: site.name,
+      url: site.url,
+      logo: `${site.url}/logos/spartan-mark-512.png`,
+      email: site.email,
+      sameAs: [site.socials.instagram],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "9251 S Fry Rd",
+        addressLocality: "Katy",
+        addressRegion: "TX",
+        postalCode: "77494",
+        addressCountry: "US",
+      },
+      parentOrganization: {
+        "@type": "Organization",
+        "@id": "https://tsaweb.org/#organization",
+        name: "Technology Student Association",
+        url: site.links.tsaOfficial,
+      },
+    },
+  ],
+};
+
 export default function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-4 pt-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homeJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <h1 className="sr-only">
         SLHS TSA, the Seven Lakes High School Technology Student Association
       </h1>
@@ -172,7 +216,7 @@ export default function HomePage() {
           </Link>
 
           <Link
-            href="/museum"
+            href="/ceg#museum"
             className="edge-paper group relative block rotate-[-0.6deg] border-2 border-ink bg-card p-5 shadow-paper transition hover:-translate-y-1 hover:shadow-lift"
           >
             <span

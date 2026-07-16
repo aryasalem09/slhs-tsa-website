@@ -5,7 +5,8 @@ import { meetings, site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Calendar",
-  description: "Check the calendar frequently for updates on anything SLHS TSA!",
+  description:
+    "View the SLHS TSA calendar for Seven Lakes High School meetings, deadlines, competitions, socials, trips, and chapter updates.",
   ...pageSeo("/calendar"),
 };
 
