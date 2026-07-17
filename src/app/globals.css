@@ -146,6 +146,41 @@
     );
   }
 
+  /* Jagged paper burst that makes each officer's grade read like a sticker. */
+  .grade-burst {
+    clip-path: polygon(
+      50% 0%,
+      61% 10%,
+      75% 3%,
+      81% 17%,
+      97% 19%,
+      90% 34%,
+      100% 50%,
+      90% 65%,
+      97% 81%,
+      81% 83%,
+      75% 97%,
+      61% 90%,
+      50% 100%,
+      39% 90%,
+      25% 97%,
+      19% 83%,
+      3% 81%,
+      10% 65%,
+      0% 50%,
+      10% 34%,
+      3% 19%,
+      19% 17%,
+      25% 3%,
+      39% 10%
+    );
+  }
+
+  .officer-hobby-sticker:nth-child(even) {
+    border-radius: 1rem 0.45rem 1.05rem 0.55rem / 0.55rem 1rem 0.5rem 1.05rem;
+    background: #fff2b5;
+  }
+
   /* Subtle locker-wall backdrop for officer sections. */
   .locker-wall {
     background-color: #efe6d8;
