@@ -5,6 +5,7 @@ import OfficerCard from "@/components/OfficerCard";
 import { DashWrap, JoinArrowLink, WonkyTitle } from "@/components/decor";
 import { IconArrowRight } from "@/components/icons";
 import { officers } from "@/content/site";
+import { officerAnchorId } from "@/lib/officerAnchors";
 
 export const metadata: Metadata = {
   title: "Officers",
@@ -45,7 +46,11 @@ export default function OfficersPage() {
         </h2>
         <ul className="mt-2 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
           {exec.map((officer, i) => (
-            <li key={officer.name}>
+            <li
+              key={officer.name}
+              id={officerAnchorId(officer)}
+              className="scroll-mt-28 rounded-xl transition-colors target:bg-tsa-blue/10 target:ring-4 target:ring-tsa-blue/50 target:ring-offset-4 target:ring-offset-cream"
+            >
               <OfficerCard
                 officer={officer}
                 tilt={TILTS[i % TILTS.length]}
@@ -60,7 +65,11 @@ export default function OfficersPage() {
         </h2>
         <ul className="mt-2 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
           {ute.map((officer, i) => (
-            <li key={officer.name}>
+            <li
+              key={officer.name}
+              id={officerAnchorId(officer)}
+              className="scroll-mt-28 rounded-xl transition-colors target:bg-tsa-blue/10 target:ring-4 target:ring-tsa-blue/50 target:ring-offset-4 target:ring-offset-cream"
+            >
               <OfficerCard officer={officer} tilt={TILTS[(i + 3) % TILTS.length]} />
             </li>
           ))}
@@ -71,7 +80,11 @@ export default function OfficersPage() {
         </h2>
         <ul className="mt-2 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
           {nqe.map((officer, i) => (
-            <li key={officer.name}>
+            <li
+              key={officer.name}
+              id={officerAnchorId(officer)}
+              className="scroll-mt-28 rounded-xl transition-colors target:bg-tsa-blue/10 target:ring-4 target:ring-tsa-blue/50 target:ring-offset-4 target:ring-offset-cream"
+            >
               <OfficerCard officer={officer} tilt={TILTS[(i + 1) % TILTS.length]} />
             </li>
           ))}

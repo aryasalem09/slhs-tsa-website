@@ -1,8 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
 import { IconMail } from "@/components/icons";
+
+const MIN_INTERACTION_MS = 1_200;
+const LAUNCH_COOLDOWN_MS = 30_000;
+const COOLDOWN_KEY = "slhs-tsa-contact-mailto-last-launch";
 
 /**
  * The site is fully static, so this composes a pre-filled email to the club
@@ -14,13 +18,67 @@ export default function ContactForm() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [copied, setCopied] = useState(false);
+  const [status, setStatus] = useState("");
   const copiedTimer = useRef<number | undefined>(undefined);
+  const openedAt = useRef(Number.POSITIVE_INFINITY);
 
-  function onSubmit(e: React.FormEvent) {
+  useEffect(() => {
+    openedAt.current = performance.now();
+  }, []);
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const mailSubject = `[SLHS TSA] ${subject || "Hello!"}${name ? ` from ${name}` : ""}`;
+    const form = e.currentTarget;
+    const cleanName = name.trim();
+    const cleanSubject = subject.trim();
+    const cleanMessage = message.trim();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      setStatus("Please complete the required message before opening your email app.");
+      return;
+    }
+    if (!cleanMessage) {
+      setStatus("Please write a message before opening your email app.");
+      return;
+    }
+    if (new FormData(form).get("website")) {
+      setStatus("We couldn’t open your email app. Please try again.");
+      return;
+    }
+    if (performance.now() - openedAt.current < MIN_INTERACTION_MS) {
+      setStatus("Please take a moment to review your message, then try again.");
+      return;
+    }
+
+    let lastLaunch = 0;
+    try {
+      lastLaunch = Number(sessionStorage.getItem(COOLDOWN_KEY) || 0);
+    } catch {
+      // Some privacy modes disable storage. The mailto flow remains safe because
+      // this site never sends mail itself.
+    }
+    const remaining = LAUNCH_COOLDOWN_MS - (Date.now() - lastLaunch);
+    if (remaining > 0) {
+      setStatus(`Please wait ${Math.ceil(remaining / 1000)} seconds before opening another email draft.`);
+      return;
+    }
+
+    const mailSubject = `[SLHS TSA] ${cleanSubject || "Hello!"}${
+      cleanName ? ` from ${cleanName}` : ""
+    }`;
     // RFC 6068: line breaks in mailto bodies must be CRLF.
-    const body = `${message}${name ? `\n\n- ${name}` : ""}`.replace(/\r?\n/g, "\r\n");
+    const body = `${cleanMessage}${cleanName ? `\n\n- ${cleanName}` : ""}`.replace(
+      /\r?\n/g,
+      "\r\n",
+    );
+    try {
+      sessionStorage.setItem(COOLDOWN_KEY, String(Date.now()));
+    } catch {
+      // Storage-backed cooldown is best-effort; the visitor's mail app still
+      // requires an explicit send action.
+    }
+    setStatus("Opening a new email draft in your mail app.");
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
       mailSubject,
     )}&body=${encodeURIComponent(body)}`;
@@ -42,6 +100,16 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-4">
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor="website">Leave this field empty</label>
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="mb-1 block font-hand text-xl font-semibold text-ink">
@@ -54,6 +122,7 @@ export default function ContactForm() {
             placeholder="Spartan McSpartanface"
             className={fieldCls}
             autoComplete="name"
+            maxLength={120}
           />
         </label>
         <label className="block">
@@ -66,6 +135,7 @@ export default function ContactForm() {
             onChange={(e) => setSubject(e.target.value)}
             placeholder="Question about joining"
             className={fieldCls}
+            maxLength={160}
           />
         </label>
       </div>
@@ -81,6 +151,7 @@ export default function ContactForm() {
           rows={6}
           placeholder="Hi SLHS TSA! …"
           className={`${fieldCls} resize-y`}
+          maxLength={5_000}
         />
       </label>
 
@@ -96,6 +167,10 @@ export default function ContactForm() {
           this opens your email app with our address filled in. we read everything!
         </p>
       </div>
+
+      <p aria-live="polite" role="status" className="min-h-5 text-sm font-semibold text-muted-ink">
+        {status}
+      </p>
 
       <p className="mt-2 border-t-2 border-dashed border-ink/15 pt-4 text-sm font-semibold text-muted-ink">
         Prefer to write it yourself? Email{" "}

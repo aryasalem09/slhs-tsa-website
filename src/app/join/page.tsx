@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { pageSeo } from "@/lib/seo";
+import Link from "next/link";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import { DashWrap, WonkyTitle } from "@/components/decor";
 import {
@@ -178,13 +179,13 @@ export default function JoinPage() {
       </div>
 
       <p className="mt-12 text-center font-semibold text-muted-ink">
-        Questions? Email{" "}
-        <a
-          href={`mailto:${site.email}`}
+        Questions?{" "}
+        <Link
+          href="/contact"
           className="text-tsa-blue underline decoration-dashed underline-offset-4 hover:text-tsa-red"
         >
-          {site.email}
-        </a>{" "}
+          Send us a message
+        </Link>{" "}
         or ask any officer.
       </p>
     </div>

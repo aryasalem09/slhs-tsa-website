@@ -6,6 +6,7 @@ import StickerLogo from "@/components/StickerLogo";
 import { DashWrap, JoinArrowLink, WonkyTitle } from "@/components/decor";
 import { IconArrowRight } from "@/components/icons";
 import { achievements, competing, meetings, officers, seasonHighlights } from "@/content/site";
+import { officerAnchorId } from "@/lib/officerAnchors";
 
 export const metadata: Metadata = {
   title: "About",
@@ -53,7 +54,7 @@ export default function AboutPage() {
               {exec.map((officer, i) => (
                 <li key={officer.name}>
                   <Link
-                    href="/officers"
+                    href={`/officers#${officerAnchorId(officer)}`}
                     className="group flex items-center justify-between gap-3 px-5 py-3 transition hover:bg-cream/70"
                   >
                     <span className="min-w-0 font-display text-lg font-bold text-ink group-hover:text-tsa-blue">
@@ -79,7 +80,7 @@ export default function AboutPage() {
               {directors.map((officer, i) => (
                 <li key={officer.name}>
                   <Link
-                    href="/officers"
+                    href={`/officers#${officerAnchorId(officer)}`}
                     className="group flex items-center justify-between gap-3 px-5 py-2.5 transition hover:bg-cream/70"
                   >
                     <span className="min-w-0 font-display text-base font-bold text-ink group-hover:text-tsa-blue">
@@ -256,7 +257,7 @@ export default function AboutPage() {
               alt="Texas TSA logo"
               href="https://www.texastsa.org/"
               width={72}
-              height={72}
+              height={65}
               tilt={7}
               className="absolute -top-6 right-4"
             />

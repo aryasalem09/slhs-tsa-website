@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageSeo } from "@/lib/seo";
 import ContactForm from "@/components/ContactForm";
+import SchoolMap from "@/components/SchoolMap";
 import { DashWrap, WonkyTitle } from "@/components/decor";
 import { IconDiscord, IconInstagram, IconPin } from "@/components/icons";
 import { site } from "@/content/site";
@@ -57,6 +58,8 @@ export default function ContactPage() {
           {site.school} · {site.address}
         </span>
       </div>
+
+      <SchoolMap directionsHref={site.links.mapsDirections} />
     </div>
   );
 }

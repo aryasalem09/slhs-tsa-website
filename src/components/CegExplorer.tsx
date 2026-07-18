@@ -6,9 +6,19 @@ import { IconArrowRight, IconExternal, IconSearch } from "@/components/icons";
 import { site, type CegDeck } from "@/content/site";
 
 /** Turn a Canva share link into its embeddable form. */
-function toEmbedUrl(url: string) {
-  const base = url.split("?")[0].replace(/\/$/, "");
-  return `${base}${base.endsWith("/view") ? "" : "/view"}?embed`;
+function toEmbedUrl(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "https:" || !["canva.com", "www.canva.com"].includes(parsed.hostname)) {
+      return null;
+    }
+
+    parsed.hostname = "www.canva.com";
+    const path = parsed.pathname.replace(/\/$/, "");
+    return `${parsed.origin}${path}${path.endsWith("/view") ? "" : "/view"}?embed`;
+  } catch {
+    return null;
+  }
 }
 
 function DeckButton({
@@ -188,6 +198,8 @@ export default function CegExplorer({
                       src={embedUrl}
                       title={`${selected.name} slideshow`}
                       loading="lazy"
+                      referrerPolicy="no-referrer"
+                      sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts"
                       allowFullScreen
                       className="absolute inset-0 h-full w-full"
                     />

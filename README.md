@@ -11,11 +11,16 @@ The official website for the Seven Lakes High School Technology Student Associat
 
 ```bash
 npm install
-npm run dev        # local dev server
+npm run dev        # http://127.0.0.1:3000
+npm run dev:network # optional: expose port 3000 to your local network
 npm run lint       # eslint
 npm run typecheck  # tsc --noEmit
 npm run build      # production build
 ```
+
+`npm run dev` always uses port 3000. If it reports `EADDRINUSE`, a local server
+is already using that port; reuse the open preview or stop that process before
+starting another copy.
 
 ## Editing content
 All portraits and photos and logos are in `public/`

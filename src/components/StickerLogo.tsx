@@ -37,8 +37,7 @@ export default function StickerLogo({
           alt={alt}
           width={width}
           height={height}
-          className="h-auto object-contain"
-          style={{ width, maxWidth: "100%" }}
+          className="object-contain"
         />
       </span>
       {label && (

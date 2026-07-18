@@ -35,6 +35,8 @@ export default function CalendarPage() {
           title="SLHS TSA Calendar"
           src={site.links.calendarEmbedSrc}
           loading="lazy"
+          referrerPolicy="no-referrer"
+          sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
           className="h-[70vh] min-h-[520px] w-full rounded-md border border-ink/15 bg-white"
         />
       </div>

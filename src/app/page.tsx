@@ -10,7 +10,6 @@ import {
   IconDiscord,
   IconExternal,
   IconInstagram,
-  IconMail,
   IconPin,
   IconRemind,
 } from "@/components/icons";
@@ -38,7 +37,6 @@ const homeJsonLd = {
       alternateName: site.name,
       url: site.url,
       logo: `${site.url}/logos/spartan-mark-512.png`,
-      email: site.email,
       sameAs: [site.socials.instagram],
       address: {
         "@type": "PostalAddress",
@@ -265,13 +263,13 @@ export default function HomePage() {
               Contact us!
             </Link>
           </h2>
-          <a
-            href={`mailto:${site.email}`}
-            className="inline-flex min-w-0 max-w-full items-center gap-2 font-semibold underline-offset-4 hover:underline"
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 font-semibold underline-offset-4 hover:underline"
           >
-            <IconMail aria-hidden="true" className="shrink-0 text-lg" />
-            <span className="min-w-0 break-all">{site.email}</span>
-          </a>
+            Send us a message
+            <IconArrowRight aria-hidden="true" className="text-lg" />
+          </Link>
           <a
             href={site.socials.discord}
             target="_blank"
