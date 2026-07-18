@@ -219,6 +219,7 @@ export default function AboutPage() {
                   src="/gallery/nationals.webp"
                   alt="SLHS TSA national qualifiers in blue blazers at the national conference"
                   fill
+                  unoptimized
                   sizes="(min-width: 640px) 22rem, 90vw"
                   className="object-cover"
                 />

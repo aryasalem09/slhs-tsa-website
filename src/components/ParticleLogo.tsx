@@ -45,11 +45,15 @@ export default function ParticleLogo({
     let resizeTimer = 0;
     let particles: Particle[] = [];
     let running = false;
-    let visible = true;
+    // Start paused. IntersectionObserver will opt the canvas into the expensive
+    // particle build only when it is actually near the viewport.
+    let visible = false;
     let destroyed = false;
     let ready = false;
+    let needsBuild = true;
     let W = 0;
     let H = 0;
+    let pixelRatio = 0;
 
     const pointer = { x: -9999, y: -9999, active: false, base: 90, boostUntil: 0 };
     const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -57,14 +61,20 @@ export default function ParticleLogo({
 
     function layout() {
       const rect = wrap!.getBoundingClientRect();
-      W = Math.max(120, Math.floor(rect.width));
-      H = Math.floor(Math.min(W * aspect, 400));
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas!.width = Math.floor(W * dpr);
-      canvas!.height = Math.floor(H * dpr);
+      const nextW = Math.max(120, Math.floor(rect.width));
+      const nextH = Math.floor(Math.min(nextW * aspect, 400));
+      const nextPixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      const changed = W !== nextW || H !== nextH || pixelRatio !== nextPixelRatio;
+      if (!changed) return false;
+      W = nextW;
+      H = nextH;
+      pixelRatio = nextPixelRatio;
+      canvas!.width = Math.floor(W * pixelRatio);
+      canvas!.height = Math.floor(H * pixelRatio);
       canvas!.style.width = `${W}px`;
       canvas!.style.height = `${H}px`;
-      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx!.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      return true;
     }
 
     function fitRect() {
@@ -165,14 +175,18 @@ export default function ParticleLogo({
     }
 
     function setup() {
-      if (!ready) return;
       stop();
-      layout();
+      needsBuild = layout() || needsBuild;
+      if (!ready) return;
       if (mqReduce.matches) {
         drawStatic();
         return;
       }
-      buildParticles();
+      if (!visible) return;
+      if (needsBuild || particles.length === 0) {
+        buildParticles();
+        needsBuild = false;
+      }
       start();
     }
 
@@ -220,8 +234,12 @@ export default function ParticleLogo({
     const io = new IntersectionObserver(
       (entries) => {
         visible = entries[0]?.isIntersecting ?? true;
-        if (visible) start();
-        else stop();
+        if (!visible) {
+          stop();
+          return;
+        }
+        if (!ready && !img.src) img.src = src;
+        else setup();
       },
       { threshold: 0.05 },
     );
@@ -240,10 +258,10 @@ export default function ParticleLogo({
       if (destroyed) return;
       ready = true;
       setup();
-      io.observe(canvas!);
-      ro.observe(wrap!);
     };
-    img.src = src;
+    setup();
+    io.observe(canvas);
+    ro.observe(wrap);
 
     canvas.addEventListener("pointermove", onMove);
     canvas.addEventListener("pointerdown", onDown);

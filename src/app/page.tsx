@@ -77,7 +77,7 @@ export default function HomePage() {
         className="edge-paper flex flex-col overflow-hidden border-[3px] border-ink/85 bg-cream shadow-lift lg:flex-row"
       >
         {/* Left: blue panel with the stacked photo cards */}
-        <div className="pencil-blue relative p-6 pb-10 sm:p-8 lg:w-[46%]">
+        <div className="pencil-blue relative order-2 p-6 pb-10 sm:p-8 lg:order-none lg:w-[46%]">
           <p className="-rotate-2 pb-4 font-hand text-2xl font-semibold text-ink/85">
             random pictures of us! ↓
           </p>
@@ -87,7 +87,7 @@ export default function HomePage() {
         <CoilDivider className="hidden bg-cream lg:block" />
 
         {/* Right: warm panel — what is TSA */}
-        <div className="relative flex flex-1 flex-col bg-cream p-6 sm:p-10 lg:justify-center">
+        <div className="relative order-1 flex flex-1 flex-col bg-cream p-6 sm:p-10 lg:order-none lg:justify-center">
           <DashWrap>
             <WonkyTitle
               text="WHAT IS TSA?"
@@ -155,7 +155,7 @@ export default function HomePage() {
           </div>
 
           {/* the TSA logo, drawn in living dots */}
-          <div className="mt-9 w-64 self-center sm:w-72 lg:w-80">
+          <div className="mt-9 hidden w-64 self-center sm:block sm:w-72 lg:w-80">
             <ParticleLogo
               src="/logos/tsa-mark-particles.png"
               aspect={0.64}
@@ -221,7 +221,7 @@ export default function HomePage() {
           >
             <span
               aria-hidden="true"
-              className="edge-sketch absolute -top-3 right-4 rotate-3 border border-ink/60 bg-spartan-orange/90 px-2 py-0.5 font-hand text-sm font-bold text-ink"
+              className="edge-sketch absolute -top-3 right-4 rotate-3 border-2 border-ink bg-spartan-orange px-2.5 py-0.5 font-hand text-sm font-bold text-ink shadow-[2px_2px_0_0_rgb(37_50_68_/_0.35)]"
             >
               soon!
             </span>

@@ -62,6 +62,7 @@ export default function PhotoWall({ photos }: { photos: GalleryPhoto[] }) {
                 alt={photo.alt}
                 width={photo.w ?? 800}
                 height={photo.h ?? 600}
+                unoptimized
                 sizes="(min-width: 640px) 30vw, 45vw"
                 className="h-auto w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
               />
@@ -118,6 +119,7 @@ export default function PhotoWall({ photos }: { photos: GalleryPhoto[] }) {
                 alt={current.alt}
                 width={current.w ?? 1600}
                 height={current.h ?? 1200}
+                unoptimized
                 sizes="(min-width: 1024px) 56rem, 92vw"
                 className="mx-auto h-auto max-h-[74vh] w-auto max-w-full object-contain"
                 priority

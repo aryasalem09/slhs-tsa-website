@@ -40,8 +40,11 @@ export default function PhotoStack({ cards }: { cards: StackCard[] }) {
                 src={card.photo}
                 alt={card.alt}
                 fill
-                priority={i === 0}
-                sizes="(min-width: 1024px) 24rem, 88vw"
+                preload={i === 0}
+                loading={i === 0 ? "eager" : "lazy"}
+                fetchPriority={i === 0 ? "high" : "auto"}
+                unoptimized
+                sizes="(min-width: 640px) 19.5rem, 68vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
               />
               <span className="edge-sketch absolute left-2 top-2 border border-ink/40 bg-cream/95 px-2.5 py-0.5 font-hand text-lg font-semibold leading-tight text-ink shadow-[1px_2px_3px_rgb(37_50_68_/_0.25)]">

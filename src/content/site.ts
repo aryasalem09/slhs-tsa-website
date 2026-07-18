@@ -16,8 +16,6 @@ export type Officer = {
   grade: "" | "Sophomore" | "Junior" | "Senior";
   hobbies: string[];
   favoriteArtists: string[];
-  /** Decorative hobby cues that sit around the card edge. */
-  hobbyEmojis: string[];
 };
 
 export type StackCard = {
@@ -184,7 +182,6 @@ export const officers: Officer[] = [
     grade: "Senior",
     hobbies: ["Acting", "D&D"],
     favoriteArtists: ["The Beatles", "INOHA", "Gorillaz"],
-    hobbyEmojis: ["🎭", "🎲"],
   },
   {
     name: "Niyatee Dalvi",
@@ -196,7 +193,6 @@ export const officers: Officer[] = [
     grade: "",
     hobbies: [],
     favoriteArtists: [],
-    hobbyEmojis: [],
   },
   {
     name: "Arya Salem",
@@ -206,9 +202,8 @@ export const officers: Officer[] = [
     photo: "/officers/arya-salem.webp",
     alt: "Arya Salem, SLHS TSA Secretary",
     grade: "Senior",
-    hobbies: ["Valorant", "rock climbing"],
+    hobbies: ["Valorant", "Rock Climbing"],
     favoriteArtists: ["The Weeknd", "Dhruv", "wave to earth"],
-    hobbyEmojis: ["🎮", "🧗"],
   },
   {
     name: "Sanvi Singh",
@@ -218,9 +213,8 @@ export const officers: Officer[] = [
     photo: "/officers/sanvi-singh.webp",
     alt: "Sanvi Singh, SLHS TSA Secretary",
     grade: "Junior",
-    hobbies: ["Writing", "listening to music", "playing video games"],
+    hobbies: ["Writing", "Listening to Music", "Playing Video Games"],
     favoriteArtists: ["PinkPantheress", "Arctic Monkeys", "Tory Lanez"],
-    hobbyEmojis: ["✍️", "🎧", "🎮"],
   },
   {
     name: "Azaan Noman",
@@ -230,9 +224,8 @@ export const officers: Officer[] = [
     photo: "/officers/azaan-noman.webp",
     alt: "Azaan Noman, SLHS TSA Treasurer",
     grade: "Junior",
-    hobbies: ["Rock climbing", "burning tokens"],
+    hobbies: ["Rock Climbing", "Burning Tokens"],
     favoriteArtists: ["Ariana Grande", "The Weeknd", "Charlie Puth"],
-    hobbyEmojis: ["🧗", "🔥", "🪙"],
   },
   {
     name: "Rianna Ganta",
@@ -244,7 +237,6 @@ export const officers: Officer[] = [
     grade: "Sophomore",
     hobbies: [],
     favoriteArtists: ["Malcolm Todd", "Steve Lacy", "Kevin Abstract", "Men I Trust", "Lucaa"],
-    hobbyEmojis: [],
   },
   // Directors are listed alphabetically within each role.
   {
@@ -257,7 +249,6 @@ export const officers: Officer[] = [
     grade: "",
     hobbies: [],
     favoriteArtists: [],
-    hobbyEmojis: [],
   },
   {
     name: "Shaarika Ganti",
@@ -269,7 +260,6 @@ export const officers: Officer[] = [
     grade: "",
     hobbies: [],
     favoriteArtists: [],
-    hobbyEmojis: [],
   },
   {
     name: "Bella Xiang",
@@ -281,7 +271,6 @@ export const officers: Officer[] = [
     grade: "",
     hobbies: [],
     favoriteArtists: [],
-    hobbyEmojis: [],
   },
   {
     name: "Elizabeth Hu",
@@ -291,9 +280,8 @@ export const officers: Officer[] = [
     photo: "/officers/elizabeth-hu.webp",
     alt: "Elizabeth Hu, SLHS TSA NQE Director",
     grade: "Sophomore",
-    hobbies: ["Reading", "crochet", "crafting", "listening to music", "ceramics"],
+    hobbies: ["Reading", "Crochet", "Crafting", "Listening to Music", "Ceramics"],
     favoriteArtists: ["Olivia Rodrigo", "Stray Kids", "Hannah Bahng"],
-    hobbyEmojis: ["📚", "🧶", "✂️", "🎧", "🏺"],
   },
   {
     name: "Kelly Zheng",
@@ -303,9 +291,8 @@ export const officers: Officer[] = [
     photo: "/officers/kelly-zheng.webp",
     alt: "Kelly Zheng, SLHS TSA NQE Director",
     grade: "Sophomore",
-    hobbies: ["Minecraft", "making cards", "playing viola"],
+    hobbies: ["Minecraft", "Making Cards", "Playing Viola"],
     favoriteArtists: ["Dhruv", "Taylor Swift", "Lana Del Rey"],
-    hobbyEmojis: ["⛏️", "💌", "🎻"],
   },
 ];
 

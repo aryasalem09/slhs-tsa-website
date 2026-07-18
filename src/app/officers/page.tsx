@@ -28,11 +28,11 @@ export default function OfficersPage() {
           <WonkyTitle
             text="MEET THE OFFICERS"
             outline
-            className="text-[1.7rem] leading-none sm:text-[2.4rem]"
+            className="text-[1.3rem] leading-none sm:text-[2.4rem]"
           />
         </DashWrap>
         <p className="mt-3 -rotate-1 font-hand text-xl font-semibold text-muted-ink">
-          tap a card to flip it over!
+          tap or click a card to flip it over!
         </p>
       </div>
 
@@ -46,7 +46,11 @@ export default function OfficersPage() {
         <ul className="mt-2 grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
           {exec.map((officer, i) => (
             <li key={officer.name}>
-              <OfficerCard officer={officer} tilt={TILTS[i % TILTS.length]} />
+              <OfficerCard
+                officer={officer}
+                tilt={TILTS[i % TILTS.length]}
+                preload={i < 3}
+              />
             </li>
           ))}
         </ul>
