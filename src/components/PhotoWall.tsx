@@ -50,7 +50,7 @@ export default function PhotoWall({ photos }: { photos: GalleryPhoto[] }) {
       <div className="columns-2 gap-4 sm:columns-3 [column-fill:balance]">
         {photos.map((photo, i) => (
           <button
-            key={photo.src}
+            key={`${photo.src}-${i}`}
             type="button"
             onClick={() => setOpenIndex(i)}
             aria-label={`View photo: ${photo.caption ?? photo.alt}`}

@@ -1,10 +1,13 @@
+import type { CSSProperties } from "react";
 import type { Metadata, Viewport } from "next";
 import { Caveat, Fraunces, Nunito_Sans } from "next/font/google";
 import MobileTabBar from "@/components/MobileTabBar";
-import SiteFooter from "@/components/SiteFooter";
+import ManagedSiteFooter from "@/components/ManagedSiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import TapSparkles from "@/components/TapSparkles";
+import StudioBridge from "@/components/StudioBridge";
 import { metaDescription, site } from "@/content/site";
+import { getDocumentForRender } from "@/lib/studio/render";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -68,13 +71,23 @@ export const viewport: Viewport = {
   themeColor: "#faf6ed",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const document = await getDocumentForRender();
+  const preset = document.theme.presets.find((candidate) => candidate.id === document.theme.activePreset) ?? document.theme.presets[0];
+  const validColor = (value: unknown, fallback: string) => typeof value === "string" && /^#[0-9a-f]{6}$/i.test(value) ? value : fallback;
+  const themeStyle = {
+    "--color-tsa-blue": validColor(preset?.tokens.primary, "#005eab"),
+    "--color-tsa-red": validColor(preset?.tokens.accent, "#ef3224"),
+    "--color-paper": validColor(preset?.tokens.surface, "#faf6ed"),
+    "--color-ink": validColor(preset?.tokens.ink, "#253244"),
+  } as CSSProperties;
   return (
     <html lang="en">
       <body
         className={`${fraunces.variable} ${nunito.variable} ${caveat.variable} bg-paper pb-[calc(4.5rem+env(safe-area-inset-bottom))] font-body text-ink antialiased lg:pb-0`}
+        style={themeStyle}
       >
         <a
           href="#main"
@@ -82,11 +95,12 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SiteHeader />
+        <SiteHeader navigation={document.navigation} siteInfo={document.site} />
         <main id="main">{children}</main>
-        <SiteFooter />
-        <MobileTabBar />
+        <ManagedSiteFooter navigation={document.navigation} siteInfo={document.site} />
+        <MobileTabBar navigation={document.navigation} />
         <TapSparkles />
+        <StudioBridge />
       </body>
     </html>
   );

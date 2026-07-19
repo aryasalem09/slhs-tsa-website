@@ -1,29 +1,55 @@
 import type { Metadata } from "next";
-import { pageSeo } from "@/lib/seo";
+import { getStudioPageMetadata } from "@/lib/studio/metadata";
 import Link from "next/link";
 import OfficerCard from "@/components/OfficerCard";
 import { DashWrap, JoinArrowLink, WonkyTitle } from "@/components/decor";
 import { IconArrowRight } from "@/components/icons";
-import { officers } from "@/content/site";
+import { officers, type Officer } from "@/content/site";
 import { officerAnchorId } from "@/lib/officerAnchors";
+import { getDocumentForRender, getPageSections } from "@/lib/studio/render";
+import { isSafeImageSrc } from "@/lib/urls";
 
-export const metadata: Metadata = {
-  title: "Officers",
-  description:
-    "Meet the 2026-27 student officers and directors leading the Seven Lakes High School Technology Student Association in Katy, Texas.",
-  ...pageSeo("/officers"),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return getStudioPageMetadata({
+    pageKey: "officers",
+    route: "/officers",
+    fallbackTitle: "Officers",
+    fallbackDescription: "Meet the 2026-27 student officers and directors leading the Seven Lakes High School Technology Student Association in Katy, Texas.",
+  });
+}
 
 const TILTS = [-1.2, 0.9, -0.8, 1.1, -1, 0.8];
 
-export default function OfficersPage() {
-  const exec = officers.filter((o) => o.group === "exec");
-  const ute = officers.filter((o) => o.shortRole === "UTE");
-  const nqe = officers.filter((o) => o.shortRole === "NQE");
+type SearchParams = Promise<{ studio?: string; draft?: string }>;
+
+function isOfficer(value: unknown): value is Officer {
+  return Boolean(
+    value && typeof value === "object" &&
+    typeof (value as Officer).name === "string" && (value as Officer).name.trim() &&
+    typeof (value as Officer).role === "string" && (value as Officer).role.trim() &&
+    typeof (value as Officer).shortRole === "string" && (value as Officer).shortRole.trim() &&
+    ((value as Officer).group === "exec" || (value as Officer).group === "directors") &&
+    isSafeImageSrc((value as Officer).photo) &&
+    typeof (value as Officer).alt === "string" && (value as Officer).alt.trim() &&
+    ((value as Officer).grade === "" || ["Sophomore", "Junior", "Senior"].includes((value as Officer).grade)) &&
+    Array.isArray((value as Officer).hobbies) && Array.isArray((value as Officer).favoriteArtists),
+  );
+}
+
+export default async function OfficersPage({ searchParams }: { searchParams: SearchParams }) {
+  const params = await searchParams;
+  const document = await getDocumentForRender({ draftPreview: params.studio === "1" || params.draft === "1" });
+  const sections = getPageSections<{ officers?: unknown }>(document, "officers");
+  const visibleOfficers = Array.isArray(sections?.officers) && sections.officers.every(isOfficer)
+    ? sections.officers
+    : officers;
+  const exec = visibleOfficers.filter((o) => o.group === "exec");
+  const ute = visibleOfficers.filter((o) => o.shortRole === "UTE");
+  const nqe = visibleOfficers.filter((o) => o.shortRole === "NQE");
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-10">
-      <div className="text-center">
+      <div className="text-center" data-studio-id="officers.heading">
         <h1 className="sr-only">Meet the officers</h1>
         <DashWrap>
           <WonkyTitle
@@ -38,6 +64,7 @@ export default function OfficersPage() {
       </div>
 
       <section
+        data-studio-id="officers.collection"
         aria-labelledby="exec-h"
         className="locker-wall edge-paper mt-10 border-[3px] border-ink/85 px-5 pb-10 pt-6 shadow-paper sm:px-8"
       >
@@ -49,6 +76,7 @@ export default function OfficersPage() {
             <li
               key={officer.name}
               id={officerAnchorId(officer)}
+              data-studio-id={`officers.items.${officer.name}`}
               className="scroll-mt-28 rounded-xl transition-colors target:bg-tsa-blue/10 target:ring-4 target:ring-tsa-blue/50 target:ring-offset-4 target:ring-offset-cream"
             >
               <OfficerCard
@@ -68,6 +96,7 @@ export default function OfficersPage() {
             <li
               key={officer.name}
               id={officerAnchorId(officer)}
+              data-studio-id={`officers.items.${officer.name}`}
               className="scroll-mt-28 rounded-xl transition-colors target:bg-tsa-blue/10 target:ring-4 target:ring-tsa-blue/50 target:ring-offset-4 target:ring-offset-cream"
             >
               <OfficerCard officer={officer} tilt={TILTS[(i + 3) % TILTS.length]} />
@@ -83,6 +112,7 @@ export default function OfficersPage() {
             <li
               key={officer.name}
               id={officerAnchorId(officer)}
+              data-studio-id={`officers.items.${officer.name}`}
               className="scroll-mt-28 rounded-xl transition-colors target:bg-tsa-blue/10 target:ring-4 target:ring-tsa-blue/50 target:ring-offset-4 target:ring-offset-cream"
             >
               <OfficerCard officer={officer} tilt={TILTS[(i + 1) % TILTS.length]} />

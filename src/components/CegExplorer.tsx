@@ -6,16 +6,20 @@ import { IconArrowRight, IconExternal, IconSearch } from "@/components/icons";
 import { site, type CegDeck } from "@/content/site";
 
 /** Turn a Canva share link into its embeddable form. */
-function toEmbedUrl(url: string): string | null {
+function toEmbedUrl(value: string): string | null {
   try {
-    const parsed = new URL(url);
-    if (parsed.protocol !== "https:" || !["canva.com", "www.canva.com"].includes(parsed.hostname)) {
+    const url = new URL(value);
+    if (
+      url.protocol !== "https:" ||
+      !["canva.com", "www.canva.com"].includes(url.hostname)
+    ) {
       return null;
     }
 
-    parsed.hostname = "www.canva.com";
-    const path = parsed.pathname.replace(/\/$/, "");
-    return `${parsed.origin}${path}${path.endsWith("/view") ? "" : "/view"}?embed`;
+    url.hostname = "www.canva.com";
+    const path = url.pathname.replace(/\/$/, "");
+    if (!path.startsWith("/design/")) return null;
+    return `${url.origin}${path.endsWith("/view") ? path : `${path}/view`}?embed`;
   } catch {
     return null;
   }
@@ -77,9 +81,11 @@ function DeckArrow({
 export default function CegExplorer({
   master,
   events,
+  museumFormUrl = site.links.museumFormShort,
 }: {
   master: CegDeck;
   events: CegDeck[];
+  museumFormUrl?: string;
 }) {
   const decks = [master, ...events];
   const [selected, setSelected] = useState<CegDeck>(master);
@@ -167,7 +173,7 @@ export default function CegExplorer({
 
             {/* "Add Your Project" at the bottom of the sidebar, like the sketch */}
             <a
-              href={site.links.museumFormShort}
+              href={museumFormUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 flex items-center justify-center gap-2 rounded-xl border-2 border-ink bg-tsa-blue px-3.5 py-2.5 text-center font-display text-[15px] font-bold text-card shadow-[2px_2px_0_0_rgb(37_50_68_/_0.7)] transition hover:bg-tsa-blue/90"
@@ -222,6 +228,7 @@ export default function CegExplorer({
       {/* ------------------ the museum submit box, centered ------------------ */}
       <section
         id="museum"
+        data-studio-id="ceg.museum"
         aria-label="TSA Museum submissions"
         className="mt-16 flex scroll-mt-24 justify-center"
       >
@@ -233,7 +240,7 @@ export default function CegExplorer({
             past submissions.
           </p>
           <a
-            href={site.links.museumFormShort}
+            href={museumFormUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-marker edge-sketch mt-5 inline-flex items-center gap-2.5 bg-tsa-blue px-5 py-2.5 font-display text-base font-bold text-card"

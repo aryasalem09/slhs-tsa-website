@@ -2,8 +2,9 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === "development";
 
-// The site is statically rendered. This policy keeps scripts and embeds scoped
-// to origins the site actually uses without forcing every page to be dynamic.
+// Keep scripts and embeds scoped to origins the site actually uses. Studio's
+// live preview is same-origin, so this policy also permits the site to frame
+// itself without allowing third-party framing.
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
@@ -13,11 +14,11 @@ const contentSecurityPolicy = [
   "font-src 'self'",
   "connect-src 'self'",
   "media-src 'self'",
-  "frame-src https://calendar.google.com https://docs.google.com https://www.canva.com https://www.google.com",
+  "frame-src 'self' https://calendar.google.com https://docs.google.com https://www.canva.com https://www.google.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
-  "frame-ancestors 'none'",
+  "frame-ancestors 'self'",
   "manifest-src 'self'",
   "worker-src 'self' blob:",
   "upgrade-insecure-requests",
@@ -32,18 +33,9 @@ const securityHeaders = [
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-DNS-Prefetch-Control", value: "on" },
-  { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
   { key: "X-XSS-Protection", value: "0" },
-];
-
-// Browser, intermediary-CDN, and Vercel-CDN caches are intentionally explicit.
-// A new deployment invalidates the edge copy while browsers keep a short-lived
-// page copy and a longer-lived copy of static media.
-const pageCacheHeaders = [
-  { key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=86400" },
-  { key: "CDN-Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800, stale-if-error=604800" },
-  { key: "Vercel-CDN-Cache-Control", value: "public, max-age=31536000, stale-while-revalidate=604800, stale-if-error=604800" },
 ];
 
 const mediaCacheHeaders = [
@@ -58,6 +50,9 @@ const nextConfig: NextConfig = {
   distDir: isDev ? ".next-dev" : ".next",
   // Photographs are already exported as WebP. Serving their exact original
   // bytes avoids another lossy encode and removes the optimizer abuse surface.
+  turbopack: {
+    root: process.cwd(),
+  },
   images: {
     unoptimized: true,
   },
@@ -66,7 +61,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/(.*)",
-        headers: [...securityHeaders, ...pageCacheHeaders],
+        headers: securityHeaders,
       },
       // Require at least one path segment so the /gallery and /officers HTML
       // routes retain the shorter page-cache policy.

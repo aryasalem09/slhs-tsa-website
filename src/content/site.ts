@@ -268,9 +268,9 @@ export const officers: Officer[] = [
     group: "directors",
     photo: "/officers/bella-xiang.webp",
     alt: "Bella Xiang, SLHS TSA NQE Director",
-    grade: "",
-    hobbies: [],
-    favoriteArtists: [],
+    grade: "Sophomore",
+    hobbies: ["Art", "Dance", "Baking", "Crochet", "Music", "Deltarune"],
+    favoriteArtists: ["Lorde", "Laufey", "beabadoobee"],
   },
   {
     name: "Elizabeth Hu",

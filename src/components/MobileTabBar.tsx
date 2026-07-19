@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   IconCalendar,
   IconHome,
@@ -9,6 +10,8 @@ import {
   IconPhoto,
   IconStar,
 } from "@/components/icons";
+import { nav, type NavItem } from "@/content/site";
+import type { StudioDocument } from "@/lib/studio/types";
 
 const TABS = [
   { label: "Home", href: "/", Icon: IconHome },
@@ -18,6 +21,10 @@ const TABS = [
   { label: "About", href: "/about", Icon: IconInfo },
 ];
 
+function isNavItem(value: unknown): value is NavItem {
+  return Boolean(value && typeof value === "object" && typeof (value as NavItem).label === "string" && typeof (value as NavItem).href === "string" && (value as NavItem).href.startsWith("/"));
+}
+
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
   if (href === "/about" && pathname.startsWith("/officers")) return true;
@@ -25,8 +32,19 @@ function isActive(pathname: string, href: string) {
 }
 
 /** App-style bottom navigation for phones and small tablets. */
-export default function MobileTabBar() {
+export default function MobileTabBar({ navigation }: { navigation?: { primary?: unknown[] } }) {
   const pathname = usePathname();
+  const [draftDocument, setDraftDocument] = useState<StudioDocument | null>(null);
+  const activeNavigation = draftDocument?.navigation ?? navigation;
+  const labels = Array.isArray(activeNavigation?.primary) && activeNavigation.primary.every(isNavItem)
+    ? new Map(activeNavigation.primary.map((item) => [item.href, item.label]))
+    : new Map(nav.map((item) => [item.href, item.label]));
+
+  useEffect(() => {
+    const receiveDraft = (event: Event) => setDraftDocument((event as CustomEvent<StudioDocument>).detail);
+    window.addEventListener("studio:draft-document", receiveDraft);
+    return () => window.removeEventListener("studio:draft-document", receiveDraft);
+  }, []);
 
   return (
     <nav
@@ -35,6 +53,7 @@ export default function MobileTabBar() {
     >
       <ul className="mx-auto flex max-w-md items-stretch justify-around">
         {TABS.map(({ label, href, Icon, accent }) => {
+          const studioLabel = labels.get(href) ?? label;
           const active = isActive(pathname, href);
           return (
             <li key={href} className="flex-1">
@@ -59,7 +78,7 @@ export default function MobileTabBar() {
                     active ? "text-tsa-blue" : "text-muted-ink"
                   }`}
                 >
-                  {label}
+                  {studioLabel}
                 </span>
               </Link>
             </li>

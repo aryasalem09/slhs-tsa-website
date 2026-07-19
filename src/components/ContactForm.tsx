@@ -13,7 +13,7 @@ const COOLDOWN_KEY = "slhs-tsa-contact-mailto-last-launch";
  * Gmail and opens the visitor's own mail app — no server needed, and the
  * message really lands in the official inbox.
  */
-export default function ContactForm() {
+export default function ContactForm({ email = site.email }: { email?: string }) {
   const [name, setName] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -79,14 +79,14 @@ export default function ContactForm() {
       // requires an explicit send action.
     }
     setStatus("Opening a new email draft in your mail app.");
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(
       mailSubject,
     )}&body=${encodeURIComponent(body)}`;
   }
 
   async function copyEmail() {
     try {
-      await navigator.clipboard.writeText(site.email);
+      await navigator.clipboard.writeText(email);
       setCopied(true);
       window.clearTimeout(copiedTimer.current);
       copiedTimer.current = window.setTimeout(() => setCopied(false), 2000);
@@ -174,7 +174,7 @@ export default function ContactForm() {
 
       <p className="mt-2 border-t-2 border-dashed border-ink/15 pt-4 text-sm font-semibold text-muted-ink">
         Prefer to write it yourself? Email{" "}
-        <span className="break-all font-bold text-ink">{site.email}</span>{" "}
+        <span className="break-all font-bold text-ink">{email}</span>{" "}
         <button
           type="button"
           onClick={copyEmail}

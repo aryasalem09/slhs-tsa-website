@@ -1,17 +1,46 @@
 import type { Metadata } from "next";
-import { pageSeo } from "@/lib/seo";
+import { getStudioPageMetadata } from "@/lib/studio/metadata";
 import { DashWrap, WonkyTitle } from "@/components/decor";
 import { IconExternal } from "@/components/icons";
 import { meetingSlides } from "@/content/site";
+import { getDocumentForRender, getPageSections } from "@/lib/studio/render";
 
-export const metadata: Metadata = {
-  title: "Meeting Slides",
-  description:
-    "Missed a meeting? Every SLHS TSA slideshow lives here, so you can catch up whenever you need to.",
-  ...pageSeo("/slides"),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return getStudioPageMetadata({
+    pageKey: "slides",
+    route: "/slides",
+    fallbackTitle: "Meeting Slides",
+    fallbackDescription: "Missed a meeting? Every SLHS TSA slideshow lives here, so you can catch up whenever you need to.",
+  });
+}
 
-export default function SlidesPage() {
+type SlidesSections = { meetingSlides?: unknown };
+type PageProps = { searchParams: Promise<{ studio?: string; draft?: string }> };
+
+function safeExternalHref(value: unknown): string | undefined {
+  if (typeof value !== "string") return undefined;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.href : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+export default async function SlidesPage({ searchParams }: PageProps) {
+  const preview = await searchParams;
+  const document = await getDocumentForRender({ draftPreview: preview.studio === "1" || preview.draft === "1" });
+  const sections = getPageSections<SlidesSections>(document, "slides");
+  const slides = Array.isArray(sections?.meetingSlides)
+    ? sections.meetingSlides.flatMap((deck) => {
+      const value = deck !== null && typeof deck === "object" ? deck as Record<string, unknown> : undefined;
+      const url = safeExternalHref(value?.url);
+      return typeof value?.date === "string" && typeof value.title === "string" && url
+        ? [{ date: value.date, title: value.title, url, platform: value.platform === "canva" ? "canva" : "google" }]
+        : [];
+    })
+    : meetingSlides;
+
   return (
     <div className="mx-auto max-w-3xl px-4 pt-10">
       <div className="text-center">
@@ -25,7 +54,7 @@ export default function SlidesPage() {
         </DashWrap>
       </div>
 
-      {meetingSlides.length === 0 ? (
+      {slides.length === 0 ? (
         <div className="edge-paper relative mx-auto mt-12 max-w-xl rotate-[-0.5deg] border-[3px] border-ink/85 bg-card p-8 text-center shadow-paper">
           <span aria-hidden="true" className="tape -top-3 left-1/2 -translate-x-1/2 rotate-[-2deg]" />
           <p className="font-hand text-3xl font-bold text-ink">
@@ -36,8 +65,8 @@ export default function SlidesPage() {
           </p>
         </div>
       ) : (
-        <ul className="mt-12 space-y-5">
-          {meetingSlides.map((deck, i) => (
+        <ul data-studio-id="slides.decks" className="mt-12 space-y-5">
+          {slides.map((deck, i) => (
             <li key={deck.url}>
               <a
                 href={deck.url}

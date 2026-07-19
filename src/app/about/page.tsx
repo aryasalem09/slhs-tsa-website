@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageSeo } from "@/lib/seo";
+import { getStudioPageMetadata } from "@/lib/studio/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import StickerLogo from "@/components/StickerLogo";
@@ -7,13 +7,16 @@ import { DashWrap, JoinArrowLink, WonkyTitle } from "@/components/decor";
 import { IconArrowRight } from "@/components/icons";
 import { achievements, competing, meetings, officers, seasonHighlights } from "@/content/site";
 import { officerAnchorId } from "@/lib/officerAnchors";
+import { getDocumentForRender, getPageSections } from "@/lib/studio/render";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Learn about SLHS TSA at Seven Lakes High School, our competition achievements, and how members advance from Regionals to Nationals.",
-  ...pageSeo("/about"),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return getStudioPageMetadata({
+    pageKey: "about",
+    route: "/about",
+    fallbackTitle: "About",
+    fallbackDescription: "Learn about SLHS TSA at Seven Lakes High School, our competition achievements, and how members advance from Regionals to Nationals.",
+  });
+}
 
 // A distinct sticker color per role, keyed by both full role and director shortRole.
 const ROLE_TAB: Record<string, string> = {
@@ -27,7 +30,69 @@ const ROLE_TAB: Record<string, string> = {
 };
 const DEFAULT_TAB = "bg-tsa-blue text-cream";
 
-export default function AboutPage() {
+type AboutSections = {
+  achievements?: unknown;
+  seasonHighlights?: unknown;
+  competing?: unknown;
+  meetings?: unknown;
+};
+type PageProps = { searchParams: Promise<{ studio?: string; draft?: string }> };
+
+function asRecord(value: unknown): Record<string, unknown> | undefined {
+  return value !== null && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : undefined;
+}
+
+function asPlacements(value: unknown, fallback: readonly { place: string; event: string }[]) {
+  if (!Array.isArray(value)) return fallback;
+  const placements = value.flatMap((placement) => {
+    const item = asRecord(placement);
+    return typeof item?.place === "string" && typeof item.event === "string"
+      ? [{ place: item.place, event: item.event }]
+      : [];
+  });
+  return placements.length === value.length ? placements : fallback;
+}
+
+export default async function AboutPage({ searchParams }: PageProps) {
+  const preview = await searchParams;
+  const document = await getDocumentForRender({ draftPreview: preview.studio === "1" || preview.draft === "1" });
+  const sections = getPageSections<AboutSections>(document, "about");
+  const studioAchievements = Array.isArray(sections?.achievements)
+    ? sections.achievements.flatMap((achievement) => {
+      const item = asRecord(achievement);
+      return typeof item?.stat === "string" && typeof item.text === "string"
+        ? [{ stat: item.stat, text: item.text }]
+        : [];
+    })
+    : [];
+  const displayedAchievements = Array.isArray(sections?.achievements) && studioAchievements.length === sections.achievements.length
+    ? studioAchievements
+    : achievements;
+  const highlights = asRecord(sections?.seasonHighlights);
+  const nationals = asRecord(highlights?.nationals);
+  const state = asRecord(highlights?.state);
+  const displayedHighlights = {
+    season: typeof highlights?.season === "string" ? highlights.season : seasonHighlights.season,
+    nationals: {
+      qualifiers: typeof nationals?.qualifiers === "number" ? nationals.qualifiers : seasonHighlights.nationals.qualifiers,
+      placements: asPlacements(nationals?.placements, seasonHighlights.nationals.placements),
+    },
+    state: { placements: asPlacements(state?.placements, seasonHighlights.state.placements) },
+  };
+  const studioCompeting = asRecord(sections?.competing);
+  const displayedPoints = Array.isArray(studioCompeting?.points)
+    ? studioCompeting.points.flatMap((point) => {
+      const item = asRecord(point);
+      return typeof item?.title === "string" && typeof item.text === "string"
+        ? [{ title: item.title, text: item.text }]
+        : [];
+    })
+    : [];
+  const displayedCompeting = Array.isArray(studioCompeting?.points) && displayedPoints.length === studioCompeting.points.length
+    ? displayedPoints
+    : competing.points;
+  const studioMeetings = asRecord(sections?.meetings);
+  const meetingBlurb = typeof studioMeetings?.blurb === "string" ? studioMeetings.blurb : meetings.blurb;
   const exec = officers.filter((o) => o.group === "exec");
   const directors = officers.filter((o) => o.group === "directors");
 
@@ -139,7 +204,7 @@ export default function AboutPage() {
           </p>
 
           {/* achievements */}
-          <div className="edge-paper relative mt-8 border-[3px] border-ink/85 bg-card p-6 shadow-paper sm:p-8">
+          <div data-studio-id="about.achievements" className="edge-paper relative mt-8 border-[3px] border-ink/85 bg-card p-6 shadow-paper sm:p-8">
             <span aria-hidden="true" className="tape -top-3 left-8 rotate-[-5deg]" />
             <span aria-hidden="true" className="tape -top-3 right-8 rotate-[4deg]" />
 
@@ -148,7 +213,7 @@ export default function AboutPage() {
             </p>
 
             <ul className="mt-5 space-y-4">
-              {achievements.map((a, i) => (
+              {displayedAchievements.map((a, i) => (
                 <li key={a.text} className="flex items-baseline gap-4">
                   <span
                     className={`w-20 shrink-0 text-right font-display text-4xl font-black ${
@@ -167,7 +232,7 @@ export default function AboutPage() {
             {/* this past season's headline placements */}
             <div className="mt-7 border-t-2 border-dashed border-ink/20 pt-5">
               <p className="-rotate-1 font-hand text-2xl font-semibold text-tsa-blue">
-                this past season ({seasonHighlights.season})
+                this past season ({displayedHighlights.season})
               </p>
 
               <div className="mt-3 space-y-3">
@@ -176,11 +241,11 @@ export default function AboutPage() {
                   <p className="flex flex-wrap items-baseline gap-x-2">
                     <span className="font-display text-lg font-black text-ink">Nationals</span>
                     <span className="font-hand text-base font-semibold text-muted-ink">
-                      {seasonHighlights.nationals.qualifiers} national qualifiers
+                      {displayedHighlights.nationals.qualifiers} national qualifiers
                     </span>
                   </p>
                   <ul className="mt-2 grid gap-x-5 gap-y-1.5 sm:grid-cols-2">
-                    {seasonHighlights.nationals.placements.map((p) => (
+                    {displayedHighlights.nationals.placements.map((p) => (
                       <li
                         key={p.event}
                         className="flex items-baseline gap-2 text-[15px] font-semibold text-ink/90"
@@ -198,7 +263,7 @@ export default function AboutPage() {
                 <div className="edge-paper-sm border-2 border-ink/15 bg-cream p-4">
                   <p className="font-display text-lg font-black text-ink">State</p>
                   <ul className="mt-2 grid gap-x-5 gap-y-1.5 sm:grid-cols-2">
-                    {seasonHighlights.state.placements.map((p) => (
+                    {displayedHighlights.state.placements.map((p) => (
                       <li
                         key={p.event}
                         className="flex items-baseline gap-2 text-[15px] font-semibold text-ink/90"
@@ -232,10 +297,10 @@ export default function AboutPage() {
           </div>
 
           {/* meetings */}
-          <div className="edge-paper mt-6 flex flex-wrap items-center justify-between gap-4 border-2 border-ink/80 bg-cream p-5">
+          <div data-studio-id="about.meetings" className="edge-paper mt-6 flex flex-wrap items-center justify-between gap-4 border-2 border-ink/80 bg-cream p-5">
             <div>
               <h2 className="font-display text-xl font-black text-tsa-blue">When we meet</h2>
-              <p className="mt-1 max-w-md font-semibold text-ink/90">{meetings.blurb}</p>
+              <p className="mt-1 max-w-md font-semibold text-ink/90">{meetingBlurb}</p>
             </div>
             <Link
               href="/calendar"
@@ -249,6 +314,7 @@ export default function AboutPage() {
           {/* competing 101 */}
           <div
             id="competing"
+            data-studio-id="about.competing"
             className="edge-paper relative mt-6 scroll-mt-24 border-2 border-ink/80 bg-card p-5 sm:p-6"
           >
             {/* Texas TSA runs our Regionals & State circuit — sticker of honor */}
@@ -263,7 +329,7 @@ export default function AboutPage() {
             />
             <h2 className="font-display text-xl font-black text-tsa-blue">Competing 101</h2>
             <ul className="mt-3 space-y-2.5">
-              {competing.points.map((p) => (
+              {displayedCompeting.map((p) => (
                 <li key={p.title} className="text-[15px] leading-snug">
                   <span className="font-extrabold text-ink">{p.title}:</span>{" "}
                   <span className="font-semibold text-ink/85">{p.text}</span>

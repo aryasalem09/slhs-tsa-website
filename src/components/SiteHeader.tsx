@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { moreNav, nav, site } from "@/content/site";
+import { moreNav, nav, site, type NavItem } from "@/content/site";
+import type { StudioDocument } from "@/lib/studio/types";
+import { isSafeInternalHref } from "@/lib/urls";
 import {
   IconDiscord,
   IconInstagram,
@@ -20,13 +22,57 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export default function SiteHeader() {
+type SiteInfo = Record<string, unknown>;
+
+function isNavItem(value: unknown): value is NavItem {
+  return Boolean(value && typeof value === "object" && typeof (value as NavItem).label === "string" && isSafeInternalHref((value as NavItem).href));
+}
+
+function externalUrl(value: unknown, fallback: string) {
+  if (typeof value !== "string") return fallback;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.href : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function text(value: unknown, fallback: string) {
+  return typeof value === "string" && value.trim() ? value.trim() : fallback;
+}
+
+export default function SiteHeader({
+  navigation,
+  siteInfo,
+}: {
+  navigation?: { primary?: unknown[]; more?: unknown[] };
+  siteInfo?: SiteInfo;
+}) {
+  const [draftDocument, setDraftDocument] = useState<StudioDocument | null>(null);
+  const activeNavigation = draftDocument?.navigation ?? navigation;
+  const activeSiteInfo = draftDocument?.site ?? siteInfo;
+  const primaryNav = Array.isArray(activeNavigation?.primary) && activeNavigation.primary.every(isNavItem) ? activeNavigation.primary : nav;
+  const secondaryNav = Array.isArray(activeNavigation?.more) && activeNavigation.more.every(isNavItem) ? activeNavigation.more : moreNav;
+  const studioSocials = activeSiteInfo?.socials;
+  const socials = {
+    instagram: externalUrl((studioSocials as Record<string, unknown> | undefined)?.instagram, site.socials.instagram),
+    discord: externalUrl((studioSocials as Record<string, unknown> | undefined)?.discord, site.socials.discord),
+    remind: externalUrl((studioSocials as Record<string, unknown> | undefined)?.remind, site.socials.remind),
+  };
+  const siteName = text(activeSiteInfo?.name, site.name);
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const moreRef = useRef<HTMLLIElement>(null);
   const closeMenu = () => setMenuOpen(false);
-  const moreActive = moreNav.some((item) => isActive(pathname, item.href));
+  const moreActive = secondaryNav.some((item) => isActive(pathname, item.href));
+
+  useEffect(() => {
+    const receiveDraft = (event: Event) => setDraftDocument((event as CustomEvent<StudioDocument>).detail);
+    window.addEventListener("studio:draft-document", receiveDraft);
+    return () => window.removeEventListener("studio:draft-document", receiveDraft);
+  }, []);
 
   // Close the "More" menu on Escape or a click outside it.
   useEffect(() => {
@@ -53,12 +99,12 @@ export default function SiteHeader() {
     "border-2 border-ink bg-white shadow-[2px_2px_0_0_rgb(37_50_68_/_0.9)]";
 
   return (
-    <header className="sticky top-0 z-50 border-b-[3px] border-tsa-blue/70 bg-paper/95 backdrop-blur">
+    <header data-studio-id="site.header" className="sticky top-0 z-50 border-b-[3px] border-tsa-blue/70 bg-paper/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4">
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2.5 -rotate-1"
-          aria-label="SLHS TSA home"
+          aria-label={`${siteName} home`}
         >
           <Image
             src="/logos/spartan-mark-512.png"
@@ -86,7 +132,7 @@ export default function SiteHeader() {
         <div className="hidden items-center gap-1.5 lg:flex">
           <nav aria-label="Main">
             <ul className="flex items-center gap-1">
-              {nav.map((item) => {
+              {primaryNav.map((item) => {
                 const active = isActive(pathname, item.href);
                 const hasFlyout = item.href === "/about";
                 return (
@@ -153,7 +199,7 @@ export default function SiteHeader() {
                 {moreOpen && (
                   <div className="absolute right-0 top-full z-50 pt-2">
                     <div className="edge-paper-sm w-44 -rotate-1 border-2 border-ink bg-card p-1.5 shadow-lift">
-                      {moreNav.map((item) => (
+                      {secondaryNav.map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
@@ -203,7 +249,7 @@ export default function SiteHeader() {
           className="max-h-[calc(100dvh-4rem-4.5rem-env(safe-area-inset-bottom))] overflow-y-auto border-t-2 border-ink/10 bg-paper px-4 pb-5 pt-2 lg:hidden"
         >
           <ul className="flex flex-col gap-1">
-            {nav.map((item) => {
+            {primaryNav.map((item) => {
               const active = isActive(pathname, item.href);
               return (
                 <li key={item.href}>
@@ -229,7 +275,7 @@ export default function SiteHeader() {
                 </li>
               );
             })}
-            {moreNav.map((item) => {
+            {secondaryNav.map((item) => {
               const active = isActive(pathname, item.href);
               return (
                 <li key={item.href}>
@@ -258,7 +304,7 @@ export default function SiteHeader() {
           </ul>
           <div className="mt-4 flex items-center justify-center gap-6 border-t-2 border-ink/10 pt-4">
             <a
-              href={site.socials.instagram}
+              href={socials.instagram}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -267,7 +313,7 @@ export default function SiteHeader() {
               <IconInstagram aria-hidden="true" />
             </a>
             <a
-              href={site.socials.discord}
+              href={socials.discord}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Discord"
@@ -276,7 +322,7 @@ export default function SiteHeader() {
               <IconDiscord aria-hidden="true" />
             </a>
             <a
-              href={site.socials.remind}
+              href={socials.remind}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Remind"

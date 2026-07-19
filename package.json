@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --import tsx --test tests/studio-contracts.test.ts",
     "dev": "next dev --hostname 127.0.0.1 --port 3000",
     "dev:network": "next dev --hostname 0.0.0.0 --port 3000",
     "build": "next build",
@@ -24,10 +24,14 @@
   },
   "homepage": "https://github.com/aryasalem09/slhs-tsa-website#readme",
   "dependencies": {
+    "@phosphor-icons/react": "2.1.10",
+    "@supabase/ssr": "0.12.3",
+    "@supabase/supabase-js": "2.110.7",
     "motion": "^12.42.2",
     "next": "^16.2.10",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "zod": "4.4.3"
   },
   "overrides": {
     "postcss": "8.5.19"
@@ -40,7 +44,9 @@
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.10",
     "sharp": "^0.35.3",
+    "supabase": "2.109.1",
     "tailwindcss": "^4.3.2",
+    "tsx": "4.23.1",
     "typescript": "^6.0.3"
   }
 }

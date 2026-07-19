@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { pageSeo } from "@/lib/seo";
 import Link from "next/link";
+import { getStudioPageMetadata } from "@/lib/studio/metadata";
 import SpotlightCard from "@/components/reactbits/SpotlightCard";
 import { DashWrap, WonkyTitle } from "@/components/decor";
 import {
@@ -10,14 +10,17 @@ import {
   IconInstagram,
   IconRemind,
 } from "@/components/icons";
-import { site } from "@/content/site";
+import { meetings, site } from "@/content/site";
+import { getDocumentForRender, getPageSections } from "@/lib/studio/render";
 
-export const metadata: Metadata = {
-  title: "How to Join",
-  description:
-    "Want in? Here's how to join SLHS TSA: fill out the form, pay your dues on Katy ISD Pay N' Go, and hop on Remind and Discord.",
-  ...pageSeo("/join"),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return getStudioPageMetadata({
+    pageKey: "join",
+    route: "/join",
+    fallbackTitle: "How to Join",
+    fallbackDescription: "Want in? Here's how to join SLHS TSA: fill out the form, pay your dues on Katy ISD Pay N' Go, and hop on Remind and Discord.",
+  });
+}
 
 const payNGoPath = [
   "High School",
@@ -41,8 +44,40 @@ function StepBadge({ n }: { n: number }) {
   );
 }
 
-export default function JoinPage() {
-  const form = site.links.registrationForm;
+type JoinSections = { links?: unknown; socials?: unknown; meetings?: unknown };
+type PageProps = { searchParams: Promise<{ studio?: string; draft?: string }> };
+
+function asRecord(value: unknown): Record<string, unknown> | undefined {
+  return value !== null && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : undefined;
+}
+
+function safeExternalHref(value: unknown, fallback: string | null) {
+  if (typeof value !== "string") return fallback;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.href : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function safeText(value: unknown, fallback: string) {
+  return typeof value === "string" && value.trim() ? value.trim() : fallback;
+}
+
+export default async function JoinPage({ searchParams }: PageProps) {
+  const preview = await searchParams;
+  const document = await getDocumentForRender({ draftPreview: preview.studio === "1" || preview.draft === "1" });
+  const sections = getPageSections<JoinSections>(document, "join");
+  const links = asRecord(sections?.links);
+  const socials = asRecord(sections?.socials);
+  const meetingDetails = asRecord(sections?.meetings);
+  const form = safeExternalHref(links?.registrationForm, site.links.registrationForm);
+  const payNGo = safeExternalHref(links?.payNGo, site.links.payNGo) ?? site.links.payNGo;
+  const remind = safeExternalHref(socials?.remind, site.socials.remind) ?? site.socials.remind;
+  const discord = safeExternalHref(socials?.discord, site.socials.discord) ?? site.socials.discord;
+  const instagram = safeExternalHref(socials?.instagram, site.socials.instagram) ?? site.socials.instagram;
+  const meetingBlurb = safeText(meetingDetails?.blurb, meetings.blurb);
 
   return (
     <div className="mx-auto max-w-3xl px-4 pt-10">
@@ -58,11 +93,14 @@ export default function JoinPage() {
         <p className="mx-auto mt-5 max-w-lg font-hand text-2xl font-semibold leading-snug text-muted-ink">
           sign-ups for 26-27 open soon! we&apos;ll announce it by email and Remind.
         </p>
+        <p data-studio-id="join.meetings" className="mx-auto mt-3 max-w-lg font-semibold text-muted-ink">
+          {meetingBlurb}
+        </p>
       </div>
 
       <div className="mt-12 flex flex-col gap-10">
         {/* step 1 */}
-        <SpotlightCard className={stepCardCls}>
+        <SpotlightCard data-studio-id="join.registration" className={stepCardCls}>
           <StepBadge n={1} />
           <h2 className="font-display text-2xl font-black text-tsa-blue">
             Fill out the registration form
@@ -102,7 +140,7 @@ export default function JoinPage() {
         </p>
 
         {/* step 2 */}
-        <SpotlightCard className={stepCardCls}>
+        <SpotlightCard data-studio-id="join.dues" className={stepCardCls}>
           <StepBadge n={2} />
           <h2 className="font-display text-2xl font-black text-tsa-blue">
             Pay your dues on Pay N&apos; Go
@@ -126,7 +164,7 @@ export default function JoinPage() {
             ))}
           </p>
           <a
-            href={site.links.payNGo}
+            href={payNGo}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-marker edge-sketch mt-5 inline-block bg-tsa-blue px-5 py-2 font-bold text-cream"
@@ -141,7 +179,7 @@ export default function JoinPage() {
         </p>
 
         {/* step 3 */}
-        <SpotlightCard className={stepCardCls}>
+        <SpotlightCard data-studio-id="join.socials" className={stepCardCls}>
           <StepBadge n={3} />
           <h2 id="remind" className="scroll-mt-28 font-display text-2xl font-black text-tsa-blue">
             Stay in the loop
@@ -151,7 +189,7 @@ export default function JoinPage() {
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <a
-              href={site.socials.remind}
+              href={remind}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-marker edge-sketch inline-flex items-center gap-2 bg-tsa-red px-5 py-2 font-bold text-white"
@@ -159,7 +197,7 @@ export default function JoinPage() {
               <IconRemind aria-hidden="true" /> Join Remind
             </a>
             <a
-              href={site.socials.discord}
+              href={discord}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-marker edge-sketch inline-flex items-center gap-2 bg-tsa-blue px-5 py-2 font-bold text-cream"
@@ -167,7 +205,7 @@ export default function JoinPage() {
               <IconDiscord aria-hidden="true" /> Join Discord
             </a>
             <a
-              href={site.socials.instagram}
+              href={instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-marker edge-sketch inline-flex items-center gap-2 bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] px-5 py-2 font-bold text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.55)]"
