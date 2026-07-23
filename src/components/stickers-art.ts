@@ -183,7 +183,7 @@ export const STICKER_ART: Record<string, string> = {
 
 /** Wrap a sticker's inner art in a standalone SVG string (for tooling). */
 export function stickerSvg(name: string): string | null {
-  const art = STICKER_ART[name];
+  const art = Object.hasOwn(STICKER_ART, name) ? STICKER_ART[name] : null;
   if (!art) return null;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">${art}</svg>`;
 }
