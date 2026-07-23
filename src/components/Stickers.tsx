@@ -31,7 +31,7 @@ export default function Stickers({
   return (
     <span aria-hidden="true" className="pointer-events-none absolute inset-0 select-none">
       {names.slice(0, SLOTS.length).map((name, i) => {
-        const art = STICKER_ART[name];
+        const art = Object.hasOwn(STICKER_ART, name) ? STICKER_ART[name] : null;
         if (!art) return null;
         return (
           <svg
