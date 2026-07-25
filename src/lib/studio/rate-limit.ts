@@ -23,6 +23,9 @@ export function consumeLoginAttempt(key: string, maximumAttempts = MAX_ATTEMPTS)
     loginAttempts.set(key, { count: 1, resetAt: now + WINDOW_MS });
     return { allowed: true, retryAfterSeconds: 0 };
   }
+  // Re-insert to move key to end of iteration order (LRU)
+  loginAttempts.delete(key);
+  loginAttempts.set(key, current);
   if (current.count >= maximumAttempts) {
     return { allowed: false, retryAfterSeconds: Math.max(1, Math.ceil((current.resetAt - now) / 1000)) };
   }
