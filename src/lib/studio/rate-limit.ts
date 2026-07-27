@@ -23,10 +23,15 @@ export function consumeLoginAttempt(key: string, maximumAttempts = MAX_ATTEMPTS)
     loginAttempts.set(key, { count: 1, resetAt: now + WINDOW_MS });
     return { allowed: true, retryAfterSeconds: 0 };
   }
+  // Move key to the end of the map to implement LRU eviction behavior
+  loginAttempts.delete(key);
+
   if (current.count >= maximumAttempts) {
+    loginAttempts.set(key, current);
     return { allowed: false, retryAfterSeconds: Math.max(1, Math.ceil((current.resetAt - now) / 1000)) };
   }
   current.count += 1;
+  loginAttempts.set(key, current);
   return { allowed: true, retryAfterSeconds: 0 };
 }
 
