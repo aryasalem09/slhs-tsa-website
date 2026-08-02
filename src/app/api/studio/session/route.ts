@@ -27,8 +27,8 @@ export async function POST(request: Request) {
   try {
     const { username, password } = loginSchema.parse(await readJsonWithLimit(request, 4_096));
     const clientAddress = (
-      request.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim()
-      ?? request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+      request.headers.get("x-vercel-forwarded-for")?.split(",").at(-1)?.trim()
+      ?? request.headers.get("x-forwarded-for")?.split(",").at(-1)?.trim()
       ?? request.headers.get("x-real-ip")?.trim()
       ?? "local"
     ).slice(0, 120);
