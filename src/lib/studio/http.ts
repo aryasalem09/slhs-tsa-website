@@ -53,6 +53,10 @@ export async function readBodyWithLimit(request: Request, maximumBytes: number):
 }
 
 export async function readJsonWithLimit(request: Request, maximumBytes: number): Promise<unknown> {
+  const contentType = request.headers.get("content-type") ?? "";
+  if (!contentType.includes("application/json")) {
+    throw new Error("Content-Type must be application/json");
+  }
   const body = await readBodyWithLimit(request, maximumBytes);
   return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(body));
 }
