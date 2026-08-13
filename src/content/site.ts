@@ -36,8 +36,7 @@ export const site = {
 
   socials: {
     instagram: "https://www.instagram.com/slhs.tsa/",
-    discord: "https://discord.gg/64C4qZgmV",
-    // TODO(content): new remind class code
+    discord: "https://discord.gg/SfUX5YwBxK",
     remind: "https://www.remind.com/join/7lakestsa",
   },
 
