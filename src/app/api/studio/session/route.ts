@@ -26,9 +26,10 @@ export async function POST(request: Request) {
   if (!isSupabaseConfigured()) return sessionJson({ error: "Studio authentication is not configured" }, { status: 503 });
   try {
     const { username, password } = loginSchema.parse(await readJsonWithLimit(request, 4_096));
+    const forwardedFor = request.headers.get("x-forwarded-for");
     const clientAddress = (
       request.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim()
-      ?? request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+      ?? (forwardedFor ? forwardedFor.split(",").at(-1)?.trim() : null)
       ?? request.headers.get("x-real-ip")?.trim()
       ?? "local"
     ).slice(0, 120);
