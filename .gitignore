@@ -1,0 +1,48 @@
+# dependencies / build
+node_modules/
+.next/
+.next-dev/
+out/
+next-env.d.ts
+*.tsbuildinfo
+npm-debug.log*
+
+# env, editor & OS noise
+.env*
+.DS_Store
+.idea/
+.vscode/
+
+# local planning docs — never commit these
+*.pdf
+!public/museum/**/*.pdf
+Website planning.pdf
+26-27 Officer Post.pdf
+
+# agent/assistant working files — local only
+AGENTS.md
+agents.md
+CLAUDE.md
+claude.md
+.claude/
+.codex/
+.jules/
+.fable/
+.agents/
+.agent/
+scratch/
+tmp/
+scrape-cache/
+extraction-cache/
+output/
+__pycache__/
+*.py
+design-qa.md
+docs/codex-agent-setup.md
+Spartan.png
+TSA Logo.webp
+*.agent-notes.md
+agent-*.log
+
+# vercel
+.vercel
