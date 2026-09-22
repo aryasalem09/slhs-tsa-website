@@ -3,6 +3,7 @@ import Link from "next/link";
 import ParticleLogo from "@/components/ParticleLogo";
 import PhotoStack from "@/components/PhotoStack";
 import SocialTile from "@/components/SocialTile";
+import CompetitionCountdown from "@/components/CompetitionCountdown";
 import { CoilDivider, DashWrap, JoinArrowLink, WonkyTitle } from "@/components/decor";
 import {
   IconArrowRight,
@@ -235,6 +236,8 @@ export default function HomePage() {
           </a>
         </div>
       </section>
+
+      <CompetitionCountdown />
 
       <section aria-labelledby="achievements-h" className="mt-16">
         <h2 id="achievements-h" className="squiggle-underline inline-block font-display text-3xl font-black">A season to remember</h2>

@@ -1,6 +1,7 @@
 import { createPageMetadata } from "@/lib/seo";
 import { DashWrap, WonkyTitle } from "@/components/decor";
 import { site } from "@/content/site";
+import CompetitionCountdown from "@/components/CompetitionCountdown";
 
 export const metadata = createPageMetadata({
   path: "/calendar",
@@ -25,6 +26,8 @@ export default function CalendarPage() {
           Meetings, deadlines, socials, trips, and check-ins.
         </p>
       </div>
+
+      <CompetitionCountdown />
 
       <div className="edge-paper relative mt-8 border-[3px] border-ink/85 bg-card p-3 shadow-paper sm:p-4">
         <span aria-hidden="true" className="tape -top-3 left-10 rotate-[-6deg]" />

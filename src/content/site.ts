@@ -110,6 +110,12 @@ export type SlideDeck = {
 
 export const meetingSlides: SlideDeck[] = [
   {
+    date: "September 10, 2026",
+    title: "event walkthrough",
+    url: "https://www.canva.com/design/DAHUnf2aaps/lsfQL2f3dB5Hhqa3Y00k0g/view",
+    platform: "canva",
+  },
+  {
     date: "August 27, 2026",
     title: "introductory meeting",
     url: "https://www.canva.com/design/DAHRvc4owNM/znsxsExX82lm7o90carAEA/view",
