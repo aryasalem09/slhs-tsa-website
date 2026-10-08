@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/calendar",
     "/slides",
     "/contact",
-    "/ceg",
+    "/museum",
   ];
 
   return routes.map((path) => ({

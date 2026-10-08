@@ -163,25 +163,19 @@ export default function HomePage() {
 
         <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <Link
-            href="/ceg"
+            href="/museum"
             className="edge-paper group relative block rotate-[-0.4deg] border-[3px] border-ink bg-tsa-blue p-6 text-cream shadow-paper transition hover:-translate-y-1 hover:shadow-lift sm:col-span-2"
           >
-            <span
-              aria-hidden="true"
-              className="edge-sketch absolute -top-3.5 right-6 rotate-2 border-2 border-ink bg-spartan-orange px-3 py-0.5 font-hand text-lg font-bold text-ink shadow-[2px_2px_0_0_rgb(37_50_68_/_0.5)]"
-            >
-              under construction!
-            </span>
             <p className="font-hand text-2xl text-cream/85">competing this year? start here</p>
             <p className="mt-1 font-display text-3xl font-black tracking-tight">
-              CEG Navigation
+              Events Museum
               <IconArrowRight
                 className="ml-2 inline-block align-[-3px] transition-transform group-hover:translate-x-1.5"
                 aria-hidden="true"
               />
             </p>
             <p className="mt-3 max-w-lg font-semibold text-cream/90">
-              Everything you need to compete, all in one place. Coming this August.
+              Explore TSA events and documented student competition projects.
             </p>
           </Link>
 
@@ -198,22 +192,6 @@ export default function HomePage() {
             </p>
             <p className="mt-2 text-[15px] font-semibold text-muted-ink">
               Three easy steps: registration form, dues, Remind &amp; Discord.
-            </p>
-          </Link>
-
-          <Link
-            href="/ceg#museum"
-            className="edge-paper group relative block rotate-[-0.6deg] border-2 border-ink bg-card p-5 shadow-paper transition hover:-translate-y-1 hover:shadow-lift"
-          >
-            <p className="font-display text-xl font-black text-tsa-blue">
-              TSA Museum
-              <IconArrowRight
-                className="ml-1.5 inline-block align-[-3px] text-base transition-transform group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </p>
-            <p className="mt-2 text-[15px] font-semibold text-muted-ink">
-              Old photos, trophies, and chapter memories.
             </p>
           </Link>
 

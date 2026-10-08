@@ -51,7 +51,7 @@ export const site = {
 export const nav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "CEG", href: "/ceg" },
+  { label: "Events Museum", href: "/museum" },
   { label: "Slides", href: "/slides" },
   { label: "Calendar", href: "/calendar" },
 ];
@@ -110,6 +110,12 @@ export type SlideDeck = {
 
 export const meetingSlides: SlideDeck[] = [
   {
+    date: "September 24, 2026",
+    title: "third general meeting",
+    url: "https://www.canva.com/design/DAHWD5j3hs0/pSARcKqUvsfsx65zzNxlkw/view",
+    platform: "canva",
+  },
+  {
     date: "September 10, 2026",
     title: "event walkthrough",
     url: "https://www.canva.com/design/DAHUnf2aaps/lsfQL2f3dB5Hhqa3Y00k0g/view",
@@ -122,13 +128,6 @@ export const meetingSlides: SlideDeck[] = [
     platform: "canva",
   },
 ];
-
-export type CegDeck = { name: string; canvaUrl: string | null };
-
-export const ceg = {
-  master: { name: "CEG", canvaUrl: null } as CegDeck,
-  events: [] as CegDeck[],
-};
 
 export const competing = {
   points: [

@@ -38,6 +38,11 @@ test("countdown months handle short months, leap years, and year rollover", () =
 
 test("meeting slides use safe Canva embeds and remain newest first", () => {
   assert.deepEqual(meetingSlides, [{
+    date: "September 24, 2026",
+    title: "third general meeting",
+    url: "https://www.canva.com/design/DAHWD5j3hs0/pSARcKqUvsfsx65zzNxlkw/view",
+    platform: "canva",
+  }, {
     date: "September 10, 2026",
     title: "event walkthrough",
     url: "https://www.canva.com/design/DAHUnf2aaps/lsfQL2f3dB5Hhqa3Y00k0g/view",
@@ -50,7 +55,7 @@ test("meeting slides use safe Canva embeds and remain newest first", () => {
   }]);
   assert.equal(
     toCanvaEmbedUrl(meetingSlides[0].url),
-    "https://www.canva.com/design/DAHUnf2aaps/lsfQL2f3dB5Hhqa3Y00k0g/view?embed",
+    "https://www.canva.com/design/DAHWD5j3hs0/pSARcKqUvsfsx65zzNxlkw/view?embed",
   );
   assert.equal(isCanvaDesignUrl("https://canva.com/design/abc/def"), true);
   assert.equal(toCanvaEmbedUrl("https://www.canva.com/design/abc"), null);

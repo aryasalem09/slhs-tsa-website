@@ -71,7 +71,7 @@ export default function ManagedSiteFooter() {
           <ul className="mt-2 space-y-1.5 text-[15px] font-semibold">
             <li><a href={official} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-tsa-red hover:underline">Official TSA website <IconExternal aria-hidden="true" className="text-sm" /></a></li>
             <li><Link href="/about#competing" className="hover:text-tsa-red hover:underline">Competing 101</Link></li>
-            <li><Link href="/ceg" className="hover:text-tsa-red hover:underline">CEG Navigation</Link></li>
+            <li><Link href="/museum" className="hover:text-tsa-red hover:underline">Events Museum</Link></li>
           </ul>
         </div>
       </div>

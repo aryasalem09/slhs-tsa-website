@@ -186,9 +186,9 @@ export default function MuseumArchive({ museumFormUrl }: { museumFormUrl: string
     <section id="museum" aria-labelledby="museum-heading" className="scroll-mt-24">
       <div className="edge-paper relative overflow-hidden border-[3px] border-ink/85 bg-card p-5 shadow-paper sm:p-7">
         <span aria-hidden="true" className="tape -top-2 right-7 rotate-3" />
-        <h2 id="museum-heading" className="font-display text-3xl font-black leading-none text-tsa-blue sm:text-4xl">
-          Event museum
-        </h2>
+        <h1 id="museum-heading" className="font-display text-3xl font-black leading-none text-tsa-blue sm:text-4xl">
+          Events Museum
+        </h1>
         <p className="mt-3 max-w-3xl text-base font-semibold leading-relaxed text-muted-ink">
           Browse National Qualifying Events and Unique to Texas Events, then open documented examples.
         </p>

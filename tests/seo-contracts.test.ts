@@ -14,7 +14,7 @@ async function discoverPublicRoutes() {
     const file = `${entry.parentPath}/${entry.name}`;
     const normalized = file.replaceAll("\\", "/");
     const route = normalized.slice("src/app".length).replace(/\/page\.tsx$/, "") || "/";
-    if (route === "/museum") continue;
+    if (route === "/ceg") continue;
     routes.push(route);
   }
   return routes.sort();
